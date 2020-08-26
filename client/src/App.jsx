@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 
 const App = () => {
   return (
-    <div className='ui container'>
+    <div className='ui grid container'>
       <Router history={history}>
         <Switch>
           <Route path='/' exact component={Home} />

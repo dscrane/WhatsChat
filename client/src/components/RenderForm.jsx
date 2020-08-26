@@ -3,17 +3,17 @@ import { reduxForm } from "redux-form";
 
 class RenderForm extends Component {
 
-  handleClick = formValues => {
-    this.props.handleClick(formValues);
+  handleForm = formValues => {
+    this.props.handleForm(formValues);
   }
 
   render() {
     return(
-      <form onSubmit={this.props.handleSubmit(this.handleClick)} className='ui form'>
+      <form onSubmit={this.props.handleSubmit(this.handleForm)} className='ui large form'>
         {this.props.children}
       </form>
     )
   }
 }
 
-export default reduxForm({ form: 'signupForm' })(RenderForm);
+export default reduxForm({ form: 'homeForm' })(RenderForm);

@@ -13,21 +13,20 @@ export default class SignupForm extends Component {
     )
   }
 
-  handleClick = formValues => {
+  handleForm = formValues => {
     this.props.handleClick(formValues);
   }
 
   render() {
     return(
-      <RenderForm handleClick={this.handleClick}>
+      <RenderForm handleForm={this.handleForm}>
         <Field name='name' component={this.renderInput} label='Name' />
         <Field name='username' component={this.renderInput} label='Username' />
         <Field name='email' component={this.renderInput} label='Email' />
         <Field name='password' component={this.renderInput} label='Password' />
-        <Field name='password-conf' component={this.renderInput} label='Confirm Password' />
+        <Field name='passwordConf' component={this.renderInput} label='Confirm Password' />
         <button className='ui button'>Submit</button>
       </RenderForm>
-
     )
   }
 }

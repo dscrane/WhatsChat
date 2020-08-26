@@ -2,11 +2,15 @@ export default (state={}, action) => {
   console.log(action.type)
   switch (action.type) {
     case 'SIGN_UP':
+
+    case 'LOG_IN':
       return {
         ...state,
-        [action.payload.username]: action.payload
+        userState: {
+          [action.payload.user.username]: { ...action.payload }
+        }
       }
     default:
-      return state;
+      return state
   }
 }
