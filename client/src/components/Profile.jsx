@@ -5,16 +5,17 @@ import { fetchUserData } from '../redux/actions';
 const Profile = (props) => {
   useEffect(() => {
     console.log(props)
-    props.fetchUserData();
+    // props.fetchUserData();
   }, [props])
 
   const renderUserData = () => {
-    return Object.keys(props.user.attributes)
+    /*return Object.keys(props.user.attributes)
       .map(key => {
         return (<div className='item' key={key}>
           <p>{key}:<span>{props.user[key]}</span></p>
         </div>)
-      })
+      })*/
+    return <div>profile</div>
 
   }
   return (

@@ -7,13 +7,13 @@ const RenderForm = (props) => {
     props.handleForm(formValues);
   }
 
-  {
-    return (
-      <form onSubmit={props.handleSubmit(handleForm)} className='ui large form'>
-        {props.children}
-      </form>
-    )
-  }
+
+  return (
+    <form onSubmit={props.handleSubmit(handleForm)} className='ui large form'>
+      {props.children}
+    </form>
+  )
+
 }
 
 export default reduxForm({ form: 'homeForm' })(RenderForm);

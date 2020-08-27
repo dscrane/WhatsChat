@@ -37,11 +37,12 @@ app.post('/login-user', async (req, res) => {
     const user = await User.findByCredentials(req.body.username, req.body.password);
     const token = await user.generateAuthToken();
 
+    res.cookie('token', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 8 * 3600000)
+    });
     res.send({ user, token });
   } catch(e) {
-    console.log(typeof e)
-    console.log(Object.values(e))
-    console.log(e)
     res.send({ error: { ...e } })
   }
 });

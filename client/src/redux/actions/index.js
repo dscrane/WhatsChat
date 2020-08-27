@@ -38,7 +38,8 @@ export const login = formValues => async (dispatch, getState) => {
     alert(`${error.message}`)
     return;
   }
-
+  console.log(response)
+  document.cookie = `jwtToken=${response.data.token}`;
   dispatch({
     type: 'LOG_IN',
     payload: {
