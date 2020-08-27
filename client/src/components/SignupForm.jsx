@@ -14,7 +14,7 @@ export default class SignupForm extends Component {
   }
 
   handleForm = formValues => {
-    this.props.handleClick(formValues);
+    this.props.handleForm(formValues);
   }
 
   render() {

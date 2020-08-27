@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const { User } = require('./models/user');
+const authenticate = require('./middleware/authenticate')
 
 // Initialize connection to the database
 require('./db/db');
@@ -27,19 +28,26 @@ app.post('/create-user', async (req, res) => {
     res.send({ user, token })
   } catch (e) {
     console.log(e)
-    res.status(401).send()
+    res.send({ error: e})
   }
 })
 
 app.post('/login-user', async (req, res) => {
   try {
     const user = await User.findByCredentials(req.body.username, req.body.password);
-
     const token = await user.generateAuthToken();
+
     res.send({ user, token });
   } catch(e) {
-    res.send({ error: 'unable to log you in at this time' })
+    console.log(typeof e)
+    console.log(Object.values(e))
+    console.log(e)
+    res.send({ error: { ...e } })
   }
+});
+
+app.get('/user/:id', authenticate, (req, res) => {
+  res.send(req.user)
 })
 
 // Spin up the server on the defined PORT

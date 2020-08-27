@@ -7,11 +7,11 @@ import Profile from './components/Profile';
 
 const App = () => {
   return (
-    <div className='ui grid container'>
+    <div className='ui grid center aligned container'>
       <Router history={history}>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/profile' exact component={Profile} />
+          <Route path='/profile/:id' exact component={Profile} />
         </Switch>
       </Router>
     </div>

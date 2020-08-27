@@ -1,58 +1,79 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
+import classNames from 'classnames';
 import { signup, login } from "../redux/actions";
 import SignupForm from "./SignupForm";
 import LoginForm from './LoginForm'
 
-class Home extends Component {
-  constructor(props){
-    super(props);
+const Home = (props) => {
+  const [activeForm, setActiveForm] = useState('signup');
 
-    this.state = {
-      signupForm: true,
-      activeFormStyle: true,
-    };
+  const formClass = classNames({
+    'red': activeForm === 'signup',
+    'blue': activeForm === 'login'
+  }, 'ten wide column')
+
+  const handleSignup = (formValues) => {
+    props.signup(formValues)
   }
 
-  handleForm = (formValues) => {
-    if (!this.state.signupForm) {
-      this.props.login(formValues)
+  const handleLogin = (formValues) => {
+    props.login(formValues)
+  }
+
+
+  const updateCurrentForm = () => {
+    if (activeForm === 'signup') {
+      setActiveForm('login')
+
     }
-    this.props.signup(formValues)
+    if (activeForm === 'login') {
+      setActiveForm('signup')
+    }
   }
 
-  updateCurrentForm = () => {
-    this.setState({
-      signupForm: !this.state.signupForm,
-      activeFormStyle: !this.state.activeFormStyle
-    });
+  const renderForm = () => {
+    return activeForm === 'signup' ?
+      <SignupForm
+        handleForm={handleSignup}
+      />
+      :
+      <LoginForm
+        handleForm={handleLogin}
+
+      />;
   }
 
-  renderForm = () => {
-    return this.state.signupForm ? <SignupForm handleClick={this.handleForm} /> : <LoginForm handleClick={this.handleForm} />;
-  }
 
-  render() {
-    console.log(this.state)
-    return (
-      <div className='ui equal width center aligned middle aligned padded grid'>
-        <div className='two column row'>
-          <div onClick={() => this.updateCurrentForm()} className='red four wide column'>
-            <div className='item'>
-              <h3 className='middle aligned content'>Sign Up Here!</h3>
-            </div>
+  console.log(activeForm)
+  return (
+    <div className='ui equal width equal height center aligned middle aligned padded grid'>
+      <div className='two column row'>
+        <div  className='red five wide column'>
+            <button
+              onClick={() => updateCurrentForm()}
+              className={classNames('ui', {'disabled': activeForm === 'signup'}, 'large basic button')}
+            >
+              Sign Up Here!
+            </button>
           </div>
-          <div onClick={() => this.updateCurrentForm()} className='blue four wide column'>
-            <h3 className='middle aligned'>Log In Here!</h3>
-          </div>
-        </div>
-        <div className={`${this.state.activeFormStyle ? 'red' : 'blue'} eight wide column`}>
-          {this.renderForm()}
+
+        <div className='blue five wide column'>
+          <button
+            onClick={() => updateCurrentForm()}
+            className={classNames('ui', {'disabled': activeForm === 'login'}, 'large basic button')}
+          >
+            Log In Here!
+          </button>
         </div>
       </div>
-    )
-  }
+      <div className={formClass}>
+        {renderForm()}
+      </div>
+
+    </div>
+  )
 }
 
 export default connect(null, { signup, login })(Home);
+

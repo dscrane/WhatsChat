@@ -81,15 +81,21 @@ userSchema.methods.toJSON = function () {
 }
 
 userSchema.statics.findByCredentials = async (username, password) => {
+  function LoginError(message) {
+      this.message = message;
+      this.name = 'Error';
+  }
+
   const user = await User.findOne({ username });
+  if (!user) {
+    throw new LoginError('The username or password is incorrect')
+  }
+  console.log('loginUser', user)
 
- const emailError = !user;
- const passwordMatch = await bcrypt.compare(password, user.password);
- const passwordError = !passwordMatch;
-
- if (emailError || passwordError) {
-   throw new Error('The username or password is incorrect')
- }
+  const passwordMatch = await bcrypt.compare(password, user.password);
+   if (!passwordMatch) {
+     throw new LoginError('The username or password is incorrect')
+   }
 
   return user;
 }

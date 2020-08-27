@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { reduxForm } from "redux-form";
 
-class RenderForm extends Component {
+const RenderForm = (props) => {
 
-  handleForm = formValues => {
-    this.props.handleForm(formValues);
+  const handleForm = formValues => {
+    props.handleForm(formValues);
   }
 
-  render() {
-    return(
-      <form onSubmit={this.props.handleSubmit(this.handleForm)} className='ui large form'>
-        {this.props.children}
+  {
+    return (
+      <form onSubmit={props.handleSubmit(handleForm)} className='ui large form'>
+        {props.children}
       </form>
     )
   }
