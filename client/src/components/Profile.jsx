@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { fetchUserData } from '../redux/actions';
 
 const Profile = (props) => {
+  const { fetchUserData, user } = props;
+
   useEffect(() => {
-    console.log(props)
-    // props.fetchUserData();
-  }, [props])
+    fetchUserData()
+  }, [fetchUserData, user.attributes])
 
   const renderUserData = () => {
     /*return Object.keys(props.user.attributes)
@@ -15,7 +16,7 @@ const Profile = (props) => {
           <p>{key}:<span>{props.user[key]}</span></p>
         </div>)
       })*/
-    return <div>profile</div>
+    return <div>{user.username}</div>
 
   }
   return (

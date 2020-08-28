@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import history from './history';
+import { checkAuth, fetchUserData } from "./redux/actions";
 import Home from './components/Home';
 import Profile from './components/Profile';
 
 
 const App = props => {
+  const { user, checkAuth, fetchUserData } = props;
+  useEffect(() => {
+    checkAuth()
+    fetchUserData()
+  }, [])
+  console.log(user)
 
   return (
     <div className='ui grid center aligned container'>
       <Router history={history}>
         <Switch>
-          <Route path='/' exact component={Home} />
+          <Route path='/' render={() => {
+            return !user.isLoggedIn ? (
+              <Home />
+            ) : (
+              <Redirect to={`/profile/:id`} />
+            )
+          }} />
           <Route path='/profile/:id' exact component={Profile} />
         </Switch>
       </Router>
@@ -26,4 +39,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { checkAuth, fetchUserData })(App);

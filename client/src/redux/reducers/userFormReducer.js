@@ -1,7 +1,15 @@
-export default (state={isLoggedIn: false}, action) => {
+export default (state={
+  isLoggedIn: false,
+  attributes: {}
+}, action) => {
   console.log(action.type)
   switch (action.type) {
-    case 'SIGN_UP':
+    case 'CHECK_AUTH':
+      return {
+        ...state,
+        isLoggedIn: action.payload.isLoggedIn,
+        token: action.payload.token
+      }
 
     case 'LOG_IN':
       console.log('state:', state)
@@ -13,13 +21,12 @@ export default (state={isLoggedIn: false}, action) => {
       }
 
     case 'FETCH_USER':
-      console.log('FETCH_USER:'
-        `[state]: ${state}`
-        `[action:] ${action}`,
-      )
+      console.log('FETCH_USER:')
+      console.log(`[state]:`, state)
+      console.log(`[action:]`, action)
       return {
         ...state,
-        ...action.payload
+         ...action.payload
       }
     default:
       return state

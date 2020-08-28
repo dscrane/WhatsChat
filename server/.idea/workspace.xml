@@ -20,16 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userFormReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/userFormReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/utils/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/db.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/middleware/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/authenticate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -66,7 +66,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598527343217</updated>
-      <workItem from="1598527344860" duration="11544000" />
+      <workItem from="1598527344860" duration="12725000" />
+      <workItem from="1598613715787" duration="9876000" />
     </task>
     <servers />
   </component>
@@ -86,5 +87,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1598613753194">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="280" key="FileChooserDialogImpl/-1920.0.1920.1050/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1598613753194" />
   </component>
 </project>

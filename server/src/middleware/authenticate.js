@@ -4,16 +4,19 @@ const User = require('../models/user');
 
 const authenticate = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const token = req.header('Authorization').replace('Bearer ', '');
+    console.log('jwt-token', token)
     if (!token) {
       throw new Error();
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    const user = await User.findOne({
+    console.log('decoded-token', decoded)
+    const user = await User.find({
       _id: decoded._id,
-      'tokens.token': token,
-    })
+      'tokens.token': token
+    });
+
+    console.log('User', user)
 
     if (!user) {
       throw new Error()
@@ -22,8 +25,12 @@ const authenticate = async (req, res, next) => {
     req.user = user;
 
   } catch (e) {
-    res.send({ error: 'Please authenticate'})
+    console.log(e)
+    res.send({message: 'Please authenticate'})
   }
 }
+
+
+
 
 module.exports = authenticate;
