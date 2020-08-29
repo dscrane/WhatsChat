@@ -15,7 +15,7 @@ export const checkAuth = () => async dispatch => {
       }
     })
   }
-  console.log(`[AUTH]: jwt-token=${token}`)
+  console.log(`[AUTH-TOKEN]: jwt-token=${token}`)
 
   const response = await api.get(
     '/user-id',
@@ -43,7 +43,6 @@ export const signup = (formValues) => async dispatch => {
     '/create-user',
     { ...formValues }
   )
-  const userData = response.data.user;
 
   if (response.data.error) {
     const error = response.data.error;
@@ -56,11 +55,9 @@ export const signup = (formValues) => async dispatch => {
   dispatch({
     type: 'LOG_IN',
     payload: {
-      [userData._id]: {
-        token: userData.token,
-        attributes: userData.user,
-        isLoggedIn: true
-      }
+      _id: response.data.user._id,
+      token: response.data.user.token,
+      isLoggedIn: true
     }
   })
 }
@@ -84,7 +81,9 @@ export const login = formValues => async dispatch => {
   dispatch({
   type: 'LOG_IN',
   payload: {
+    _id: response.data.user._id,
     token: response.data.token,
+    isLoggedIn: true
   }
   })
 
@@ -123,10 +122,11 @@ export const fetchUserData = () => async (dispatch, getState) => {
 
 /* ----   LOG_OUT ACTION CREATOR    ---- */
 export const logout = () => async (dispatch, getState) => {
-  const { token } = getState().userState
+  const { token } = getState().auth
   console.log(token)
   const response = await api.post(
     '/logout',
+    {},
     {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -135,7 +135,6 @@ export const logout = () => async (dispatch, getState) => {
   )
     console.log(response.data)
 
-  localStorage.removeItem('jwt-token');
   dispatch({
     type: 'LOG_OUT',
     payload: {
@@ -145,6 +144,7 @@ export const logout = () => async (dispatch, getState) => {
       isLoggedIn: false
     }
   })
+  localStorage.removeItem('jwt-token');
   history.push('/')
 }
 /* ----   ****    ---- */

@@ -8,10 +8,10 @@ import Profile from './components/Profile';
 
 
 const App = props => {
-  const { checkAuth } = props;
+  const { auth, checkAuth } = props;
   useEffect(() => {
     checkAuth()
-  }, [])
+  }, [auth.token])
 
   return (
     <div className='container'>
@@ -27,7 +27,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.userState
+    auth: state.auth
   }
 }
 

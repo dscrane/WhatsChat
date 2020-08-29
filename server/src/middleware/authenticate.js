@@ -4,7 +4,6 @@ const { User } = require('../models/user');
 
 const authenticate = async (req, res, next) => {
   try {
-    console.log(req.header('Authorization'));
     const token = req.header('Authorization').replace('Bearer ', '');
     console.log('jwt-token', token)
     if (!token) {

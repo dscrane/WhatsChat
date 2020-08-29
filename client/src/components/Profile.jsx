@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchUserData, checkAuth, logout } from '../redux/actions';
+import history from '../history';
 
-const Profile = ({ user, auth }) => {
-  console.log(user)
-  console.log(auth)
-  const { fetchUserData } = user;
-  const { logout } = auth;
-
-  console.log('[USER]:', user)
+const Profile = (props) => {
+  const { user, auth, fetchUserData, logout } = props;
   useEffect(() => {
-    checkAuth()
-    if (user.token) {
+    console.log('profile rerendered')
+    if (auth.token) {
+      console.log('is token')
       fetchUserData()
     }
-  }, [user.token])
+  }, [auth.token])
 
   const renderUserData = () => {
-    return Object.keys(user.attributes)
+    if (!user[auth._id]) {
+      return ''
+    }
+
+    return Object.keys(user[auth._id])
       .map(key => {
         return (<div className='item' key={key}>
-          <p>{key}: <span>{user.attributes[key]}</span></p>
+          <p>{key}: <span>{user[auth._id][key]}</span></p>
         </div>)
     })
   }
+
   return (
     <div className='ui container'>
       {renderUserData()}
