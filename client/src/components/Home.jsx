@@ -70,7 +70,6 @@ const Home = (props) => {
       <div className={formClass}>
         {renderForm()}
       </div>
-
     </div>
   )
 }

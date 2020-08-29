@@ -1,6 +1,7 @@
 import api from '../../utils/api';
 import history from '../../history';
 
+/* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async dispatch => {
   const token = localStorage.getItem('jwt-token');
 
@@ -15,21 +16,33 @@ export const checkAuth = () => async dispatch => {
     })
   }
   console.log(`[AUTH]: jwt-token=${token}`)
+
+  const response = await api.get(
+    '/user-id',
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  )
   dispatch({
     type: 'CHECK_AUTH',
     payload: {
+      _id: response.data,
      token,
      isLoggedIn: true
     }
   })
-}
 
+}
+/* ----   ****    ---- */
+
+/* ----   SIGN_UP ACTION CREATOR    ---- */
 export const signup = (formValues) => async dispatch => {
   const response = await api.post(
     '/create-user',
     { ...formValues }
   )
-  console.log(response.data.error)
   const userData = response.data.user;
 
   if (response.data.error) {
@@ -51,12 +64,13 @@ export const signup = (formValues) => async dispatch => {
     }
   })
 }
+/* ----   ****    ---- */
 
+/* ----   LOG_IN ACTION CREATOR    ---- */
 export const login = formValues => async dispatch => {
   const response = await api.post(
     '/login-user',
     { ...formValues },
-
   )
 
   if (response.data.error) {
@@ -71,30 +85,66 @@ export const login = formValues => async dispatch => {
   type: 'LOG_IN',
   payload: {
     token: response.data.token,
-    attributes: response.data.user
   }
   })
 
   history.push(`/profile/${response.data.user._id}`);
 }
+/* ----   ****    ---- */
 
+/* ----   FETCH_USER ACTION CREATOR    ---- */
 export const fetchUserData = () => async (dispatch, getState) => {
-  const { token } = getState().userState
-  console.log(token);
+  const { token, isLoggedIn, _id } = getState().auth
   const response = await api.get(
     `/user`,
     {
       headers: {
         'Authorization': `Bearer ${token}`
       }
-    }
+    },
   );
+  console.group('[FETCH_USER]')
+  console.log('[TOKEN]:',token);
   console.log('[RESPONSE]', response)
+  console.groupEnd()
 
   dispatch({
     type: 'FETCH_USER',
+    payload: { ...response.data.user }
+  })
+
+  if (!isLoggedIn) {
+    history.push(`/`)
+  }
+
+    history.push(`/profile/${_id}`)
+}
+/* ----   ****    ---- */
+
+/* ----   LOG_OUT ACTION CREATOR    ---- */
+export const logout = () => async (dispatch, getState) => {
+  const { token } = getState().userState
+  console.log(token)
+  const response = await api.post(
+    '/logout',
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  )
+    console.log(response.data)
+
+  localStorage.removeItem('jwt-token');
+  dispatch({
+    type: 'LOG_OUT',
     payload: {
-      attributes: response.data.user
+      _id: null,
+      token: null,
+      attributes: {},
+      isLoggedIn: false
     }
   })
+  history.push('/')
 }
+/* ----   ****    ---- */

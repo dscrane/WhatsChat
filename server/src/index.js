@@ -52,9 +52,26 @@ app.post('/login-user', async (req, res) => {
   }
 });
 
+app.get('/user-id', authenticate, (req, res) => {
+  res.send(req.user._id)
+})
+
 app.get('/user', authenticate, (req, res) => {
-  console.log(req.user)
-  res.send(req.user)
+  console.log('[REQ USER]:', req.user)
+  res.send({user: req.user})
+})
+
+app.post('/logout', authenticate, async (req, res) => {
+  console.log(req)
+  /*try {
+    req.user
+    req.user.tokens = [];
+    await req.user.save();
+
+    res.send({logout: true});
+  } catch (e) {
+    res.send({logout: false})
+  }*/
 })
 
 // Spin up the server on the defined PORT

@@ -7,13 +7,13 @@ export default (state={
     case 'CHECK_AUTH':
       return {
         ...state,
+        _id: action.payload._id,
         isLoggedIn: action.payload.isLoggedIn,
         token: action.payload.token
       }
 
     case 'LOG_IN':
-      console.log('state:', state)
-      console.log('action:', action)
+      console.log('[LOG_IN]:', action)
       return {
         ...state,
         ...action.payload,
@@ -21,12 +21,17 @@ export default (state={
       }
 
     case 'FETCH_USER':
-      console.log('FETCH_USER:')
-      console.log(`[state]:`, state)
-      console.log(`[action:]`, action)
+      console.log(`[FETCH_USER]:`, action)
+
       return {
         ...state,
-         ...action.payload
+        ...action.payload
+      }
+    case 'LOG_OUT':
+      console.log(`[LOG_OUT]:`, action);
+      return {
+        ...state,
+        ...action.payload
       }
     default:
       return state
