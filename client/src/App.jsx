@@ -5,20 +5,22 @@ import history from './history';
 import { checkAuth } from "./redux/actions";
 import Home from './components/Home';
 import Profile from './components/Profile';
+import { ProtectedRoute } from './components/lib';
 
 
 const App = props => {
   const { auth, checkAuth } = props;
+  console.log(auth)
   useEffect(() => {
     checkAuth()
-  }, [auth.token])
+  }, [checkAuth, auth.isLoggedIn])
 
   return (
     <div className='container'>
       <Router history={history}>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/profile/:id' exact component={Profile} />
+          <ProtectedRoute path={`/profile/${auth._id}`} auth={auth.isLoggedIn} component={Profile} />
         </Switch>
       </Router>
     </div>
