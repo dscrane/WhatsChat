@@ -5,31 +5,23 @@ import { logout } from '../../redux/actions';
 
 const Header = ({ auth, logout }) => {
 
+  // Display head with the buttons for a logged in user
   const renderLoggedInHeader = () => {
     return (
       <div className=''>
         <ul className='navbar-nav mr-auto d-flex flex-row justify-content-between'>
           <li className='nav-item'>
-            <Link
-              className='btn btn-md btn-secondary mx-2'
-              to={'/chats'}
-            >
+            <Link className='btn btn-md btn-secondary mx-2' to={'/chats'}>
               Chats
             </Link>
           </li>
           <li className='nav-item'>
-            <Link
-              className='btn btn-md btn-secondary mx-2'
-              to={`/profile/${auth._id}`}
-            >
+            <Link className='btn btn-md btn-secondary mx-2' to={`/profile/${auth._id}`}>
               Profile
             </Link>
           </li>
           <li className='nav-item'>
-            <button
-              className='btn btn-md btn-secondary mx-2'
-              onClick={() => logout()}
-            >
+            <button className='btn btn-md btn-secondary mx-2' onClick={() => logout()}>
               Log Out
             </button>
           </li>

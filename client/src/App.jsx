@@ -3,14 +3,11 @@ import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import history from './history';
 import { checkAuth } from "./redux/actions";
-import Home from './components/Home';
-import Profile from './components/Profile';
+import { Home, Profile } from './components/pages';
 import { ProtectedRoute, Header } from './components/lib';
 
 
 const App = props => {
-  console.log('[HISTORY]:', history)
-  console.log('[APP]:', props)
   const { auth, checkAuth } = props;
   useEffect(() => {
     checkAuth()

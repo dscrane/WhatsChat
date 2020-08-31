@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, checkAuth } from '../redux/actions';
+import { fetchUserData, checkAuth } from '../../redux/actions';
 
 
 const Profile = (props) => {
   const { user, auth, fetchUserData } = props;
 
   useEffect(() => {
-    console.log('profile rerendered')
+    console.log('[PROFILE]: Re-rendered')
+    // fetch the user data if there is an auth token
     if (auth.token) {
-      console.log('is token')
       fetchUserData()
     }
   }, [auth.token])
 
+  // Return if no user is found
+  if (!user[auth._id]) {
+    return <div>No user found</div>
+  }
+
+  // Display user data
   const renderUserData = () => {
-    if (!user[auth._id]) {
-      return
-    }
-    console.log(user[auth._id].name)
     return Object.keys(user[auth._id])
       .map(key => {
         return (
@@ -27,19 +29,10 @@ const Profile = (props) => {
     })
   }
 
-  const renderUserName = () => {
-    if (!user[auth._id]) {
-      return
-    }
-
-    console.log(user[auth._id.name])
-    return <h5 className='card-title'>{user[auth._id].name}</h5>
-  }
-
   return (
     <div className='card'>
       <div className='card-body'>
-        {renderUserName()}
+        <h5 className='card-title'>{user[auth._id].name}</h5>
         <hr />
         {renderUserData()}
       </div>

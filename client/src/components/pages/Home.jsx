@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { signup, login } from "../redux/actions";
-import SignupForm from "./SignupForm";
-import LoginForm from './LoginForm'
+import { signup, login } from "../../redux/actions";
+import SignupForm from "../SignupForm";
+import LoginForm from '../LoginForm'
 
 const Home = (props) => {
   const [activeForm, setActiveForm] = useState('signup');
@@ -78,9 +78,7 @@ const Home = (props) => {
           </button>
         </div>
       </div>
-      <div className=''>
         {renderForm()}
-      </div>
     </div>
   )
 }
