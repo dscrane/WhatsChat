@@ -9,9 +9,9 @@ const Home = (props) => {
   const [activeForm, setActiveForm] = useState('signup');
 
   const formClass = classNames({
-    'red': activeForm === 'signup',
-    'blue': activeForm === 'login'
-  }, 'ten wide column')
+    'btn-secondary': activeForm === 'signup',
+    'btn-outline-secondary': activeForm === 'login'
+  }, 'btn w-100 btn-large')
 
   const handleSignup = (formValues) => {
     props.signup(formValues)
@@ -47,27 +47,38 @@ const Home = (props) => {
 
   console.log(activeForm)
   return (
-    <div className='ui equal width equal height center aligned middle aligned padded grid'>
-      <div className='two column row'>
-        <div  className='red five wide column'>
+    <div className='container align-self-center bg-dark w-50 my-auto p-3' style={{borderRadius: '5px'}}>
+      <div className='row h-100 mb-2'>
+        <div  className='col'>
             <button
               onClick={() => updateCurrentForm()}
-              className={classNames('ui', {'disabled': activeForm === 'signup'}, 'large basic button')}
+              className={classNames({
+                'btn w-100 btn-large': true,
+                'btn-secondary': activeForm === 'signup',
+                'btn-outline-secondary': activeForm === 'login'
+              })}
+              disabled={activeForm === 'signup'}
+
             >
               Sign Up Here!
             </button>
           </div>
 
-        <div className='blue five wide column'>
+        <div className='col'>
           <button
             onClick={() => updateCurrentForm()}
-            className={classNames('ui', {'disabled': activeForm === 'login'}, 'large basic button')}
+            className={classNames({
+              'btn w-100 btn-large': true,
+              'btn-secondary disabled': activeForm === 'login',
+              'btn-outline-secondary': activeForm === 'signup'
+            })}
+            disabled={activeForm === 'login'}
           >
             Log In Here!
           </button>
         </div>
       </div>
-      <div className={formClass}>
+      <div className=''>
         {renderForm()}
       </div>
     </div>

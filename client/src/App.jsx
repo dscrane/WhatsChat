@@ -1,27 +1,33 @@
 import React, { useEffect } from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import history from './history';
 import { checkAuth } from "./redux/actions";
 import Home from './components/Home';
 import Profile from './components/Profile';
-import { ProtectedRoute } from './components/lib';
+import { ProtectedRoute, Header } from './components/lib';
 
 
 const App = props => {
+  console.log('[HISTORY]:', history)
+  console.log('[APP]:', props)
   const { auth, checkAuth } = props;
-  console.log(auth)
   useEffect(() => {
     checkAuth()
   }, [checkAuth, auth.isLoggedIn])
 
   return (
-    <div className='container'>
+    <div className='container-fluid d-flex flex-column w-100 min-vh-100 justify-content-center align-items-center'>
       <Router history={history}>
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <ProtectedRoute path={`/profile/${auth._id}`} auth={auth.isLoggedIn} component={Profile} />
-        </Switch>
+        <>
+          <Header />
+          <Switch>
+            <Route path='/' exact>
+              {auth.isLoggedIn ? <Redirect to={`/profile/${auth._id}`} /> : <Home />}
+            </Route>
+            <ProtectedRoute path={`/profile/${auth._id}`} auth={auth.isLoggedIn} component={Profile} />
+          </Switch>
+        </>
       </Router>
     </div>
   )

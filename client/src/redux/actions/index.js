@@ -53,13 +53,15 @@ export const signup = (formValues) => async dispatch => {
   }
 
   dispatch({
-    type: 'LOG_IN',
+    type: 'CHECK_AUTH',
     payload: {
       _id: response.data.user._id,
       token: response.data.user.token,
       isLoggedIn: true
     }
   })
+
+  history.push(`/profile/${response.data.user._id}`)
 }
 /* ----   ****    ---- */
 

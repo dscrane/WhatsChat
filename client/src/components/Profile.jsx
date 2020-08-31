@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, checkAuth, logout } from '../redux/actions';
-import history from '../history';
+import { fetchUserData, checkAuth } from '../redux/actions';
+
 
 const Profile = (props) => {
-  const { user, auth, fetchUserData, logout } = props;
+  const { user, auth, fetchUserData } = props;
+
   useEffect(() => {
     console.log('profile rerendered')
     if (auth.token) {
@@ -15,21 +16,33 @@ const Profile = (props) => {
 
   const renderUserData = () => {
     if (!user[auth._id]) {
-      return ''
+      return
     }
-
+    console.log(user[auth._id].name)
     return Object.keys(user[auth._id])
       .map(key => {
-        return (<div className='item' key={key}>
-          <p>{key}: <span>{user[auth._id][key]}</span></p>
-        </div>)
+        return (
+          <p className='text-left' key={key}><span className='font-weight-bold'>{key}: </span><span>{user[auth._id][key]}</span></p>
+        )
     })
   }
 
+  const renderUserName = () => {
+    if (!user[auth._id]) {
+      return
+    }
+
+    console.log(user[auth._id.name])
+    return <h5 className='card-title'>{user[auth._id].name}</h5>
+  }
+
   return (
-    <div className='ui container'>
-      {renderUserData()}
-      <button onClick={() => logout()}>Logout</button>
+    <div className='card'>
+      <div className='card-body'>
+        {renderUserName()}
+        <hr />
+        {renderUserData()}
+      </div>
     </div>
   )
 }
@@ -41,4 +54,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData, checkAuth, logout })(Profile);
+export default connect(mapStateToProps, { fetchUserData, checkAuth })(Profile);

@@ -7,8 +7,8 @@ export default class SignupForm extends Component {
   renderInput = ({ input, label }) => {
     return (
       <div>
-        <label>{label}</label>
-        <input {...input} />
+        <label className='text-white text-left my-2' >{label}</label>
+        <input className='form-control' placeholder={label} {...input} />
       </div>
     )
   }
@@ -25,7 +25,7 @@ export default class SignupForm extends Component {
         <Field name='email' component={this.renderInput} label='Email' />
         <Field name='password' component={this.renderInput} label='Password' />
         <Field name='passwordConf' component={this.renderInput} label='Confirm Password' />
-        <button className='ui button'>Submit</button>
+        <button className='btn btn-md btn-secondary btn-block mt-4 mx-auto w-50'>Submit</button>
       </RenderForm>
     )
   }

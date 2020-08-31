@@ -9,7 +9,7 @@ const RenderForm = (props) => {
 
 
   return (
-    <form onSubmit={props.handleSubmit(handleForm)} className='ui large form'>
+    <form onSubmit={props.handleSubmit(handleForm)} className='form-signin mt-2'>
       {props.children}
     </form>
   )

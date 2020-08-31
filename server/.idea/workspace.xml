@@ -20,7 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/SignupForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SignupForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +85,7 @@
       <workItem from="1598712907325" duration="23000" />
       <workItem from="1598712996929" duration="444000" />
       <workItem from="1598714455438" duration="1180000" />
+      <workItem from="1598873507905" duration="650000" />
     </task>
     <servers />
   </component>

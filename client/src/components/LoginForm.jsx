@@ -7,8 +7,8 @@ export default class LoginForm extends Component {
   renderInput = ({ input, label }) => {
     return (
       <div>
-        <label>{label}</label>
-        <input {...input} />
+        <label className='text-white text-left my-2' >{label}</label>
+        <input className='form-control' placeholder={label} {...input} />
       </div>
     )
   }
@@ -23,7 +23,7 @@ export default class LoginForm extends Component {
         <div className='ui stacked element'>
           <Field name='username' component={this.renderInput} label='Username' />
           <Field name='password' component={this.renderInput} label='Password' />
-          <button className='ui button'>Submit</button>
+          <button className='btn btn-md btn-secondary btn-block my-4 mx-auto w-25'>Submit</button>
         </div>
       </RenderForm>
     )
