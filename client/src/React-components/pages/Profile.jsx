@@ -8,12 +8,12 @@ const Profile = (props) => {
   const { user, auth, fetchUserData } = props;
 
   useEffect(() => {
-    console.log('[PROFILE]: Re-rendered')
     // fetch the user data if there is an auth token
     if (auth.token) {
       fetchUserData()
     }
   }, [auth.token])
+
 
   // Return if no user is found
   if (!user[auth._id]) {

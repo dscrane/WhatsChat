@@ -1,4 +1,4 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 
 export default (state={}, action) => {
   switch (action.type) {
@@ -11,6 +11,8 @@ export default (state={}, action) => {
     case 'UPDATE_USER':
       console.log('[UPDATE_USER]', action)
       return {};
+    case 'LOGOUT_USER':
+      return _.omit(state, action.payload);
     case 'DELETE_USER':
       console.log('[DELETE_USER]', action)
       return {}

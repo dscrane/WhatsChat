@@ -14,8 +14,8 @@ export const checkAuth = () => async dispatch => {
       }
     })
   }
-  console.log(`[AUTH-TOKEN]: jwt-token=${token}`)
 
+  console.log(`[AUTH-TOKEN]: jwt-token=${token}`)
   const response = await api.get(
     '/user-id',
     {

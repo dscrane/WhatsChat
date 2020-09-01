@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/actions/auth';
+import { logoutUser } from '../../redux/actions/user';
 
-const Header = ({ auth, logout }) => {
+const Header = ({ auth, logout, logoutUser }) => {
 
   // Display head with the buttons for a logged in user
   const renderLoggedInHeader = () => {
@@ -21,7 +22,10 @@ const Header = ({ auth, logout }) => {
             </Link>
           </li>
           <li className='nav-item'>
-            <button className='btn btn-md btn-secondary mx-2' onClick={() => logout()}>
+            <button className='btn btn-md btn-secondary mx-2' onClick={() => {
+              logout();
+              logoutUser();
+            }}>
               Log Out
             </button>
           </li>
@@ -47,5 +51,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {logout})(Header)
+export default connect(mapStateToProps, {logout, logoutUser})(Header)
 

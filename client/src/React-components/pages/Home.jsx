@@ -38,7 +38,7 @@ const Home = (props) => {
   }
 
   return (
-    <div className='container align-self-center bg-dark w-50 my-auto p-3' style={{borderRadius: '5px'}}>
+    <div className='container align-self-center bg-dark w-25 my-auto p-3' style={{borderRadius: '5px'}}>
       <div className='row h-100 mb-2'>
         <div  className='col'>
             <button

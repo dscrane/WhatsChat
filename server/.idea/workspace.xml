@@ -20,24 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../client/src/React-components/components/LoginForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../client/src/React-components/components/SignupForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/LoginForm.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/components/RenderForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SignupForm.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/ProtectedRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userFormReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/oldVersions/userFormReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/React-components/components/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/components/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/React-components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/React-components/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/React-components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/checkAuthAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/checkAuthAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/logoutAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/logoutAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/user/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/utils/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +62,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../reactappdeploy" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -93,6 +89,8 @@
       <workItem from="1598714455438" duration="1180000" />
       <workItem from="1598873507905" duration="650000" />
       <workItem from="1598891868607" duration="912000" />
+      <workItem from="1598962305171" duration="1267000" />
+      <workItem from="1598965313235" duration="1205000" />
     </task>
     <servers />
   </component>
@@ -115,10 +113,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1598613753194">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="2660" y="280" key="FileChooserDialogImpl" timestamp="1598963984202">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/-1920.0.1920.1050/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1598613753194" />
+    <state x="2660" y="280" key="FileChooserDialogImpl/-1920.0.1920.1050/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1598963984202" />
     <state x="922" y="210" key="SettingsEditor" timestamp="1598712929440">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

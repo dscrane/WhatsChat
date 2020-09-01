@@ -21,7 +21,6 @@ export const logout = () => async (dispatch, getState) => {
      payload: {
        _id: null,
        token: null,
-       attributes: {},
        isLoggedIn: false
      }
    })
