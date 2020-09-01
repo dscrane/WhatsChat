@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 export default axios.create({
-  baseURL: 'https://dsc-chat-app.herokuapp.com',
+  baseURL: process.env.NODE_ENV !== 'development' ? 'https://dsc-chat-app.herokuapp.com' : 'http://localhost:5500'
 })

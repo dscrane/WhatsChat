@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { logout } from '../../redux/actions/auth';
 import { logoutUser } from '../../redux/actions/user';
 
-const Header = ({ auth, logout, logoutUser }) => {
+const Sidebar = ({ auth, logout, logoutUser }) => {
 
   // Display head with the buttons for a logged in user
   const renderLoggedInHeader = () => {
@@ -51,5 +51,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {logout, logoutUser})(Header)
+export default connect(mapStateToProps, {logout, logoutUser})(Sidebar)
 

@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { User } = require('./models/user');
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 app.use(helmet());
 app.use(cors());
-app.use(morgan('combined'));
 
 // Define port location
 const PORT = process.env.PORT || 5500;
@@ -39,13 +37,6 @@ app.post('/login-user', async (req, res) => {
     const user = await User.findByCredentials(req.body.username, req.body.password);
     const token = await user.generateAuthToken();
 
-/*    res.header('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.cookie('token', token, {
-      httpOnly: false,
-      expires: new Date(Date.now() + 8 * 3600000),
-      domain: '.localhost:3000'
-    });*/
     res.send({ user, token });
   } catch(e) {
     res.send({ error: { ...e } })

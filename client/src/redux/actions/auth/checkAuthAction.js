@@ -2,6 +2,7 @@
 import api from "../../../utils/api";
 
 export const checkAuth = () => async dispatch => {
+  console.log(api)
   const token = localStorage.getItem('jwt-token');
 
   if (!token) {
