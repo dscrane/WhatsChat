@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 export default (state=INITIAL_STATE, action) => {
   switch (action.type) {
     case 'CHECK_AUTH':
-      console.log('[CHECK_AUTH', action)
+      console.log('[CHECK_AUTH]:', action)
       return {
         ...state,
         ...action.payload
@@ -20,7 +20,7 @@ export default (state=INITIAL_STATE, action) => {
         ...action.payload
       };
     case 'LOG_OUT':
-      console.log(`[LOG_OUT]:`, action);
+      console.log('[LOG_OUT]:', action);
       return {
         ...state,
         ...action.payload

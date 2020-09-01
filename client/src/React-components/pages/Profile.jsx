@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData, checkAuth } from '../../redux/actions';
+import { fetchUserData } from '../../redux/actions/user';
+import { checkAuth } from "../../redux/actions/auth";
 
 
 const Profile = (props) => {

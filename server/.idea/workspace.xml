@@ -20,13 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../client/src/React-components/components/LoginForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/src/React-components/components/SignupForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/LoginForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/components/RenderForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/SignupForm.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userFormReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/oldVersions/userFormReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/types.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,6 +92,7 @@
       <workItem from="1598712996929" duration="444000" />
       <workItem from="1598714455438" duration="1180000" />
       <workItem from="1598873507905" duration="650000" />
+      <workItem from="1598891868607" duration="912000" />
     </task>
     <servers />
   </component>

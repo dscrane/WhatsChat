@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { signup, login } from "../../redux/actions";
-import SignupForm from "../SignupForm";
-import LoginForm from '../LoginForm'
+
+import { signup } from "../../redux/actions/user";
+import { login } from "../../redux/actions/auth";
+import { SignupForm, LoginForm } from "../components";
 
 const Home = (props) => {
   const [activeForm, setActiveForm] = useState('signup');
-
-  const formClass = classNames({
-    'btn-secondary': activeForm === 'signup',
-    'btn-outline-secondary': activeForm === 'login'
-  }, 'btn w-100 btn-large')
 
   const handleSignup = (formValues) => {
     props.signup(formValues)
@@ -21,11 +17,9 @@ const Home = (props) => {
     props.login(formValues)
   }
 
-
   const updateCurrentForm = () => {
     if (activeForm === 'signup') {
       setActiveForm('login')
-
     }
     if (activeForm === 'login') {
       setActiveForm('signup')
@@ -40,12 +34,9 @@ const Home = (props) => {
       :
       <LoginForm
         handleForm={handleLogin}
-
       />;
   }
 
-
-  console.log(activeForm)
   return (
     <div className='container align-self-center bg-dark w-50 my-auto p-3' style={{borderRadius: '5px'}}>
       <div className='row h-100 mb-2'>
@@ -58,7 +49,6 @@ const Home = (props) => {
                 'btn-outline-secondary': activeForm === 'login'
               })}
               disabled={activeForm === 'signup'}
-
             >
               Sign Up Here!
             </button>

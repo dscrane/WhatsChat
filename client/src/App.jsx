@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import history from './history';
-import { checkAuth } from "./redux/actions";
-import { Home, Profile } from './components/pages';
-import { ProtectedRoute, Header } from './components/lib';
+import { checkAuth } from "./redux/actions/auth";
+import { Home, Profile } from './React-components/pages';
+import { ProtectedRoute, Header } from './React-components/lib';
 
 
 const App = props => {
