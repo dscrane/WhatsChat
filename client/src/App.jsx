@@ -14,7 +14,7 @@ const App = props => {
   }, [checkAuth, auth.isLoggedIn])
 
   return (
-    <div className='container-fluid d-flex flex-column w-100 min-vh-100 justify-content-center align-items-center'>
+    <div className='wrapper d-flex align-items-stretch'>
       <Router history={history}>
         <>
           <Sidebar />

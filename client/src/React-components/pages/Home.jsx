@@ -38,37 +38,39 @@ const Home = (props) => {
   }
 
   return (
-    <div className='container align-self-center bg-dark w-25 my-auto p-3' style={{borderRadius: '5px'}}>
-      <div className='row h-100 mb-2'>
-        <div  className='col'>
+    <div className='col d-flex flex-column justify-content-center'>
+      <div className='container align-self-center bg-dark w-50 my-auto pb-3 px-3' style={{borderRadius: '5px'}}>
+        <div className='row h-100 mb-2'>
+          <div className='col p-0'>
+              <button
+                onClick={() => updateCurrentForm()}
+                className={classNames({
+                  'btn btn-large text-white w-100 p-3': true,
+                  'btn-outline-dark': activeForm === 'signup',
+                  'btn-secondary': activeForm === 'login'
+                })}
+                disabled={activeForm === 'signup'}
+              >
+                Sign Up Here!
+              </button>
+            </div>
+
+          <div className='col h-100 p-0'>
             <button
               onClick={() => updateCurrentForm()}
               className={classNames({
-                'btn w-100 btn-large': true,
-                'btn-secondary': activeForm === 'signup',
-                'btn-outline-secondary': activeForm === 'login'
+                'btn btn-large text-white w-100 p-3': true,
+                'btn-outline-dark disabled': activeForm === 'login',
+                'btn-secondary': activeForm === 'signup'
               })}
-              disabled={activeForm === 'signup'}
+              disabled={activeForm === 'login'}
             >
-              Sign Up Here!
+              Log In Here!
             </button>
           </div>
-
-        <div className='col'>
-          <button
-            onClick={() => updateCurrentForm()}
-            className={classNames({
-              'btn w-100 btn-large': true,
-              'btn-secondary disabled': activeForm === 'login',
-              'btn-outline-secondary': activeForm === 'signup'
-            })}
-            disabled={activeForm === 'login'}
-          >
-            Log In Here!
-          </button>
         </div>
+          {renderForm()}
       </div>
-        {renderForm()}
     </div>
   )
 }

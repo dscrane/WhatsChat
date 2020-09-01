@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { ProfileCard } from '../components';
 import { fetchUserData } from '../../redux/actions/user';
 import { checkAuth } from "../../redux/actions/auth";
 
@@ -31,12 +32,8 @@ const Profile = (props) => {
   }
 
   return (
-    <div className='card'>
-      <div className='card-body'>
-        <h5 className='card-title'>{user[auth._id].name}</h5>
-        <hr />
-        {renderUserData()}
-      </div>
+    <div className=''>
+      <ProfileCard user={user} />
     </div>
   )
 }
