@@ -19,16 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/React-components/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/React-components/lib/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/React-components/lib/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/React-components/lib/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/checkAuthAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/checkAuthAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/utils/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/utils/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
