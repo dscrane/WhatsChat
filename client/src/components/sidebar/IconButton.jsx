@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
-import { profileIcon, messageIcon, settingsIcon } from "../lib";
+import { profileIcon, chatsIcon, settingsIcon } from "../../icons/icons";
 
 const IconButton = (props) => {
   const iconStyle = {fontSize: '30px', lineHeight: '30px'}
@@ -8,8 +8,8 @@ const IconButton = (props) => {
     if (props.icon === 'profile') {
       return profileIcon;
     }
-    if (props.icon === 'messages') {
-      return messageIcon;
+    if (props.icon === 'chats') {
+      return chatsIcon;
     }
     if (props.icon === 'settings') {
       return settingsIcon;

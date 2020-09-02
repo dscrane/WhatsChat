@@ -1,5 +1,5 @@
 /* ----   LOG_OUT ACTION CREATOR    ---- */
-import api from "../../../utils/api";
+import api from "../../../api";
 import history from "../../../history";
 
 export const logout = () => async (dispatch, getState) => {

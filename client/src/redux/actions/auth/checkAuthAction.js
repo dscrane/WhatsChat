@@ -1,5 +1,5 @@
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
-import api from "../../../utils/api";
+import api from "../../../api";
 
 export const checkAuth = () => async dispatch => {
   console.log(api)

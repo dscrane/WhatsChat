@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ProfileCard } from '../components';
-import { fetchUserData } from '../../redux/actions/user';
-import { checkAuth } from "../../redux/actions/auth";
+import { ProfileCard } from '../components/userProfile';
+import { fetchUserData } from '../redux/actions/user';
+import { checkAuth } from "../redux/actions/auth";
 
 
 const Profile = (props) => {
@@ -26,7 +26,7 @@ const Profile = (props) => {
     return Object.keys(user[auth._id])
       .map(key => {
         return (
-          <p className='text-left' key={key}><span className='font-weight-bold'>{key}: </span><span>{user[auth._id][key]}</span></p>
+          <p className='text-left text-white' key={key}><span className='font-weight-bold'>{key}: </span><span>{user[auth._id][key]}</span></p>
         )
     })
   }
@@ -34,6 +34,7 @@ const Profile = (props) => {
   return (
     <div className=''>
       <ProfileCard user={user} />
+      {renderUserData()}
     </div>
   )
 }

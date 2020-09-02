@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { logout } from '../../redux/actions/auth';
 import { logoutUser } from '../../redux/actions/user';
+import { SidebarProfile, SidebarChats, SidebarSettings } from "../sidebar";
 import IconButton from './IconButton';
 
 
 const Sidebar = ({ auth, logout, logoutUser }) => {
   const [ activeIcon, setActiveIcon ] = useState('profile')
 
-  const icons = ['profile', 'messages', 'settings']
+  const icons = ['profile', 'chats', 'settings']
 
   const setCurrentIcon = (e) => {
     if (e.currentTarget.id === 'profile-cta') {
       setActiveIcon('profile');
     }
-    if (e.currentTarget.id === 'messages-cta') {
-      setActiveIcon('messages');
+    if (e.currentTarget.id === 'chats-cta') {
+      setActiveIcon('chats');
     }
     if (e.currentTarget.id === 'settings-cta') {
       setActiveIcon('settings');
@@ -37,6 +38,18 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
     })
   }
 
+  const renderSidebarContent = () => {
+    if (activeIcon === 'profile') {
+      return <SidebarProfile />
+    }
+    if (activeIcon === 'chats') {
+      return <SidebarChats />
+    }
+    if (activeIcon === 'settings') {
+      return <SidebarSettings />
+    }
+  }
+
   return (
     <div className='d-flex col-2 bg-dark'>
       <nav className='d-flex flex-column min-vh-100 w-100 align-items-around'>
@@ -53,6 +66,9 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
         </div>
         <div className='row justify-content-center'>
           <div style={{ width: '80%', borderBottom: '.5px solid white', borderRadius: '75%'}}></div>
+        </div>
+        <div className='row justify-content-center'>
+          {renderSidebarContent()}
         </div>
       </nav>
     </div>

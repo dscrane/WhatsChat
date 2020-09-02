@@ -1,5 +1,5 @@
 /* ----   FETCH_USER ACTION CREATOR    ---- */
-import api from "../../../utils/api";
+import api from "../../../api";
 import history from "../../../history";
 
 export const fetchUserData = () => async (dispatch, getState) => {

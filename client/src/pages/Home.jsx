@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import { signup } from "../../redux/actions/user";
-import { login } from "../../redux/actions/auth";
+import { signup } from "../redux/actions/user";
+import { login } from "../redux/actions/auth";
 import { SignupForm, LoginForm } from "../components";
 
 const Home = (props) => {
