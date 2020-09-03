@@ -1,68 +1,47 @@
+const http = require('http');
 const express = require('express');
+const socketio = require('socket.io');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { User } = require('./models/user');
-const authenticate = require('./middleware/authenticate')
+const userRouter = require('./routes/userRoutes');
 
 // Initialize connection to the database
 require('./db/db');
 
 // Initialize the express server and the socketio connection
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+
+
+
+// Set up middlewares for express server
 app.use(bodyParser.json());
 app.use(cookieParser())
 app.use(helmet());
-app.use(cors());
+// app.use(cors());
+
+// Connect routers to app
+app.use(userRouter);
 
 // Define port location
 const PORT = process.env.PORT || 5500;
 
-app.post('/create-user', async (req, res) => {
-  const user = new User(req.body);
-  console.log(user)
-  try {
-    await user.save();
-    const token = await user.generateAuthToken();
-    res.send({ user, token })
-  } catch (e) {
-    console.log(e)
-    res.send({ error: e})
-  }
+// Create new socketio connection
+io.on('connection', socket => {
+  console.log(socket.id)
+  console.log('=============')
+  console.log('new websocket connection');
+  console.log('=============')
+
+  socket.on('test', (testMessage) => {
+    console.log(testMessage)
+  })
 })
 
-app.post('/login-user', async (req, res) => {
-  try {
-    const user = await User.findByCredentials(req.body.username, req.body.password);
-    const token = await user.generateAuthToken();
-
-    res.send({ user, token });
-  } catch(e) {
-    res.send({ error: { ...e } })
-  }
-});
-
-app.get('/user-id', authenticate, (req, res) => {
-  res.send(req.user._id)
-})
-
-app.get('/user', authenticate, (req, res) => {
-  console.log('[REQ USER]:', req.user)
-  res.send({user: req.user})
-})
-
-app.post('/logout', authenticate, async (req, res) => {
-  try {
-    req.user;
-    req.user.tokens = [];
-    await req.user.save();
-
-    res.send({logout: true});
-  } catch (e) {
-    res.send({logout: false})
-  }
-})
 
 // Spin up the server on the defined PORT
-app.listen(PORT, () => console.log(`[APP]: listening on http://localhost:5500`))
+io.listen(PORT)
+console.log(`[APP]: listening on http://localhost:5500`)

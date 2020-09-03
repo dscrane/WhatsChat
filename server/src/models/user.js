@@ -9,12 +9,12 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
-      require: true,
+      required: true,
     },
     username: {
       type: String,
       trim: true,
-      require: true,
+      required: true,
       unique: true,
       lowercase: true,
       // validate (profanity, slurs)
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
-      require: true,
+      required: true,
       trim: true,
       lowercase: true,
       // validate
@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       minLength: 7,
-      require: true,
+      required: true,
       trim: true,
       // validate
     },
@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
       {
         token: {
           type: String,
-          require: true
+          required: true
         }
       }
     ],

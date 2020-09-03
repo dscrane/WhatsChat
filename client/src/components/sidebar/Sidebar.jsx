@@ -7,7 +7,7 @@ import IconButton from './IconButton';
 
 
 const Sidebar = ({ auth, logout, logoutUser }) => {
-  const [ activeIcon, setActiveIcon ] = useState('profile')
+  const [ activeIcon, setActiveIcon ] = useState('chats')
 
   const icons = ['profile', 'chats', 'settings']
 
@@ -51,7 +51,7 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
   }
 
   return (
-    <div className='d-flex col-2 bg-dark'>
+    <div className='d-flex col-3 bg-dark'>
       <nav className='d-flex flex-column min-vh-100 w-100 align-items-around'>
         <div className='row justify-content-center py-4'>
           <h2 className='text-white'>WhatsChat</h2>

@@ -6,30 +6,30 @@ const roomSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
       trim: true,
       lowercase: true,
       unique: true
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       minLength: 7
     },
     creator: {
       type: String,
-      require: true
+      required: true
     },
     members: [
       {
         type: String,
-        require: true
+        required: true
       }
     ],
     currentUsers: [
       {
         type: String,
-        require: true
+        required: true
       }
     ],
     private: {
