@@ -5,7 +5,7 @@ import history from "../../../history";
 export const login = formValues => async dispatch => {
   const response = await api.post(
     '/login-user',
-    { ...formValues },
+    { ...formValues }
   )
 
   if (response.data.error) {

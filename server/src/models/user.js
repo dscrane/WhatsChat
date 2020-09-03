@@ -2,7 +2,6 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const { roomSchema } = require('./room');
 
 const userSchema = new mongoose.Schema(
   {

@@ -16,6 +16,7 @@ const Chat = (props) => {
     props.sendMessage({
       message
       })
+    setMessage('')
   }
 
   return (
@@ -24,22 +25,22 @@ const Chat = (props) => {
         <ChatDisplay />
         <div className='d-flex flex-row justify-self-end align-items-center mb-2' style={{height: '10%'}}>
           <form className='w-100' onSubmit={onSubmit}>
-         <div className='row '>
-            <div className='col-10'>
-              <input
-                className='form-control w-100'
-                placeholder='Message...'
-                type='text'
-                value={message}
-                onChange={onChange}
-              />
+            <div className='row '>
+              <div className='col-10'>
+                <input
+                  className='form-control w-100'
+                  placeholder='Message...'
+                  type='text'
+                  value={message}
+                  onChange={onChange}
+                />
+              </div>
+              <div className='col-2'>
+                <button className='btn btn-md btn-outline-success w-75'>
+                  Send
+                </button>
+              </div>
             </div>
-            <div className='col-2'>
-              <button className='btn btn-md btn-outline-success w-75'>
-                Send
-              </button>
-            </div>
-         </div>
           </form>
         </div>
       </div>
@@ -48,7 +49,10 @@ const Chat = (props) => {
 }
 
 const mapStateToProps = state => {
-return {}
+  return {
+    user: state.user,
+    chat: state.chat
+  }
 }
 
 export default connect(mapStateToProps, { sendMessage })(Chat);
