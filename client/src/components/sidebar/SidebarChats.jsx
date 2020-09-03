@@ -5,9 +5,11 @@ import { createChatRoom, displayChatRooms } from "../../redux/actions/chat";
 import { profileIcon, plusIcon } from "../../icons/icons";
 
 const SidebarChats = (props) => {
+  const [ newRoomName, setNewRoomName ] = useState('');
   useEffect(() => {
     props.displayChatRooms()
   }, [])
+
   const renderChats = () => {
     if (props.chats === {}) {
       return
@@ -32,24 +34,50 @@ const SidebarChats = (props) => {
     })
   }
 
+  const onChange = (e) => {
+    setNewRoomName(e.target.value)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    // props.createChatRoom(newRoomName)
+    console.log(newRoomName)
+    setNewRoomName('')
+
+  }
+
   return (
     <div className='d-flex flex-column w-100 align-items-center'>
       <ul className='list-unstyled d-flex flex-column align-items-center w-100'>
-        {renderChats()}
-        <li className='row justify-content-center' style={{width: '75%'}}>
-          <div className='col-3 my-auto' style={{fontSize: '35px', lineHeight: '35px'}} >
-            {plusIcon}
-          </div>
-          <div
-            className='d-flex flex-row justify-content-center align-items-center text-center text-white w-75 text-decoration-none'
-            style={{height: '8vh', borderBottom: '1px solid white'}}
-            onClick={() => props.createChatRoom('other room')}
-          >
-            <div className='col text-center'>
-              New Chat
+
+        <li className='row justify-content-center' style={{width: '90%'}}>
+          <form className='w-100' onSubmit={onSubmit}>
+            <div
+              className='d-flex flex-row justify-content-center align-items-center text-center text-white w-100 text-decoration-none'
+              style={{height: '8vh', borderBottom: '1px solid white'}}
+            >
+              <div className='d-flex justify-content-end col-3  mx-auto'>
+                <button
+                  className='btn p-0'
+                  style={{background: 'none', border: 'none', borderStyle: 'none'}}
+                >
+                  <div className='d-flex align-items-center text-secondary'  style={{fontSize: '35px'}}>
+                    {plusIcon}
+                  </div>
+                </button>
+              </div>
+              <div className='col-9'>
+                <input
+                  className='form-control'
+                  onChange={onChange}
+                  value={newRoomName}
+                  placeholder={'Create Chat Room....'}
+                />
+              </div>
             </div>
-          </div>
+          </form>
         </li>
+        {renderChats()}
       </ul>
     </div>
   )
