@@ -1,5 +1,5 @@
 import { socket } from '../../../socket';
 
-export const sendMessage = (message, chatId) => {
-  console.log(`[MESSAGE]: ${message.message} ==> [CHAT]: ${chatId}`);
+export const sendMessage = (message) => {
+  console.log(`[MESSAGE]: ${message.message} ==> [CHAT]:`);
 }
