@@ -8,7 +8,7 @@ import chatReducer from './chatReducer';
 
 export default combineReducers({
   auth: authReducer,
-  user: userReducer,
+  // user: userReducer,
   chat: chatReducer,
   // userState: userFormReducer,
   form: formReducer

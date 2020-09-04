@@ -6,7 +6,7 @@ import { checkAuth } from "../redux/actions/auth";
 
 
 const Profile = (props) => {
-  const { user, auth, fetchUserData } = props;
+  const { auth, fetchUserData } = props;
 
   useEffect(() => {
     // fetch the user data if there is an auth token
@@ -17,23 +17,23 @@ const Profile = (props) => {
 
 
   // Return if no user is found
-  if (!user[auth._id]) {
+  if (!auth._id) {
     return <div>No user found</div>
   }
 
   // Display user data
   const renderUserData = () => {
-    return Object.keys(user[auth._id])
+    return Object.keys(auth.data)
       .map(key => {
         return (
-          <p className='text-left text-white' key={key}><span className='font-weight-bold'>{key}: </span><span>{user[auth._id][key]}</span></p>
+          <p className='text-left text-white' key={key}><span className='font-weight-bold'>{key}: </span><span>{auth.data[key]}</span></p>
         )
     })
   }
 
   return (
     <div className=''>
-      <ProfileCard user={user} />
+      <ProfileCard user={auth.data} />
       {renderUserData()}
     </div>
   )

@@ -2,7 +2,8 @@
 const INITIAL_STATE = {
   isLoggedIn: false,
   _id: null,
-  token: null
+  token: null,
+  data: {}
 }
 
 export default (state=INITIAL_STATE, action) => {

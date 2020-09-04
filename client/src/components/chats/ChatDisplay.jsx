@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
-const ChatDisplay = () => {
 
-  return (
+const ChatDisplay = (props) => {
 
-      <div className='row align-items-start p-2 ' style={{height: '90%'}}>
-        <div className='d-flex flex-column m-2 px-4 w-100 h-100'>
-          <div className='row my-3 justify-content-start'>
+console.log(props.messages)
+
+  const renderMessages = () => {
+    const messageKeysArray = Object.keys(props.messages) ;
+    return messageKeysArray.map(messageKey => {
+      console.log(props.messages[messageKey])
+      if (props.messages[messageKey].userId !== props.auth._id) {
+        return (
+          <div key={messageKey} className='row my-3 justify-content-start'>
             <p
               className=' bg-light py-1 px-2 my-auto'
               style={{borderRadius: '10px'}}
             >
-              This is some solid chat text
+              {props.messages[messageKey].message}
             </p>
           </div>
-          <div className='row my-3 justify-content-end'>
-            <p
-              className='bg-primary py-1 px-2 my-auto'
-              style={{borderRadius: '10px'}}
-            >
-              This is a response to that
-            </p>
-          </div>
+        )
+      }
+      return (
+        <div key={messageKey} className='row my-3 justify-content-end'>
+          <p
+            className='bg-primary py-1 px-2 my-auto'
+            style={{borderRadius: '10px'}}
+          >
+            {props.messages[messageKey].message}
+          </p>
+        </div>
+      )
+    })
+  }
+
+  return (
+      <div className='row align-items-start p-2 ' style={{height: '90%'}}>
+        <div className='d-flex flex-column m-2 px-4 w-100 h-100'>
+          {props.messages ? renderMessages() : ''}
         </div>
       </div>
 
   )
 }
 
-export default ChatDisplay;
+ const mapStateToProps = (state, ownProps) => {
+  return {
+
+     auth: state.auth
+   }
+}
+
+export default connect(mapStateToProps, {  })(ChatDisplay);

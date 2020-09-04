@@ -28,9 +28,10 @@ export const checkAuth = () => async dispatch => {
   dispatch({
      type: 'CHECK_AUTH',
      payload: {
-       _id: response.data,
+       _id: response.data._id,
        token,
-       isLoggedIn: true
+       isLoggedIn: true,
+       data: response.data
      }
    })
 

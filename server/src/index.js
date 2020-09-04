@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
+const messageRouter = require('./routes/messageRoutes')
+const Message = require('./models/message');
 
 
 // Initialize connection to the database
@@ -24,12 +26,10 @@ app.use(cookieParser())
 // Connect routers to app
 app.use(userRouter);
 app.use(chatRoomRouter);
+app.use(messageRouter);
 
 const server = http.createServer(app);
 const io = socketio(server);
-
-
-
 
 
 // Define port location
@@ -37,13 +37,24 @@ const PORT = process.env.PORT || 5500;
 
 // Create new socketio connection
 io.on('connection', socket => {
-  console.log(socket.id)
   console.log('=============')
-  console.log('new websocket connection');
+  console.log('new websocket connection', socket.id );
   console.log('=============')
 
-  socket.on('message', (message) => {
+  socket.on('join', (room, callback) => {
+    socket.join(room)
+    callback(room)
+
+  })
+
+  // socket.emit('connectedToRoom', `you are connected to a room`)
+
+  socket.on('message', async (message) => {
     console.log(message)
+    const msg = new Message(message)
+    socket.to(message.chatId).emit('return-message', { message: msg })
+    await msg.save();
+    console.log(msg)
   })
 })
 

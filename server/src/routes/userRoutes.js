@@ -6,7 +6,6 @@ const router = new express.Router();
 
 router.post('/create-user', async (req, res) => {
   const user = new User(req.body);
-  console.log(user)
   try {
     await user.save();
     const token = await user.generateAuthToken();
@@ -29,11 +28,10 @@ router.post('/login-user', async (req, res) => {
 });
 
 router.get('/user-id', authenticate, (req, res) => {
-  res.send(req.user._id)
+  res.send(req.user)
 })
 
 router.get('/user', authenticate, (req, res) => {
-  console.log('[REQ USER]:', req.user)
   res.send({user: req.user})
 })
 

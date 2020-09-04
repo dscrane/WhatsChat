@@ -21,7 +21,8 @@ export const logout = () => async (dispatch, getState) => {
      payload: {
        _id: null,
        token: null,
-       isLoggedIn: false
+       isLoggedIn: false,
+       data: {}
      }
    })
   localStorage.removeItem('jwt-token');

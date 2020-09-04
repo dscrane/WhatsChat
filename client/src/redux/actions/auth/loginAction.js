@@ -21,7 +21,8 @@ export const login = formValues => async dispatch => {
      payload: {
        _id: response.data.user._id,
        token: response.data.token,
-       isLoggedIn: true
+       isLoggedIn: true,
+       data: response.data.user
      }
    })
 

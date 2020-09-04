@@ -16,8 +16,6 @@ const authenticate = async (req, res, next) => {
       'tokens.token': token
     });
 
-    console.log('User', user)
-
     if (!user) {
       throw new Error()
     }

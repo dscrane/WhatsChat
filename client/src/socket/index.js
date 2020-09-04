@@ -1,2 +1,2 @@
-import socketIOClient from 'socket.io-client';
-export const socket = socketIOClient('http://localhost:5500');
+import io from 'socket.io-client';
+export const socket = io('http://localhost:5500');

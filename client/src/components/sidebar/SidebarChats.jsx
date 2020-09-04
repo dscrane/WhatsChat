@@ -40,7 +40,7 @@ const SidebarChats = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    // props.createChatRoom(newRoomName)
+    props.createChatRoom(newRoomName)
     console.log(newRoomName)
     setNewRoomName('')
 
@@ -85,7 +85,7 @@ const SidebarChats = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    chats: state.chat
+    chats: state.chat.chats
   }
 }
 
