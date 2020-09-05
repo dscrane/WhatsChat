@@ -9,6 +9,7 @@ const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
 const messageRouter = require('./routes/messageRoutes')
 const Message = require('./models/message');
+const { User } = require('./models/user');
 
 
 // Initialize connection to the database
@@ -49,10 +50,12 @@ io.on('connection', socket => {
 
   // socket.emit('connectedToRoom', `you are connected to a room`)
 
-  socket.on('message', async (message) => {
+  socket.on('message', async ({ userId, ...message }) => {
     console.log(message)
-    const msg = new Message(message)
+    const user = await User.findOne({_id: userId});
+    console.log('user:', user)
     socket.to(message.chatId).emit('return-message', { message: msg })
+    const msg = new Message(message)
     await msg.save();
     console.log(msg)
   })
