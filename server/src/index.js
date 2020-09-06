@@ -42,24 +42,22 @@ io.on('connection', socket => {
   console.log('new websocket connection', socket.id );
   console.log('=============')
 
-  socket.on('join', (room, callback) => {
-    socket.join(room)
-    callback(room)
+  socket.on('join', (room) => socket.join(room));
+
+  socket.on('message', async ({ userId, ...message }) => {
+    console.log(socket.rooms)
+    console.log('msg:', message)
+    socket.to(message.chatId).emit('return-message', { userId, message })
+    const msg = new Message(message)
+    await msg.save();
+    console.log('MSG:', msg)
+  })
 
   })
 
   // socket.emit('connectedToRoom', `you are connected to a room`)
 
-  socket.on('message', async ({ userId, ...message }) => {
-    console.log(message)
-    const user = await User.findOne({_id: userId});
-    console.log('user:', user)
-    socket.to(message.chatId).emit('return-message', { message: msg })
-    const msg = new Message(message)
-    await msg.save();
-    console.log(msg)
-  })
-})
+
 
 
 // Spin up the server on the defined PORT
