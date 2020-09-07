@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createChatRoom, displayChatRooms } from "../../redux/actions/chat";
+import { createChatRoom, displayChatRooms } from "../../redux/actions/chat/chatActions";
 import { profileIcon, plusIcon } from "../../icons/icons";
 
 const SidebarChats = (props) => {

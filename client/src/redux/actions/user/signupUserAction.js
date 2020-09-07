@@ -16,7 +16,9 @@ export const signup = (formValues) => async dispatch => {
     return
   }
 
-  dispatch({
+    localStorage.setItem('jwt-token', response.data.token);
+
+    dispatch({
      type: 'CHECK_AUTH',
      payload: {
        _id: response.data.user._id,

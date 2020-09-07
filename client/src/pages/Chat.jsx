@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { sendMessage, joinChat, fetchMessages } from '../redux/actions/chat';
+import { sendMessage, joinChat, fetchMessages } from '../redux/actions/chat/chatActions';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
 

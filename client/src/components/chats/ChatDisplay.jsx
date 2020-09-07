@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 const ChatDisplay = (props) => {
 
+
   const renderMessages = () => {
     const messageKeysArray = Object.keys(props.messages) ;
     return messageKeysArray.map(messageKey => {

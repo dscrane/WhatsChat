@@ -9,6 +9,7 @@ const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
 const messageRouter = require('./routes/messageRoutes')
 const Message = require('./models/message');
+const { User } = require('./models/user');
 
 
 // Initialize connection to the database
@@ -46,8 +47,6 @@ io.on('connection', socket => {
     socket.join(room)
   })
 
-  // socket.emit('connectedToRoom', `you are connected to a room`)
-
   socket.on('message', async (message) => {
     console.log(message)
     const newMsg = new Message(message)
@@ -57,6 +56,7 @@ io.on('connection', socket => {
     console.log(newMsg)
   })
 })
+
 
 
 // Spin up the server on the defined PORT
