@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { sendMessage, joinChat, fetchMessages } from '../redux/actions/chat/chatActions';
+import { sendMessage, joinChat, fetchMessages } from '../redux/actions/chat';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
 
 
 const Chat = ({ chats, auth, computedMatch, sendMessage, joinChat, fetchMessages },) => {
   const [ message, setMessage ] = useState('');
-  const [ chatId, setChatId ] = useState(computedMatch.params.id)
+  const [ chatId, setChatId ] = useState(null)
 
   useEffect(() => {
-    if (auth.token) {
-      if (chatId !== computedMatch.params.id) {
-        setChatId(computedMatch.params.id)
-        joinChat(computedMatch.params.id)
-        fetchMessages(computedMatch.params.id)
-        return
-      }
-      if (chatId !== null) {
-        joinChat(chatId);
-        fetchMessages(chatId)
-      }
+    if (auth.token && (!chatId || chatId !== computedMatch.params.id)) {
+      joinChat(computedMatch.params.id)
+      fetchMessages(computedMatch.params.id)
+      setChatId(computedMatch.params.id)
+      return
     }
+    joinChat(chatId)
+    fetchMessages(chatId)
   }, [auth.token, computedMatch.params.id])
+
+
 
   const onChange = e => {
     setMessage(e.target.value)

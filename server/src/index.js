@@ -48,12 +48,16 @@ io.on('connection', socket => {
   })
 
   socket.on('message', async (message) => {
-    console.log(message)
-    const newMsg = new Message(message)
-    const returnMsg = { ...message, _id: newMsg._id }
-    io.sockets.in(message.chatId).emit('return-message', returnMsg)
-    await newMsg.save();
-    console.log(newMsg)
+    try {
+
+      const newMsg = new Message(message)
+      const returnMsg = { ...message, _id: newMsg._id }
+      io.sockets.in(message.chatId).emit('return-message', returnMsg)
+      await newMsg.save();
+      console.log('new message saved')
+    } catch (e) {
+      console.log(e)
+    }
   })
 })
 

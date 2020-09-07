@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createChatRoom, displayChatRooms } from "../../redux/actions/chat/chatActions";
+import { createChatRoom, displayChatRooms } from "../../redux/actions/chat";
 import { profileIcon, plusIcon } from "../../icons/icons";
 
-const SidebarChats = (props) => {
+const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
   const [ newRoomName, setNewRoomName ] = useState('');
   useEffect(() => {
-    props.displayChatRooms()
+    displayChatRooms()
   }, [])
 
   const onChange = (e) => {
@@ -16,18 +16,18 @@ const SidebarChats = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    props.createChatRoom(newRoomName)
+    createChatRoom(newRoomName)
     console.log(newRoomName)
     setNewRoomName('')
   }
 
   const renderChatData = () => {
-    if (props.chats === {}) {
+    if (chats === {}) {
       return
     }
-    return Object.keys(props.chats).map(key => {
+    return Object.keys(chats).map(key => {
       return (
-        <li key={props.chats[key]._id} className='row justify-content-center' style={{width: '90%'}}>
+        <li key={chats[key]._id} className='row justify-content-center' style={{width: '90%'}}>
           <div className='col-3 my-auto' style={{fontSize: '50px', lineHeight: '50px'}} >
             {profileIcon}
           </div>
@@ -39,7 +39,7 @@ const SidebarChats = (props) => {
             }}
           >
             <div className='col text-center'>
-              {props.chats[key].name}
+              {chats[key].name}
             </div>
           </Link>
         </li>
@@ -82,7 +82,7 @@ const SidebarChats = (props) => {
     )
   }
 
-  const chatDisplay = props.auth.isLoggedIn ? renderChats() : <div className='text-white'>Log in to see your profile</div>
+  const chatDisplay = auth.isLoggedIn ? renderChats() : <div className='text-white'>Log in to see your profile</div>
 
 
 

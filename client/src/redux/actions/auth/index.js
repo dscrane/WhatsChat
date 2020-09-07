@@ -3,21 +3,18 @@ import history from "../../../history";
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async dispatch => {
-  console.log(api)
   const token = localStorage.getItem('jwt-token');
 
   if (!token) {
-    console.log('[AUTH]: No Token')
     return dispatch({
-                      type: 'CHECK_AUTH',
-                      payload: {
-                        isLoggedIn: false,
-                        token: null
-                      }
-                    })
+      type: 'CHECK_AUTH',
+      payload: {
+        isLoggedIn: false,
+        token: null
+      }
+    })
   }
 
-  console.log(`[AUTH-TOKEN]: ${token}`)
   const response = await api.get(
     '/user-id',
     {
@@ -27,15 +24,14 @@ export const checkAuth = () => async dispatch => {
     }
   )
   dispatch({
-             type: 'CHECK_AUTH',
-             payload: {
-               _id: response.data._id,
-               token,
-               isLoggedIn: true,
-               data: response.data
-             }
-           })
-
+   type: 'CHECK_AUTH',
+   payload: {
+     _id: response.data._id,
+     token,
+     isLoggedIn: true,
+     data: response.data
+   }
+  })
 }
 /* ----   ****    ---- */
 
@@ -55,14 +51,14 @@ export const login = formValues => async dispatch => {
   localStorage.setItem('jwt-token', response.data.token);
 
   dispatch({
-             type: 'LOG_IN',
-             payload: {
-               _id: response.data.user._id,
-               token: response.data.token,
-               isLoggedIn: true,
-               data: response.data.user
-             }
-           })
+   type: 'LOG_IN',
+   payload: {
+     _id: response.data.user._id,
+     token: response.data.token,
+     isLoggedIn: true,
+     data: response.data.user
+   }
+ })
 
   history.push(`/profile/${response.data.user._id}`);
 }
@@ -83,14 +79,14 @@ export const logout = () => async (dispatch, getState) => {
   )
 
   dispatch({
-             type: 'LOG_OUT',
-             payload: {
-               _id: null,
-               token: null,
-               isLoggedIn: false,
-               data: {}
-             }
-           })
+   type: 'LOG_OUT',
+   payload: {
+     _id: null,
+     token: null,
+     isLoggedIn: false,
+     data: {}
+   }
+  })
 
   localStorage.removeItem('jwt-token');
 

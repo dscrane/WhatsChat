@@ -7,7 +7,7 @@ import IconButton from './IconButton';
 
 
 const Sidebar = ({ auth, logout, logoutUser }) => {
-  const [ activeIcon, setActiveIcon ] = useState('chats')
+  const [ activeIcon, setActiveIcon ] = useState('profile')
 
   const icons = ['profile', 'chats', 'settings']
 

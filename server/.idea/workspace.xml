@@ -20,14 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/chatActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/sendMessageAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/sendMessageAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/signupUserAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/user/signupUserAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/chatActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/chatActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/displayChatRoomsAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/displayChatRoomsAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/middleware/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware/authenticate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/chatRoomRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/chatRoomRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/messageRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/messageRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
