@@ -11,7 +11,7 @@ const messageSchema = new mongoose.Schema(
     },
     chatId: {
       type: String
-    }
+    },
   },
   {
     timestamps: true

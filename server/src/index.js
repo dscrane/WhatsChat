@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const moment = require('moment');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
 const messageRouter = require('./routes/messageRoutes')
@@ -49,9 +50,8 @@ io.on('connection', socket => {
 
   socket.on('message', async (message) => {
     try {
-
       const newMsg = new Message(message)
-      const returnMsg = { ...message, _id: newMsg._id }
+      const returnMsg = { _id: newMsg._id,  ...message  }
       io.sockets.in(message.chatId).emit('return-message', returnMsg)
       await newMsg.save();
       console.log('new message saved')
