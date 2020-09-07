@@ -4,12 +4,9 @@ import { connect } from 'react-redux';
 
 const ChatDisplay = (props) => {
 
-console.log(props.messages)
-
   const renderMessages = () => {
     const messageKeysArray = Object.keys(props.messages) ;
     return messageKeysArray.map(messageKey => {
-      console.log(props.messages[messageKey])
       if (props.messages[messageKey].userId !== props.auth._id) {
         return (
           <div key={messageKey} className='row my-3 justify-content-start'>
@@ -47,7 +44,6 @@ console.log(props.messages)
 
  const mapStateToProps = (state, ownProps) => {
   return {
-
      auth: state.auth
    }
 }

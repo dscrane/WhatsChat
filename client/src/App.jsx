@@ -7,11 +7,12 @@ import { Home, Profile, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
 import ProtectedRoute from './ProtectedRoute'
 
-const App = props => {
-  const { auth, checkAuth } = props;
+const App = ({ auth, checkAuth }) => {
+
   useEffect(() => {
+    console.log('app comp auth check')
     checkAuth()
-  }, [checkAuth, auth.isLoggedIn])
+  }, [auth.isLoggedIn])
 
   return (
     <div className='wrapper d-flex align-items-stretch'>
@@ -23,7 +24,7 @@ const App = props => {
               {auth.isLoggedIn ? <Redirect to={`/profile/${auth._id}`} /> : <Home />}
             </Route>
             <ProtectedRoute path={`/profile/${auth._id}`} auth={auth.isLoggedIn} component={Profile} />
-            <Route path='/chats/:id' exact component={Chat} />
+            <ProtectedRoute path='/chats/:id' auth={auth.isLoggedIn} component={Chat} />
           </Switch>
         </>
       </Router>

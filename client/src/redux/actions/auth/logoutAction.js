@@ -25,7 +25,9 @@ export const logout = () => async (dispatch, getState) => {
        data: {}
      }
    })
+
   localStorage.removeItem('jwt-token');
+
   history.push('/')
 }
 /* ----   ****    ---- */

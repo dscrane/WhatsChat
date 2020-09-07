@@ -10,7 +10,18 @@ const SidebarChats = (props) => {
     props.displayChatRooms()
   }, [])
 
-  const renderChats = () => {
+  const onChange = (e) => {
+    setNewRoomName(e.target.value)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    props.createChatRoom(newRoomName)
+    console.log(newRoomName)
+    setNewRoomName('')
+  }
+
+  const renderChatData = () => {
     if (props.chats === {}) {
       return
     }
@@ -23,7 +34,9 @@ const SidebarChats = (props) => {
           <Link
             className='d-flex flex-row justify-content-center align-items-center text-center text-white w-75 text-decoration-none'
             style={{height: '8vh', borderBottom: '1px solid white'}}
-            to={`/chats/${key}`}
+            to={{
+              pathname: `/chats/${key}`
+            }}
           >
             <div className='col text-center'>
               {props.chats[key].name}
@@ -34,22 +47,9 @@ const SidebarChats = (props) => {
     })
   }
 
-  const onChange = (e) => {
-    setNewRoomName(e.target.value)
-  }
-
-  const onSubmit = (e) => {
-    e.preventDefault()
-    props.createChatRoom(newRoomName)
-    console.log(newRoomName)
-    setNewRoomName('')
-
-  }
-
-  return (
-    <div className='d-flex flex-column w-100 align-items-center'>
+  const renderChats = () => {
+    return (
       <ul className='list-unstyled d-flex flex-column align-items-center w-100'>
-
         <li className='row justify-content-center' style={{width: '90%'}}>
           <form className='w-100' onSubmit={onSubmit}>
             <div
@@ -77,14 +77,26 @@ const SidebarChats = (props) => {
             </div>
           </form>
         </li>
-        {renderChats()}
+        {renderChatData()}
       </ul>
+    )
+  }
+
+  const chatDisplay = props.auth.isLoggedIn ? renderChats() : <div className='text-white'>Log in to see your profile</div>
+
+
+
+
+  return (
+    <div className='d-flex flex-column w-100 align-items-center my-3'>
+      {chatDisplay}
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     chats: state.chat.chats
   }
 }

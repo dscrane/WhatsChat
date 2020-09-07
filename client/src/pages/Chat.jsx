@@ -5,27 +5,24 @@ import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
 
 
-const Chat = ({ chats, auth, match, sendMessage, checkAuth, joinChat, fetchMessages }) => {
+const Chat = ({ chats, auth, computedMatch, sendMessage, joinChat, fetchMessages },) => {
   const [ message, setMessage ] = useState('');
-  const [ chatId, setChatId ] = useState(match.params.id)
+  const [ chatId, setChatId ] = useState(computedMatch.params.id)
 
   useEffect(() => {
-    checkAuth()
-    fetchMessages(chatId)
-
-  }, [])
-
-  useEffect(() => {
-    if (chatId !== match.params.id) {
-      setChatId(match.params.id);
-      if (chatId !== '') {
-        joinChat(match.params.id)
-        fetchMessages(match.params.id)
-        console.log(chats[chatId])
+    if (auth.token) {
+      if (chatId !== computedMatch.params.id) {
+        setChatId(computedMatch.params.id)
+        joinChat(computedMatch.params.id)
+        fetchMessages(computedMatch.params.id)
+        return
+      }
+      if (chatId !== null) {
+        joinChat(chatId);
+        fetchMessages(chatId)
       }
     }
-  }, [match.params.id, chats])
-
+  }, [auth.token, computedMatch.params.id])
 
   const onChange = e => {
     setMessage(e.target.value)
@@ -33,8 +30,6 @@ const Chat = ({ chats, auth, match, sendMessage, checkAuth, joinChat, fetchMessa
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(auth._id)
-    console.log(chatId, message)
     sendMessage({
       chatId,
       message,
@@ -47,7 +42,7 @@ const Chat = ({ chats, auth, match, sendMessage, checkAuth, joinChat, fetchMessa
     <div className='d-flex col-9 justify-content-center bg-secondary'>
       <div className='container bg-dark m-4 w-100' style={{borderRadius: '10px'}}>
 
-        {chats[chatId] ? <ChatDisplay messages={chats[chatId].messages} /> : ''}
+        {chatId ? <ChatDisplay messages={chats[chatId].messages} /> : ''}
         <div className='d-flex flex-row justify-self-end align-items-center mb-2' style={{height: '10%'}}>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>

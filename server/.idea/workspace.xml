@@ -19,7 +19,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="" />
+    <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/userProfile/ProfileCard.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/userProfile/ProfileDisplay.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/userProfile/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/logoutAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/logoutAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/displayChatRoomsAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/displayChatRoomsAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/sendMessageAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/sendMessageAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/fetchUserAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/user/fetchUserAction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/messageRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/messageRoutes.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +68,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../reactappdeploy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../client" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -75,6 +97,7 @@
       <workItem from="1598891868607" duration="912000" />
       <workItem from="1598962305171" duration="1267000" />
       <workItem from="1598965313235" duration="1205000" />
+      <workItem from="1599477371255" duration="4887000" />
     </task>
     <servers />
   </component>
@@ -97,11 +120,12 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2660" y="280" key="FileChooserDialogImpl" timestamp="1598963984202">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="740" y="310" key="FileChooserDialogImpl" timestamp="1599477936045">
+      <screen x="0" y="30" width="1920" height="1050" />
     </state>
     <state x="740" y="280" key="FileChooserDialogImpl/-1920.0.1920.1050/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1598613753194" />
     <state x="2660" y="280" key="FileChooserDialogImpl/-1920.0.1920.1050/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1598963984202" />
+    <state x="740" y="310" key="FileChooserDialogImpl/-1920.30.1920.1050/0.30.1920.1050/1920.30.1920.1050@0.30.1920.1050" timestamp="1599477936045" />
     <state x="922" y="210" key="SettingsEditor" timestamp="1598712929440">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

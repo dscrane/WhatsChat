@@ -8,6 +8,7 @@ export default (state = INITIAL_STATE, action) => {
   console.log(action.type)
   switch(action.type) {
     case 'ADD_CHATROOM':
+      console.log('[ADD_CHATROOM]:', action.payload)
       return {
         ...state,
         chats: {
@@ -21,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
 
       }
     case 'DISPLAY_CHATROOMS':
-      console.log(action.payload)
+      console.log('[DISPLAY_CHATROOMS]:', action.payload)
       return {
         ...state,
         chats: {
@@ -30,24 +31,7 @@ export default (state = INITIAL_STATE, action) => {
         }
       }
     case 'NEW_MESSAGE':
-      return {
-        ...state,
-        chats: {
-          ...state.chats,
-          [action.payload.chatId]: {
-            ...state.chats[action.payload.chatId],
-            messages: {
-              ...state.chats[action.payload.chatId],
-              [action.payload.message._id]: {
-                ...action.payload.message
-              }
-            }
-          }
-        }
-      }
-    case 'LOAD_MESSAGES':
-      console.log(action.payload)
-      console.log(state.chats)
+      console.log('[NEW_MESSAGE]:', action.payload)
       return {
         ...state,
         chats: {
@@ -56,7 +40,24 @@ export default (state = INITIAL_STATE, action) => {
             ...state.chats[action.payload.chatId],
             messages: {
               ...state.chats[action.payload.chatId].messages,
-              ..._.mapKeys(action.payload.messages, '_id')
+              [action.payload._id]: {
+                ...action.payload
+              }
+            }
+          }
+        }
+      }
+    case 'LOAD_MESSAGES':
+      console.log('[LOAD_MESSAGES]:',action.payload)
+      return {
+        ...state,
+        chats: {
+          ...state.chats,
+          [action.payload.chatId]: {
+            ...state.chats[action.payload.chatId],
+            messages: {
+              ...state.chats[action.payload.chatId].messages,
+              ...action.payload.messages
             }
           }
         }

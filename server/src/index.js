@@ -42,19 +42,19 @@ io.on('connection', socket => {
   console.log('=============')
 
   socket.on('join', (room, callback) => {
+    console.log(`Joining room ${room}`)
     socket.join(room)
-    callback(room)
-
   })
 
   // socket.emit('connectedToRoom', `you are connected to a room`)
 
   socket.on('message', async (message) => {
     console.log(message)
-    const msg = new Message(message)
-    socket.to(message.chatId).emit('return-message', { message: msg })
-    await msg.save();
-    console.log(msg)
+    const newMsg = new Message(message)
+    const returnMsg = { ...message, _id: newMsg._id }
+    io.sockets.in(message.chatId).emit('return-message', returnMsg)
+    await newMsg.save();
+    console.log(newMsg)
   })
 })
 
