@@ -96,10 +96,7 @@ export const logout = () => async (dispatch, getState) => {
 
 /* ----   SIGN_UP ACTION CREATOR    ---- */
 export const signup = (formValues) => async dispatch => {
-  const response = await api.post(
-    '/create-user',
-    { ...formValues }
-  )
+  const response = await api.post('/create-user', { ...formValues })
   console.log(response)
   if (response.data.error) {
     const error = response.data.error;
@@ -121,4 +118,25 @@ export const signup = (formValues) => async dispatch => {
 
   history.push(`/profile/${response.data.user._id}`)
 }
+/* ----   ****    ---- */
+
+/* ----   UPDATE_USER ACTION CREATOR    ---- */
+export const updateUser = formValues => async dispatch => {
+  const response = await api.patch('./user-update', {...formValues});
+  console.log(response);
+
+  if (response.data.error) {
+    const error = response.data.error;
+    if (error.code === 11000) {
+      alert(`The username "${error.keyValue.username}" has already been taken.`)
+    }
+    return
+  }
+
+  dispatch({
+    type: 'UPDATE_USER',
+    payload: response.data.user
+  })
+}
+
 /* ----   ****    ---- */

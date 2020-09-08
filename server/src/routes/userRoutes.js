@@ -1,6 +1,8 @@
 const express = require('express');
+const sharp = require('sharp');
 const { User } = require('../models/user');
 const authenticate = require('../middleware/authenticate')
+const imgUpload = require('../middleware/imgUpload');
 
 const router = new express.Router();
 
@@ -27,12 +29,41 @@ router.post('/login-user', async (req, res) => {
   }
 });
 
+router.patch('./user-update', authenticate, async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ['name', 'email', 'password'];
+
+  const isValidUpdate = updates.every(update => allowedUpdates.includes(update))
+
+  if (!isValidUpdate) {
+    return res.send({error: 'Invalid Updates'})
+  }
+
+  try {
+    updates.forEach(update => req.user[update] = req.body[update])
+    await req.user.save();
+    res.send(req.user)
+  } catch (e) {
+    console.log(e)
+  }
+})
+
 router.get('/user-id', authenticate, (req, res) => {
   res.send(req.user)
 })
 
 router.get('/user', authenticate, (req, res) => {
   res.send({user: req.user})
+})
+
+router.post('/user/avatar', authenticate, imgUpload.single('avatar'), async (req, res) => {
+  const buffer = await sharp(req.file.buffer)
+    .png()
+    .resize({ width: 250, height: 250 })
+    .toBuffer();
+  req.user.avatar = buffer;
+  await req.user.save();
+  res.send(req.user)
 })
 
 router.post('/logout', authenticate, async (req, res) => {
@@ -46,5 +77,6 @@ router.post('/logout', authenticate, async (req, res) => {
     res.send({logout: false})
   }
 })
+
 
 module.exports = router;

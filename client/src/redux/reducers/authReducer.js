@@ -1,3 +1,10 @@
+import {
+  CHECK_AUTH,
+  LOG_IN,
+  LOG_OUT,
+  UPDATE_USER
+} from '../types'
+
 // Do not modify
 const INITIAL_STATE = {
   isLoggedIn: false,
@@ -26,6 +33,15 @@ export default (state=INITIAL_STATE, action) => {
         ...state,
         ...action.payload
       };
+    case UPDATE_USER:
+      console.log('[UPDATE_USER]:', action);
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          ...action.payload
+        }
+      }
     default:
       return state;
   }

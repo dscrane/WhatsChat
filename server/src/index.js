@@ -5,7 +5,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const moment = require('moment');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
 const messageRouter = require('./routes/messageRoutes')
