@@ -10,7 +10,10 @@ import ProtectedRoute from './ProtectedRoute'
 const App = ({ auth, checkAuth }) => {
 
   useEffect(() => {
-    checkAuth()
+    if (!auth.token) {
+      checkAuth()
+    }
+    console.log('[APP]: check auth')
   }, [auth.isLoggedIn])
 
   return (

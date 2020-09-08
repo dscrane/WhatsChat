@@ -100,7 +100,7 @@ export const signup = (formValues) => async dispatch => {
     '/create-user',
     { ...formValues }
   )
-
+  console.log(response)
   if (response.data.error) {
     const error = response.data.error;
     if (error.code === 11000) {
@@ -113,8 +113,9 @@ export const signup = (formValues) => async dispatch => {
              type: 'CHECK_AUTH',
              payload: {
                _id: response.data.user._id,
-               token: response.data.user.token,
-               isLoggedIn: true
+               token: response.data.token,
+               isLoggedIn: true,
+               data: response.data.user
              }
            })
 

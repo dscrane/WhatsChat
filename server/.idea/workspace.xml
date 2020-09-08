@@ -20,34 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/checkAuthAction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/precache-manifest.46c2959f8d87b496beec147a5e4a01c8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/service-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/2.b7503044.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/2.b7503044.chunk.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/2.b7503044.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/main.f28567c7.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/main.f28567c7.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/runtime-main.09b85ec0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/build/static/js/runtime-main.09b85ec0.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/loginAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/logoutAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/chatActions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/createChatRoomAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/displayChatRoomsAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/fetchMessagesAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chat/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/joinChatAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chat/sendMessageAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/fetchUserAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/logoutUserAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/user/signupUserAction.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/userReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/socket/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/socket/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/chatRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/chatRoom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/chatRoomRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/chatRoomRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +91,7 @@
       <workItem from="1598891868607" duration="912000" />
       <workItem from="1598962305171" duration="1267000" />
       <workItem from="1598965313235" duration="1205000" />
-      <workItem from="1599477371255" duration="9140000" />
+      <workItem from="1599477371255" duration="10016000" />
     </task>
     <servers />
   </component>
