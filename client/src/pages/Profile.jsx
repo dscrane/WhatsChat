@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchUserData } from '../redux/actions/user';
 import { checkAuth } from "../redux/actions/auth";
 
 
-const Profile = (props) => {
-  const { auth, fetchUserData } = props;
+const Profile = ({ auth }) => {
+
 
   useEffect(() => {
     // fetch the user data if there is an auth token
-    if (auth.token) {
-      fetchUserData()
+    if (!auth.token) {
+      checkAuth()
     }
   }, [auth.token])
 
@@ -35,4 +34,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchUserData, checkAuth })(Profile);
+export default connect(mapStateToProps, { checkAuth })(Profile);

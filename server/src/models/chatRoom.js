@@ -7,6 +7,9 @@ const chatRoomSchema = new mongoose.Schema(
     name: {
       type: String,
       unique: true
+    },
+    createdBy: {
+      type: String
     }
   },
   {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { logout } from '../../redux/actions/auth';
-import { logoutUser } from '../../redux/actions/user';
 import { SidebarProfile, SidebarChats, SidebarSettings } from "../sidebar";
 import IconButton from './IconButton';
 
@@ -51,7 +50,7 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
   }
 
   return (
-    <div className='d-flex col-3 bg-dark'>
+    <div className='d-flex col-3' style={{backgroundColor: '#262B33'}}>
       <nav className='d-flex flex-column min-vh-100 w-100 align-items-around'>
         <div className='row justify-content-center py-4'>
           <h2 className='text-white'>WhatsChat</h2>
@@ -81,4 +80,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {logout, logoutUser})(Sidebar)
+export default connect(mapStateToProps, { logout })(Sidebar)

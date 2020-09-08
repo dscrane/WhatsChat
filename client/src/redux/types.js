@@ -1,8 +1,8 @@
-// User Action Types
-export const FETCH_USER = 'FETCH_USER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const DELETE_USER = 'DELETE_USER';
-
+// Chat Action Types
+export const ADD_CHATROOM = 'ADD_CHATROOM';
+export const DISPLAY_CHATROOMS = 'DISPLAY_CHATROOMS';
+export const NEW_MESSAGE = 'NEW_MESSAGE';
+export const LOAD_MESSAGES = 'LOAD_MESSAGES';
 
 // Authorization Action Types
 export const CHECK_AUTH = 'CHECK_AUTH';

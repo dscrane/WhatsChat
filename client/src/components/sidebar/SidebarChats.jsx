@@ -16,7 +16,7 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    createChatRoom(newRoomName)
+    createChatRoom(newRoomName, auth._id)
     console.log(newRoomName)
     setNewRoomName('')
   }
@@ -28,7 +28,7 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
     return Object.keys(chats).map(key => {
       return (
         <li key={chats[key]._id} className='row justify-content-center' style={{width: '90%'}}>
-          <div className='col-3 my-auto' style={{fontSize: '50px', lineHeight: '50px'}} >
+          <div className='col-3 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
             {profileIcon}
           </div>
           <Link

@@ -93,3 +93,31 @@ export const logout = () => async (dispatch, getState) => {
   history.push('/')
 }
 /* ----   ****    ---- */
+
+/* ----   SIGN_UP ACTION CREATOR    ---- */
+export const signup = (formValues) => async dispatch => {
+  const response = await api.post(
+    '/create-user',
+    { ...formValues }
+  )
+
+  if (response.data.error) {
+    const error = response.data.error;
+    if (error.code === 11000) {
+      alert(`The username "${error.keyValue.username}" has already been taken.`)
+    }
+    return
+  }
+
+  dispatch({
+             type: 'CHECK_AUTH',
+             payload: {
+               _id: response.data.user._id,
+               token: response.data.user.token,
+               isLoggedIn: true
+             }
+           })
+
+  history.push(`/profile/${response.data.user._id}`)
+}
+/* ----   ****    ---- */

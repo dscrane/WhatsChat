@@ -11,12 +11,12 @@ const Chat = ({ chats, auth, computedMatch, sendMessage, joinChat, fetchMessages
 
   useEffect(() => {
     if (auth.token && (!chatId || chatId !== computedMatch.params.id)) {
-      joinChat(computedMatch.params.id)
+      joinChat(computedMatch.params.id, auth.data.name)
       fetchMessages(computedMatch.params.id)
       setChatId(computedMatch.params.id)
       return
     }
-    joinChat(chatId)
+    joinChat(chatId, auth.data.name)
     fetchMessages(chatId)
   }, [auth.token, computedMatch.params.id])
 
@@ -28,17 +28,19 @@ const Chat = ({ chats, auth, computedMatch, sendMessage, joinChat, fetchMessages
 
   const onSubmit = e => {
     e.preventDefault();
+    console.log(auth.name)
     sendMessage({
       chatId,
       message,
-      userId: auth._id
+      userId: auth._id,
+      author: auth.data.name
     })
     setMessage('')
   }
 
   return (
     <div className='d-flex col-9 justify-content-center bg-secondary'>
-      <div className='container bg-dark m-4 w-100' style={{borderRadius: '10px'}}>
+      <div className='container m-4 w-100' style={{borderRadius: '10px', backgroundColor: '#262B33'}}>
 
         {chatId ? <ChatDisplay messages={chats[chatId].messages} /> : ''}
         <div className='d-flex flex-row justify-self-end align-items-center mb-2' style={{height: '10%'}}>

@@ -9,6 +9,9 @@ const messageSchema = new mongoose.Schema(
     userId: {
       type: String
     },
+    author: {
+      type: String
+    },
     chatId: {
       type: String
     },

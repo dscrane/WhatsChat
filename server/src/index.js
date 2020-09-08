@@ -43,9 +43,12 @@ io.on('connection', socket => {
   console.log('new websocket connection', socket.id );
   console.log('=============')
 
-  socket.on('join', (room, callback) => {
+  socket.on('join', ({ room, userName }) => {
+    console.log(userName)
     console.log(`Joining room ${room}`)
     socket.join(room)
+    socket.emit('welcome-message', { userName: userName })
+    socket.broadcast.to(room).emit('bot-join-message', { userName: userName })
   })
 
   socket.on('message', async (message) => {

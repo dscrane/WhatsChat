@@ -15,6 +15,7 @@ router.get('/chats', async (req, res) => {
 })
 
 router.post('/create-chatRoom', async (req, res) => {
+  console.log(req.body)
   const chat = new ChatRoom (req.body);
   try {
     await chat.save()
