@@ -50,8 +50,8 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
   }
 
   return (
-    <div className='d-flex col-3' style={{backgroundColor: '#262B33'}}>
-      <nav className='d-flex flex-column min-vh-100 w-100 align-items-around'>
+    <div className='d-flex justify-content-center' style={{backgroundColor: '#262B33', width:'23%', minWidth: '325px'}}>
+      <nav className='d-flex flex-column min-vh-100 align-items-around' style={{width: '90%'}}>
         <div className='row justify-content-center py-4'>
           <h2 className='text-white'>WhatsChat</h2>
         </div>

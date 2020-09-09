@@ -4,7 +4,19 @@ import { reduxForm } from "redux-form";
 const RenderForm = (props) => {
 
   const handleForm = formValues => {
-    props.handleForm(formValues);
+    const {initialValues} = props;
+
+    if (!initialValues) {
+      return props.handleForm(formValues);
+    }
+
+    let updateValues = {};
+    Object.keys(initialValues).forEach((value) => {
+       if (initialValues[value] !== formValues[value]) {
+         updateValues = { ...updateValues,  [value]: formValues[value] }
+       }
+    })
+    props.handleForm(updateValues);
   }
 
   return (
@@ -14,4 +26,4 @@ const RenderForm = (props) => {
   )
 }
 
-export default reduxForm({ form: 'homeForm' })(RenderForm);
+export default reduxForm({ form: 'userForm' })(RenderForm);

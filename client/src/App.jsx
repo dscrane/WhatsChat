@@ -14,7 +14,7 @@ const App = ({ auth, checkAuth }) => {
       checkAuth()
     }
     console.log('[APP]: check auth')
-  }, [auth.isLoggedIn])
+  }, [auth.token])
 
   return (
     <div className='wrapper d-flex align-items-stretch'>

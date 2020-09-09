@@ -9,7 +9,7 @@ const Profile = ({ auth }) => {
   useEffect(() => {
     // fetch the user data if there is an auth token
     if (!auth.token) {
-      checkAuth()
+
     }
   }, [auth.token])
 

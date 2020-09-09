@@ -31,7 +31,7 @@ export default (state=INITIAL_STATE, action) => {
       console.log('[LOG_OUT]:', action);
       return {
         ...state,
-        ...action.payload
+        ...INITIAL_STATE
       };
     case UPDATE_USER:
       console.log('[UPDATE_USER]:', action);

@@ -3,8 +3,9 @@ import history from "../../../history";
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async dispatch => {
+  console.log(localStorage.getItem('jwt-token'))
   const token = localStorage.getItem('jwt-token');
-
+  console.log(token)
   if (!token) {
     return dispatch({
       type: 'CHECK_AUTH',
@@ -68,7 +69,7 @@ export const login = formValues => async dispatch => {
 export const logout = () => async (dispatch, getState) => {
   const { token } = getState().auth
 
-  const response = await api.post(
+  await api.post(
     '/logout',
     {},
     {
@@ -77,21 +78,12 @@ export const logout = () => async (dispatch, getState) => {
       }
     }
   )
+  await localStorage.removeItem('jwt-token');
 
   dispatch({
    type: 'LOG_OUT',
-   payload: {
-     _id: null,
-     token: null,
-     isLoggedIn: false,
-     data: {}
-   }
   })
-
-  localStorage.removeItem('jwt-token');
-
-  history.push('/')
-}
+  }
 /* ----   ****    ---- */
 
 /* ----   SIGN_UP ACTION CREATOR    ---- */
@@ -121,8 +113,17 @@ export const signup = (formValues) => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   UPDATE_USER ACTION CREATOR    ---- */
-export const updateUser = formValues => async dispatch => {
-  const response = await api.patch('./user-update', {...formValues});
+export const updateUser = formValues => async (dispatch, getState) => {
+  const {token} = getState().auth;
+  const response = await api.patch(
+    './user-update',
+    {...formValues},
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  );
   console.log(response);
 
   if (response.data.error) {
@@ -137,6 +138,32 @@ export const updateUser = formValues => async dispatch => {
     type: 'UPDATE_USER',
     payload: response.data.user
   })
+}
+
+/* ----   ****    ---- */
+
+/* ----   DELETE_USER ACTION CREATOR    ---- */
+export const deleteUser = () => async (dispatch, getState) => {
+  console.log(deleteUser)
+  const {token} = getState().auth;
+  const response = await api.post(
+    '/user-delete',
+    {},
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  )
+
+
+  if (response.data.userDeleted) {
+    await localStorage.removeItem('jwt-token');
+    dispatch({
+     type: 'LOG_OUT',
+    })
+    history.push('/')
+  }
 }
 
 /* ----   ****    ---- */

@@ -29,7 +29,7 @@ router.post('/login-user', async (req, res) => {
   }
 });
 
-router.patch('./user-update', authenticate, async (req, res) => {
+router.patch('/user-update', authenticate, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'email', 'password'];
 
@@ -38,7 +38,7 @@ router.patch('./user-update', authenticate, async (req, res) => {
   if (!isValidUpdate) {
     return res.send({error: 'Invalid Updates'})
   }
-
+  console.log(updates)
   try {
     updates.forEach(update => req.user[update] = req.body[update])
     await req.user.save();
@@ -56,7 +56,7 @@ router.get('/user', authenticate, (req, res) => {
   res.send({user: req.user})
 })
 
-router.post('/user/avatar', authenticate, imgUpload.single('avatar'), async (req, res) => {
+router.post('/user-avatar', authenticate, imgUpload.single('avatar'), async (req, res) => {
   const buffer = await sharp(req.file.buffer)
     .png()
     .resize({ width: 250, height: 250 })
@@ -64,6 +64,15 @@ router.post('/user/avatar', authenticate, imgUpload.single('avatar'), async (req
   req.user.avatar = buffer;
   await req.user.save();
   res.send(req.user)
+})
+
+router.post('/user-delete', authenticate, async (req, res) => {
+  try {
+    await req.user.remove();
+    res.send({ userDeleted: true })
+  } catch (e) {
+    console.log(e)
+  }
 })
 
 router.post('/logout', authenticate, async (req, res) => {
