@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "helmet": "^4.1.0",
     "http-proxy-middleware": "^1.0.5",
+    "identicon.js": "^2.3.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",

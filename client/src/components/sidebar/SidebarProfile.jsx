@@ -6,12 +6,12 @@ import { Field } from 'redux-form';
 import { RenderForm } from '../userForms';
 import ConfirmationModal from '../ConfirmationModal';
 import { logout, updateUser, deleteUser } from "../../redux/actions/auth";
-
 import { pencilIcon } from "../../icons/icons";
 
 
 const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
- const [ modalDisplay, setModalDisplay ] = useState(false);
+  const [ editing, setEditing ] = useState('')
+  const [ modalDisplay, setModalDisplay ] = useState(false);
   const modalConfig = {
     title: 'Delete Account',
     message: 'Are you sure you want to delete your account?',
@@ -30,6 +30,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
 
   const handleForm = (formValues) => {
     updateUser(formValues)
+    setEditing('')
   }
 
   const renderError = ({ error, touched }) => {
@@ -45,15 +46,20 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
   const renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
-      <li className='list-group-item'>
+      <li className='list-group-item px-3'>
         <div className={`row justify-content-between align-items-center ${className}`}>
           <div className='col-3 text-left p-0'>
             <label className='m-auto font-weight-bold'>
               {label}
             </label>
           </div>
-          <div className='col-9'>
-            <input className='form-control-plaintext text-center' {...input} readOnly={!meta.touched}  />
+          <div className='col-7'>
+            {editing === label ?
+              <input className='form-control text-left' {...input} /> :
+              <input className='form-control-plaintext text-left' {...input} />}
+          </div>
+          <div onClick={() => setEditing(label)} className='col-1 text-secondary'>
+            {pencilIcon}
           </div>
           {renderError(meta)}
         </div>
@@ -67,13 +73,13 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
         <div className='card'>
           <div className='card-img-top mx-auto'>
             <img
-              onClick={() => uploadAvatar()}
-              className=' mx-auto mt-3'
-              src='http://ssl.gstatic.com/accounts/ui/avatar_2x.png'
+              className='mx-auto mt-3'
+              src={`data:image/png;base64,${auth.data.avatar}`}
               height='150'
               width='150'
               alt='avatar'
             />
+
           </div>
           <div className='card-body'>
             <RenderForm handleForm={handleForm} initialValues={_.pick(auth.data, 'name', 'username', 'email', 'password')}>
@@ -83,12 +89,9 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
                 <Field name='email' component={renderInput} label='Email' />
                 <Field name='password' component={renderInput} label='Password' />
                 <li className='list-group-item'>
-                  <div className='row'>
-                    <div className='col text-left'>
-                      User Since:
-                    </div>
-                    <div className='col text-left'>
-                      {moment(auth.data.createdAt).format("MMM 'YY")}
+                  <div className='row justify-content-around'>
+                    <div className='col text-center'>
+                      User Since: {moment(auth.data.createdAt).format("MMM 'YY")}
                     </div>
                   </div>
                 </li>
@@ -115,7 +118,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
 
 
   const profileDisplay = auth.isLoggedIn ? profileCard() : <div className='text-white'>Log in to see your profile</div>
-  console.log(modalDisplay)
+
   return (
     <div className='d-flex flex-column m-3' style={{width: '90%'}}>
       {profileDisplay}

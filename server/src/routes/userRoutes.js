@@ -11,6 +11,7 @@ router.post('/create-user', async (req, res) => {
   try {
     await user.save();
     const token = await user.generateAuthToken();
+    await user.generateAvatar();
     res.send({ user, token })
   } catch (e) {
     console.log(e)

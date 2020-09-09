@@ -1,5 +1,7 @@
 require('dotenv').config();
+const crypto = require('crypto');
 const bcrypt = require('bcrypt');
+const Identicon = require('identicon.js')
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
@@ -34,7 +36,7 @@ const userSchema = new mongoose.Schema(
       // validate
     },
     avatar: {
-      type: Buffer
+      type: String
     },
     tokens: [
       {
@@ -59,6 +61,14 @@ const userSchema = new mongoose.Schema(
   timestamps: true
   }
 )
+
+userSchema.methods.generateAvatar = async function () {
+  const user = this;
+  const randomHash = crypto.createHash('sha1').update(user._id.toString()).digest('hex')
+  console.log(randomHash)
+  user.avatar = new Identicon(randomHash, 250).toString();
+  await user.save()
+}
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this;

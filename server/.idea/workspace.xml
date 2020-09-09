@@ -20,18 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/userForms/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/userForms/LoginForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/userForms/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/userForms/RenderForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/icons/icons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/icons/icons.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/userRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +84,7 @@
       <workItem from="1598891868607" duration="912000" />
       <workItem from="1598962305171" duration="1267000" />
       <workItem from="1598965313235" duration="1205000" />
-      <workItem from="1599477371255" duration="15922000" />
+      <workItem from="1599477371255" duration="18954000" />
     </task>
     <servers />
   </component>

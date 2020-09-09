@@ -2,12 +2,17 @@ import React from 'react';
 import { reduxForm } from "redux-form";
 
 const RenderForm = (props) => {
-
+  console.log(props)
   const handleForm = formValues => {
     const {initialValues} = props;
 
     if (!initialValues) {
       return props.handleForm(formValues);
+    }
+
+    const valuesToValidate = Object.keys(formValues)
+    if (valuesToValidate.some(value => formValues[value] === '')) {
+      props.reset();
     }
 
     let updateValues = {};
