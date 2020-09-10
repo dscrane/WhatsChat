@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from "classnames";
-import { profileIcon, chatsIcon, settingsIcon } from "../../icons/icons";
+import { profileIcon, chatsIcon } from "../../icons/icons";
 
 const IconButton = (props) => {
   const iconStyle = {fontSize: '30px', lineHeight: '30px'}
@@ -10,9 +10,6 @@ const IconButton = (props) => {
     }
     if (props.icon === 'chats') {
       return chatsIcon;
-    }
-    if (props.icon === 'settings') {
-      return settingsIcon;
     }
   }
   return (

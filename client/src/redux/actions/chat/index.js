@@ -4,7 +4,8 @@ import { socket } from "../../../socket";
 import {
   DISPLAY_CHATROOMS,
   NEW_MESSAGE,
-  LOAD_MESSAGES
+  LOAD_MESSAGES,
+  CLOSE_CHAT
 } from '../../types'
 
 export const createChatRoom = (name, userId) => async dispatch => {
@@ -42,6 +43,15 @@ export const joinChat = (chatId, userName) => async dispatch => {
   console.log('username', userName)
   socket.emit('join', { room: chatId, userName:userName }, (room) => {
     console.log(`connected to ${room}`)
+  })
+}
+
+export const closeChat = (chatId) => async dispatch => {
+
+  socket.emit('leave', { room: chatId })
+  dispatch({
+    type: CLOSE_CHAT,
+    payload: chatId
   })
 }
 

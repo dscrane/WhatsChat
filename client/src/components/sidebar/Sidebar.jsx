@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
-import { logout } from '../../redux/actions/auth';
-import { SidebarProfile, SidebarChats, SidebarSettings } from "../sidebar";
+import { SidebarProfile, SidebarChats } from "../sidebar";
 import IconButton from './IconButton';
 
 
-const Sidebar = ({ auth, logout, logoutUser }) => {
+const Sidebar = () => {
   const [ activeIcon, setActiveIcon ] = useState('profile')
 
-  const icons = ['profile', 'chats', 'settings']
+  const icons = ['profile', 'chats']
 
   const setCurrentIcon = (e) => {
     if (e.currentTarget.id === 'profile-cta') {
@@ -16,9 +14,6 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
     }
     if (e.currentTarget.id === 'chats-cta') {
       setActiveIcon('chats');
-    }
-    if (e.currentTarget.id === 'settings-cta') {
-      setActiveIcon('settings');
     }
   }
 
@@ -43,9 +38,6 @@ const Sidebar = ({ auth, logout, logoutUser }) => {
     }
     if (activeIcon === 'chats') {
       return <SidebarChats />
-    }
-    if (activeIcon === 'settings') {
-      return <SidebarSettings />
     }
   }
 
@@ -80,4 +72,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { logout })(Sidebar)
+export default Sidebar;

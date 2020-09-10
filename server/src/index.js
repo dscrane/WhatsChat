@@ -1,47 +1,56 @@
+/* ----   IMPORTS    ---- */
 const http = require('http');
+const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
-const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
 const messageRouter = require('./routes/messageRoutes')
 const Message = require('./models/message');
-const { User } = require('./models/user');
+/* ----   ****    ---- */
 
+/* ----   DEFINE PORT    ---- */
+const PORT = process.env.PORT || 5500;
+/* ----   ****    ---- */
 
-// Initialize connection to the database
+/* ----   INITIALIZE DATABASE    ---- */
 require('./db/db');
+/* ----   ****    ---- */
 
+/* ----   CONFIGURE EXPRESS SERVER    ---- */
 // Initialize the express server and the socketio connection
 const app = express();
 
-// Set up middlewares for express server
+// Connect middlewares
 app.use(cors());
 app.use(bodyParser.json());
-app.use(cookieParser())
-// app.use(helmet());
 
-// Connect routers to app
+// Connect routers
 app.use(userRouter);
 app.use(chatRoomRouter);
 app.use(messageRouter);
 
+// Connect static files
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// Create root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+})
+/* ----   ****    ---- */
+
+/* ----   CONFIGURE SOCKETIO    ---- */
 const server = http.createServer(app);
 const io = socketio(server);
-
-
-// Define port location
-const PORT = process.env.PORT || 5500;
 
 // Create new socketio connection
 io.on('connection', socket => {
   console.log('=============')
   console.log('new websocket connection', socket.id );
   console.log('=============')
-
+  // Define join event
   socket.on('join', ({ room, userName }) => {
     console.log(userName)
     console.log(`Joining room ${room}`)
@@ -49,7 +58,13 @@ io.on('connection', socket => {
     socket.emit('welcome-message', { userName: userName })
     socket.broadcast.to(room).emit('bot-join-message', { userName: userName })
   })
-
+  // Define leave event
+  socket.on('leave', ({ room, userName }) => {
+    socket.leave(room, () => {
+      io.to(room).emit(`${userName} has left`)
+    })
+  })
+  // Define message event
   socket.on('message', async (message) => {
     try {
       const newMsg = new Message(message)
@@ -62,9 +77,9 @@ io.on('connection', socket => {
     }
   })
 })
+/* ----   ****    ---- */
 
-
-
-// Spin up the server on the defined PORT
+/* ----   SPIN UP THE SERVER    ---- */
 server.listen(PORT)
-console.log(`[APP]: listening on http://localhost:5500`)
+console.log(`[APP]: listening on ${PORT}`)
+/* ----   ****    ---- */

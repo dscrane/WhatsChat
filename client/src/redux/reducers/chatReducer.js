@@ -29,6 +29,14 @@ export default (state = INITIAL_STATE, action) => {
           ..._.mapKeys(action.payload, '_id')
         }
       }
+    case 'CLOSE_CHAT':
+      console.log('[CLOSE_CHAT]:', action.payload);
+      return {
+        ...state,
+        chats: {
+          ..._.omit(state.chats, action.payload)
+        }
+      }
     case 'NEW_MESSAGE':
       console.log('[NEW_MESSAGE]:', action.payload)
       return {

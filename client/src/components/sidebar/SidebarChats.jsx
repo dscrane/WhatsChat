@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createChatRoom, displayChatRooms } from "../../redux/actions/chat";
+import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
 import { profileIcon, plusIcon } from "../../icons/icons";
 
-const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
+const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat }) => {
   const [ newRoomName, setNewRoomName ] = useState('');
   useEffect(() => {
     displayChatRooms()
@@ -12,6 +12,11 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
 
   const onChange = (e) => {
     setNewRoomName(e.target.value)
+  }
+
+  const handleClose = (key) => {
+    console.log(key)
+    closeChat(key)
   }
 
   const onSubmit = (e) => {
@@ -27,21 +32,26 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom }) => {
     }
     return Object.keys(chats).map(key => {
       return (
-        <li key={chats[key]._id} className='row justify-content-center' style={{width: '90%'}}>
+        <li key={chats[key]._id} className='row justify-content-between' style={{width: '90%'}}>
           <div className='col-3 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
             {profileIcon}
           </div>
+          <div className='col-8'>
           <Link
-            className='d-flex flex-row justify-content-center align-items-center text-center text-white w-75 text-decoration-none'
+            className='d-flex flex-row justify-content-center align-items-center text-center text-white w-100 text-decoration-none'
             style={{height: '8vh', borderBottom: '1px solid white'}}
             to={{
               pathname: `/chats/${key}`
             }}
           >
-            <div className='col text-center'>
+            <div className='col text-center' >
               {chats[key].name}
             </div>
           </Link>
+          </div>
+          <div onClick={() => handleClose(key)} className='col-1 text-white my-auto text-center' style={{fontSize:'24px'}}>
+            &times;
+          </div>
         </li>
       )
     })
@@ -101,4 +111,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { createChatRoom, displayChatRooms })(SidebarChats);
+export default connect(mapStateToProps, { createChatRoom, displayChatRooms, closeChat })(SidebarChats);

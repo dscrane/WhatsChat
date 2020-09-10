@@ -39,7 +39,7 @@ const Chat = ({ chats, auth, computedMatch, sendMessage, joinChat, fetchMessages
   }
 
   return (
-    <div className='d-flex col-9 justify-content-center bg-secondary'>
+    <div className='d-flex col justify-content-center bg-secondary' style={{width:'77%'}}>
       <div className='container m-4 w-100' style={{borderRadius: '10px', backgroundColor: '#262B33'}}>
 
         {chatId ? <ChatDisplay messages={chats[chatId].messages} /> : ''}

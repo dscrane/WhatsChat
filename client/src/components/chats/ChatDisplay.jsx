@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
 
 const ChatDisplay = ({ messages, auth }) => {
+
   const formatTimestamp = (createdAt) => {
     return moment(createdAt).format('h:mm A');
   }
@@ -29,7 +30,7 @@ const ChatDisplay = ({ messages, auth }) => {
                   {messages[messageKey].author}
                 </div>
                 <div
-                  className='d-flex flex-column py-2 pl-r mr-1 justify-content-end align-items-start'
+                  className='d-flex flex-column py-2 pl-r mr-1 justify-content-end align-items-start text-left'
                 >
                   {messages[messageKey].message}
                 </div>
@@ -52,7 +53,7 @@ const ChatDisplay = ({ messages, auth }) => {
           >
             <div className='d-flex flex-column align-items-start w-100 px-2 py-1'>
               <div
-                className='d-flex flex-column pl-3 mr-1 justify-content-end align-items-center'
+                className='d-flex flex-column pl-3 mr-1 justify-content-end align-items-center text-left'
               >
                 {messages[messageKey].message}
               </div>
@@ -79,10 +80,10 @@ const ChatDisplay = ({ messages, auth }) => {
   )
 }
 
- const mapStateToProps = (state, ownProps) => {
+ const mapStateToProps = state => {
   return {
      auth: state.auth
    }
 }
 
-export default connect(mapStateToProps, {  })(ChatDisplay);
+export default connect(mapStateToProps)(ChatDisplay);
