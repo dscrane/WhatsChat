@@ -2,7 +2,6 @@ import React from 'react';
 import { reduxForm } from "redux-form";
 
 const RenderForm = (props) => {
-  console.log(props)
   const handleForm = formValues => {
     const {initialValues} = props;
 

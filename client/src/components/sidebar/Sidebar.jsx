@@ -4,7 +4,7 @@ import IconButton from './IconButton';
 
 
 const Sidebar = () => {
-  const [ activeIcon, setActiveIcon ] = useState('profile')
+  const [ activeIcon, setActiveIcon ] = useState('chats')
 
   const icons = ['profile', 'chats']
 
@@ -51,7 +51,7 @@ const Sidebar = () => {
           <div style={{ width: '80%', borderBottom: '.5px solid white', borderRadius: '75%'}}></div>
         </div>
         <div className='row justify-content-around'>
-          <ul className='list-unstyled d-flex flex-row w-100 justify-content-around components py-3 mb-0'>
+          <ul className='list-unstyled d-flex flex-row w-50 justify-content-around components py-3 mb-0'>
             {renderIcons()}
           </ul>
         </div>

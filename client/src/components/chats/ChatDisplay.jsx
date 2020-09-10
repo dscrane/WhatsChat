@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 
 
 const ChatDisplay = ({ messages, auth }) => {
+  const chatBubbleClass = 'd-flex flex-row justify-content-around';
+  const chatBubbleStyle = {borderRadius: '10px', maxWidth: '45%', minWidth: '10%'};
+  const timeStampClass = 'd-flex flex-column py-0 pr-1 ml-1 w-100 justify-content-end';
+  const timeStampStyle = { color:'#bdbdbd', width: '100%', textAlign: 'right'};
+  const chatContentClass = 'd-flex flex-column align-items-start w-100 px-2 py-1';
+  const chatTextClass = 'd-flex flex-column py-0 mr-1 justify-content-end align-items-start text-left text-white';
 
   const formatTimestamp = (createdAt) => {
     return moment(createdAt).format('h:mm A');
@@ -17,28 +23,22 @@ const ChatDisplay = ({ messages, auth }) => {
 
       if (messages[messageKey].userId !== auth._id) {
         return (
-          <div key={messageKey} className='row my-3 justify-content-start'>
+          <div key={messageKey} className='row mb-1 justify-content-start'>
             <div
-              className='d-flex flex-row justify-content-around bg-light'
-              style={{borderRadius: '10px', maxWidth: '45%', minWidth: '10%'}}
+              className={chatBubbleClass}
+              style={{...chatBubbleStyle, backgroundColor:'#757575'}}
             >
-              <div className='d-flex flex-column align-items-end w-100 px-2 py-1'>
-                <div
-                  className='row justify-content-start pr-3 pt-1 w-100'
-                  style={{fontSize: '12px'}}
-                >
-                  {messages[messageKey].author}
+              <div className={chatContentClass}>
+                <div className={chatTextClass}>
+                  <p className='m-0 p-0' style={{fontSize: '12px', color:'#bdbdbd'}}>
+                    {messages[messageKey].author}
+                  </p>
+                  <p style={{fontSize: '15px', marginBottom:'0px'}}>{messages[messageKey].message}</p>
                 </div>
-                <div
-                  className='d-flex flex-column py-2 pl-r mr-1 justify-content-end align-items-start text-left'
-                >
-                  {messages[messageKey].message}
-                </div>
-                <div
-                  className='d-flex flex-column py-1 pr-1 ml-1 justify-content-end align-items-center'
-                  style={{fontSize: '10px'}}
-                >
-                  <div style={{ width: '100%'}}>{timestamp}</div>
+                <div className={timeStampClass} style={{fontSize: '10px'}}>
+                  <div style={timeStampStyle}>
+                    {timestamp}
+                  </div>
                 </div>
               </div>
             </div>
@@ -46,22 +46,19 @@ const ChatDisplay = ({ messages, auth }) => {
         )
       }
       return (
-        <div key={messageKey} className='row my-3 justify-content-end'>
+        <div key={messageKey} className='row mb-1 justify-content-end'>
           <div
-            className='d-flex flex-row justify-content-around  bg-primary'
-            style={{borderRadius: '10px', maxWidth: '45%', minWidth: '10%'}}
+            className={chatBubbleClass}
+            style={{...chatBubbleStyle, backgroundColor:'#1565c0'}}
           >
-            <div className='d-flex flex-column align-items-start w-100 px-2 py-1'>
-              <div
-                className='d-flex flex-column pl-3 mr-1 justify-content-end align-items-center text-left'
-              >
-                {messages[messageKey].message}
+            <div className={chatContentClass}>
+              <div className={chatTextClass}>
+                <p style={{fontSize: '15px', marginBottom:'0px'}}>{messages[messageKey].message}</p>
               </div>
-              <div
-                className='d-flex flex-column py-1 pr-1 ml-1 w-100 justify-content-end text-white'
-                style={{fontSize: '10px'}}
-              >
-                <div style={{ width: '100%', textAlign: 'right'}}>{timestamp}</div>
+              <div className={`${timeStampClass} text-white`} style={{fontSize: '10px'}}>
+                <div style={timeStampStyle}>
+                  {timestamp}
+                </div>
               </div>
             </div>
           </div>
@@ -71,7 +68,7 @@ const ChatDisplay = ({ messages, auth }) => {
   }
 
   return (
-      <div className='row align-items-start p-2 ' style={{height: '90%'}}>
+      <div className='row align-items-start p-2 ' style={{height: '85%'}}>
         <div className='d-flex flex-column m-2 px-4 w-100 h-100'>
           {messages ? renderMessages() : <div className='text-white'>Send a message!!</div>}
         </div>

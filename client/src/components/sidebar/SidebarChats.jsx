@@ -32,14 +32,14 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat
     }
     return Object.keys(chats).map(key => {
       return (
-        <li key={chats[key]._id} className='row justify-content-between' style={{width: '90%'}}>
-          <div className='col-3 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
+        <li key={chats[key]._id} className='row justify-content-around' style={{width: '90%'}} >
+          <div className='col-2 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
             {profileIcon}
           </div>
           <div className='col-8'>
           <Link
-            className='d-flex flex-row justify-content-center align-items-center text-center text-white w-100 text-decoration-none'
-            style={{height: '8vh', borderBottom: '1px solid white'}}
+            className='d-flex flex-row justify-content-center align-items-center text-center text-white text-decoration-none'
+            style={{height: '8vh', borderBottom: '1px solid white', outline:'none'}}
             to={{
               pathname: `/chats/${key}`
             }}

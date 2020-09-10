@@ -3,12 +3,12 @@ import { Redirect, Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import history from './history';
 import { checkAuth } from "./redux/actions/auth";
-import { Home, Profile, Chat } from './pages';
+import { Home, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
 import ProtectedRoute from './ProtectedRoute'
 
-const App = ({ auth, checkAuth }) => {
-
+const App = ({ auth, checkAuth, chats }) => {
+console.log(chats.defaultChat)
   useEffect(() => {
     if (!auth.token) {
       checkAuth()
@@ -23,9 +23,8 @@ const App = ({ auth, checkAuth }) => {
           <Sidebar />
           <Switch>
             <Route path='/' exact>
-              {auth.isLoggedIn ? <Redirect to={`/profile/${auth._id}`} /> : <Home />}
+              {auth.isLoggedIn ? <Redirect to={`/chats/${chats.defaultChat}`} /> : <Home />}
             </Route>
-            <ProtectedRoute path={`/profile/:id`} auth={auth.isLoggedIn} component={Profile} />
             <ProtectedRoute path='/chats/:id' auth={auth.isLoggedIn} component={Chat} />
           </Switch>
         </>
@@ -36,7 +35,8 @@ const App = ({ auth, checkAuth }) => {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    chats: state.chat
   }
 }
 

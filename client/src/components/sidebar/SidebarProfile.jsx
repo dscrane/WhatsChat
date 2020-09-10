@@ -8,7 +8,6 @@ import ConfirmationModal from '../ConfirmationModal';
 import { logout, updateUser, deleteUser } from "../../redux/actions/auth";
 import { pencilIcon } from "../../icons/icons";
 
-
 const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
   const [ editing, setEditing ] = useState('')
   const [ modalDisplay, setModalDisplay ] = useState(false);
@@ -17,10 +16,6 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
     message: 'Are you sure you want to delete your account?',
     btnText: 'Delete',
     btnStyle: 'danger'
-  }
-
-  const uploadAvatar = () => {
-
   }
 
   const handleDelete = () => {

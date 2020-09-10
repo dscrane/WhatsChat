@@ -1,5 +1,11 @@
 import api from "../../../api";
 import history from "../../../history";
+import {
+  CHECK_AUTH,
+  LOG_IN,
+  LOG_OUT,
+  UPDATE_USER
+} from '../../types';
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async dispatch => {
@@ -25,7 +31,7 @@ export const checkAuth = () => async dispatch => {
     }
   )
   dispatch({
-   type: 'CHECK_AUTH',
+   type: CHECK_AUTH,
    payload: {
      _id: response.data._id,
      token,
@@ -37,7 +43,7 @@ export const checkAuth = () => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   LOG_IN ACTION CREATOR    ---- */
-export const login = formValues => async dispatch => {
+export const login = formValues => async (dispatch, getState) => {
   const response = await api.post(
     '/login-user',
     { ...formValues }
@@ -52,7 +58,7 @@ export const login = formValues => async dispatch => {
   localStorage.setItem('jwt-token', response.data.token);
 
   dispatch({
-   type: 'LOG_IN',
+   type: LOG_IN,
    payload: {
      _id: response.data.user._id,
      token: response.data.token,
@@ -60,8 +66,9 @@ export const login = formValues => async dispatch => {
      data: response.data.user
    }
  })
+  console.log(getState().chat)
 
-  history.push(`/profile/${response.data.user._id}`);
+  history.push(`/chats/${getState().chat.defaultChat}`);
 }
 /* ----   ****    ---- */
 
@@ -81,13 +88,15 @@ export const logout = () => async (dispatch, getState) => {
   await localStorage.removeItem('jwt-token');
 
   dispatch({
-   type: 'LOG_OUT',
+   type: LOG_OUT,
   })
+
+  history.push('/')
   }
 /* ----   ****    ---- */
 
 /* ----   SIGN_UP ACTION CREATOR    ---- */
-export const signup = (formValues) => async dispatch => {
+export const signup = (formValues) => async (dispatch, getState) => {
   const response = await api.post('/create-user', { ...formValues })
   console.log(response)
   if (response.data.error) {
@@ -99,7 +108,7 @@ export const signup = (formValues) => async dispatch => {
   }
 
   dispatch({
-             type: 'CHECK_AUTH',
+             type: CHECK_AUTH,
              payload: {
                _id: response.data.user._id,
                token: response.data.token,
@@ -108,7 +117,7 @@ export const signup = (formValues) => async dispatch => {
              }
            })
 
-  history.push(`/profile/${response.data.user._id}`)
+  history.push(`/chats/${getState().chat.defaultChat}`)
 }
 /* ----   ****    ---- */
 
@@ -135,7 +144,7 @@ export const updateUser = formValues => async (dispatch, getState) => {
   }
 
   dispatch({
-    type: 'UPDATE_USER',
+    type: UPDATE_USER,
     payload: response.data.user
   })
 }
@@ -160,7 +169,7 @@ export const deleteUser = () => async (dispatch, getState) => {
   if (response.data.userDeleted) {
     await localStorage.removeItem('jwt-token');
     dispatch({
-     type: 'LOG_OUT',
+     type: LOG_OUT,
     })
     history.push('/')
   }

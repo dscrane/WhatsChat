@@ -65,7 +65,6 @@ const userSchema = new mongoose.Schema(
 userSchema.methods.generateAvatar = async function () {
   const user = this;
   const randomHash = crypto.createHash('sha1').update(user._id.toString()).digest('hex')
-  console.log(randomHash)
   user.avatar = new Identicon(randomHash, 250).toString();
   await user.save()
 }
@@ -99,7 +98,7 @@ userSchema.statics.findByCredentials = async (username, password) => {
   if (!user) {
     throw new LoginError('The username or password is incorrect')
   }
-  console.log('loginUser', user)
+  console.log('loginUser', user.name)
 
   const passwordMatch = await bcrypt.compare(password, user.password);
    if (!passwordMatch) {

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { profileIcon, chatsIcon } from "../../icons/icons";
 
 const IconButton = (props) => {
-  const iconStyle = {fontSize: '30px', lineHeight: '30px'}
+  const iconStyle = {fontSize: '30px', lineHeight: '30px', border:'none'}
   const renderIcon = () => {
     if (props.icon === 'profile') {
       return profileIcon;
