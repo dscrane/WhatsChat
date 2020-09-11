@@ -20,26 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Router/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/chats/ChatDisplay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/IconButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/IconButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarChats.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/sidebar/SidebarProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/userForms/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/userForms/LoginForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/userForms/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/userForms/RenderForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/userForms/SignupForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/userForms/SignupForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/Profile.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/auth/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/userRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
