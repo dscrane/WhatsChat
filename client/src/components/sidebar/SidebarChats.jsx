@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
+import { default as NewChatForm } from '../userForms/NewChatForm';
 import { profileIcon, plusIcon } from "../../icons/icons";
 
 const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat }) => {
@@ -19,7 +20,7 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat
     closeChat(key)
   }
 
-  const onSubmit = (e) => {
+  const handleForm = (e) => {
     e.preventDefault()
     createChatRoom(newRoomName, auth._id)
     console.log(newRoomName)
@@ -61,31 +62,7 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat
     return (
       <ul className='list-unstyled d-flex flex-column align-items-center w-100'>
         <li className='row justify-content-center' style={{width: '90%'}}>
-          <form className='w-100' onSubmit={onSubmit}>
-            <div
-              className='d-flex flex-row justify-content-center align-items-center text-center text-white w-100 text-decoration-none'
-              style={{height: '8vh', borderBottom: '1px solid white'}}
-            >
-              <div className='d-flex justify-content-end col-3  mx-auto'>
-                <button
-                  className='btn p-0'
-                  style={{background: 'none', border: 'none', borderStyle: 'none'}}
-                >
-                  <div className='d-flex align-items-center text-secondary'  style={{fontSize: '35px'}}>
-                    {plusIcon}
-                  </div>
-                </button>
-              </div>
-              <div className='col-9'>
-                <input
-                  className='form-control'
-                  onChange={onChange}
-                  value={newRoomName}
-                  placeholder={'Create Chat Room....'}
-                />
-              </div>
-            </div>
-          </form>
+          <NewChatForm handleForm={handleForm} onChange={onChange} newRoomName={newRoomName} />
         </li>
         {renderChatData()}
       </ul>
