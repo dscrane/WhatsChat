@@ -10,7 +10,6 @@ import {
 
 export const createChatRoom = (name, userId) => async dispatch => {
   try {
-    console.log(userId)
     const { data } = await api.post(
       '/create-chatRoom',
       { name, createdBy: userId }
@@ -32,6 +31,7 @@ export const displayChatRooms = () => async dispatch => {
     const { data } = await api.get('/chats');
     dispatch({
       type: DISPLAY_CHATROOMS,
+      defaultChat: data.chats[0],
       payload: data.chats
     })
   } catch(e) {

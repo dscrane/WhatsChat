@@ -8,7 +8,7 @@ import {
 } from '../types';
 
 const INITIAL_STATE = {
-  defaultChat: null,
+  defaultChat: '5f52268b6d59e14df8174254',
   chats: {}
 };
 

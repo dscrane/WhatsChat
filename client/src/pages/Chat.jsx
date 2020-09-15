@@ -8,7 +8,7 @@ import { ChatDisplay } from "../components/chats";
 const Chat = ({ chats, defaultChat, auth, computedMatch, sendMessage, joinChat, fetchMessages, displayChatRooms }) => {
   const [ message, setMessage ] = useState('');
   const [ chatId, setChatId ] = useState(defaultChat)
-  console.log('CHATS')
+
   useEffect(() => {
     if (chats === {}) {
       return displayChatRooms()

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
-import { default as NewChatForm } from '../userForms/NewChatForm';
-import { profileIcon, plusIcon } from "../../icons/icons";
+import { NewChatForm } from '../userForms';
+import { profileIcon } from "../../icons/icons";
 
 const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat }) => {
   const [ newRoomName, setNewRoomName ] = useState('');
+  console.log(newRoomName)
   useEffect(() => {
     displayChatRooms()
+
   }, [])
 
   const onChange = (e) => {
@@ -16,16 +18,20 @@ const SidebarChats = ({ auth, chats, displayChatRooms, createChatRoom, closeChat
   }
 
   const handleClose = (key) => {
-    console.log(key)
     closeChat(key)
   }
 
   const handleForm = (e) => {
+    console.log('sidebar chats hadnle form')
     e.preventDefault()
-    createChatRoom(newRoomName, auth._id)
-    console.log(newRoomName)
-    setNewRoomName('')
+    if (newRoomName.length >= 5) {
+      createChatRoom(newRoomName, auth._id)
+      setNewRoomName('')
+    }
+
   }
+
+
 
   const renderChatData = () => {
     if (chats === {}) {
