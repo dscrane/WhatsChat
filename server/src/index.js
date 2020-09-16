@@ -52,8 +52,9 @@ io.on('connection', socket => {
   console.log('=============')
   // Define join event
   socket.on('join', ({ room, userName }) => {
-    console.log(userName)
-    console.log(`Joining room ${room}`)
+    console.log('=============')
+    console.log(`${userName} joining room ${room}`)
+    console.log('=============')
     socket.join(room)
     socket.emit('welcome-message', { userName: userName })
     socket.broadcast.to(room).emit('bot-join-message', { userName: userName })
@@ -61,6 +62,9 @@ io.on('connection', socket => {
   // Define leave event
   socket.on('leave', ({ room, userName }) => {
     socket.leave(room, () => {
+      console.log('=============')
+      console.log(`${userName} leaving room ${room}`)
+      console.log('=============')
       io.to(room).emit(`${userName} has left`)
     })
   })
@@ -69,9 +73,8 @@ io.on('connection', socket => {
     try {
       const newMsg = new Message(message)
       const returnMsg = { _id: newMsg._id,  ...message  }
-      io.sockets.in(message.chatId).emit('return-message', returnMsg)
+      io.sockets.in(message.chatRoomId).emit('return-message', returnMsg)
       await newMsg.save();
-      console.log('new message saved')
     } catch (e) {
       console.log(e)
     }

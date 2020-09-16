@@ -1,37 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { sendMessage, joinChat, fetchMessages, displayChatRooms } from '../redux/actions/chat';
+import { sendMessage, joinChatRoom, leaveChatRoom, fetchMessages, displayChatRooms } from '../redux/actions/chat';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
-import { store } from "../store";
 
 
-const Chat = ({ chats, messages, auth, computedMatch, sendMessage, joinChat, fetchMessages }) => {
-  const chatId = computedMatch.params.id;
+const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
   const [ message, setMessage ] = useState('');
-  const [ chat, setChat ] = useState(null);
-  if (messages ) {
-    console.log('chat', chat)
-  }
-
-
-
-
+  const [ chatRoomId, setChatRoomId] = useState(computedMatch.params.id)
+  // Initial message fetch for all open chat rooms
   useEffect(() => {
-    joinChat(computedMatch.params.id, auth.data.name)
-    Object.keys(chats).forEach(chat => {
-      fetchMessages(chat)
+    Object.keys(chatRooms).forEach((chatRoom) => {
+      fetchMessages(chatRoom)
     })
+  }, [])
 
-  }, [JSON.stringify(messages), computedMatch.params.id])
-
- /* useEffect(() => {
-    console.log('inside use effect for messages')
-    joinChat(computedMatch.params.id, auth.data.name)
-      fetchMessages(computedMatch.params.id)
-  }, [computedMatch.params.id])*/
-
-
+  // Update the current chatRoom
+  useEffect(() => {
+    leaveChatRoom(chatRoomId, auth.data.name);
+    joinChatRoom(computedMatch.params.id, auth.data.name)
+    setChatRoomId(computedMatch.params.id)
+  }, [computedMatch.params.id, auth.data.name, chatRoomId, leaveChatRoom, joinChatRoom])
 
   const onChange = e => {
     setMessage(e.target.value)
@@ -40,7 +29,7 @@ const Chat = ({ chats, messages, auth, computedMatch, sendMessage, joinChat, fet
   const onSubmit = e => {
     e.preventDefault();
     sendMessage({
-      chatId,
+      chatRoomId,
       message,
       userId: auth._id,
       author: auth.data.username
@@ -52,9 +41,9 @@ const Chat = ({ chats, messages, auth, computedMatch, sendMessage, joinChat, fet
     <div className='d-flex col justify-content-center bg-secondary' style={{width:'77%'}}>
       <div className='container m-4' style={{borderRadius: '10px', backgroundColor: '#262B33', width: '70%', minWidth: '675px'}}>
         <div className='d-flex flex-row justify-content-center' style={{height: '5%'}}>
-          <h2 className='text-white'>{chats[chatId].name}</h2>
+          <h2 className='text-white'>{chatRooms[chatRoomId].name}</h2>
         </div>
-        <ChatDisplay messages={messages[chatId]} />
+        <ChatDisplay messages={chatRooms[chatRoomId].messages} />
         <div className='d-flex flex-row align-items-center mb-2 mx-auto' style={{height: '10%', width: '90%'}}>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>
@@ -83,10 +72,9 @@ const Chat = ({ chats, messages, auth, computedMatch, sendMessage, joinChat, fet
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    defaultChat: state.chat.defaultChat,
-    chats: state.chat.chats,
-    messages: state.chat.messages
+    defaultChatRoom: state.chatRooms.defaultChatRoom,
+    chatRooms: state.chatRooms,
   }
 }
 
-export default connect(mapStateToProps, { sendMessage, checkAuth, joinChat, fetchMessages, displayChatRooms })(Chat);
+export default connect(mapStateToProps, { sendMessage, checkAuth, joinChatRoom, leaveChatRoom, fetchMessages, displayChatRooms })(Chat);

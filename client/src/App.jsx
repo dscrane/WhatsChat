@@ -6,15 +6,17 @@ import { checkAuth } from "./redux/actions/auth";
 import { Home, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
 import ProtectedRoute from './ProtectedRoute'
+import {displayChatRooms} from "./redux/actions/chat";
 
-const App = ({ auth, checkAuth, chats }) => {
-console.log(chats.defaultChat)
+const App = ({ auth, checkAuth, displayChatRooms }) => {
+  const defaultChatRoom = '5f52268b6d59e14df8174254';
   useEffect(() => {
     if (!auth.token) {
       checkAuth()
+      displayChatRooms()
+      console.log('[APP]: check auth')
     }
-    console.log('[APP]: check auth')
-  }, [auth.token])
+  }, [auth.token, checkAuth, displayChatRooms])
 
   return (
     <div className='wrapper d-flex align-items-stretch'>
@@ -23,7 +25,7 @@ console.log(chats.defaultChat)
           <Sidebar />
           <Switch>
             <Route path='/' exact>
-              {auth.isLoggedIn ? <Redirect to={`/chats/${chats.defaultChat}`} /> : <Home />}
+              {auth.isLoggedIn ? <Redirect to={`/chats/${defaultChatRoom}`} /> : <Home />}
             </Route>
             <ProtectedRoute path='/chats/:id' auth={auth.isLoggedIn} component={Chat} />
           </Switch>
@@ -36,8 +38,7 @@ console.log(chats.defaultChat)
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    chats: state.chat
   }
 }
 
-export default connect(mapStateToProps, { checkAuth })(App);
+export default connect(mapStateToProps, { checkAuth, displayChatRooms })(App);

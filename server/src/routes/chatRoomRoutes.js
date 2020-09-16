@@ -19,8 +19,7 @@ router.post('/create-chatRoom', async (req, res) => {
   const chat = new ChatRoom (req.body);
   try {
     await chat.save()
-    const chats = await ChatRoom.find().limit(8).sort({createdAt: -1})
-    res.send({ chats })
+    res.send({ chat })
     console.log('chat creation successful')
   } catch (e) {
     console.log(e)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -19,7 +19,6 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
   }
 
   const handleDelete = () => {
-    console.log('handleDelete')
     deleteUser();
   }
 

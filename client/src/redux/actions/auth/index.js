@@ -9,9 +9,7 @@ import {
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async dispatch => {
-  console.log(localStorage.getItem('jwt-token'))
   const token = localStorage.getItem('jwt-token');
-  console.log(token)
   if (!token) {
     return dispatch({
       type: 'CHECK_AUTH',
@@ -66,7 +64,6 @@ export const login = formValues => async (dispatch, getState) => {
      data: response.data.user
    }
  })
-  console.log(getState().chat)
 
   history.push(`/chats/${getState().chat.defaultChat}`);
 }
@@ -133,7 +130,6 @@ export const updateUser = formValues => async (dispatch, getState) => {
       }
     }
   );
-  console.log(response);
 
   if (response.data.error) {
     const error = response.data.error;
@@ -153,7 +149,6 @@ export const updateUser = formValues => async (dispatch, getState) => {
 
 /* ----   DELETE_USER ACTION CREATOR    ---- */
 export const deleteUser = () => async (dispatch, getState) => {
-  console.log(deleteUser)
   const {token} = getState().auth;
   const response = await api.post(
     '/user-delete',

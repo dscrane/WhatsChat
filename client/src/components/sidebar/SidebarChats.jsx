@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createChatRoom, displayChatRooms, closeChat, fetchMessages } from "../../redux/actions/chat";
+import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
 import { NewChatForm } from '../userForms';
 import { profileIcon } from "../../icons/icons";
 
-const SidebarChats = ({ auth, chats, displayChatRooms, fetchMessages, createChatRoom, closeChat }) => {
+const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, closeChat }) => {
   const [ newRoomName, setNewRoomName ] = useState('');
+  const numChats = Object.keys(chatRooms).length
   useEffect(() => {
-    displayChatRooms()
-  }, [])
+    if (auth.token){
+      displayChatRooms()
+    }
+  }, [numChats, auth.token, displayChatRooms])
 
   const onChange = (e) => {
     setNewRoomName(e.target.value)
@@ -27,15 +30,13 @@ const SidebarChats = ({ auth, chats, displayChatRooms, fetchMessages, createChat
     }
   }
 
-
-
   const renderChatData = () => {
-    if (chats === {}) {
+    if (chatRooms === {}) {
       return
     }
-    return Object.keys(chats).map(key => {
+    return Object.keys(chatRooms).map(key => {
       return (
-        <li key={chats[key]._id} className='row justify-content-around' style={{width: '90%'}} >
+        <li key={chatRooms[key]._id} className='row justify-content-around' style={{width: '90%'}} >
           <div className='col-2 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
             {profileIcon}
           </div>
@@ -48,7 +49,7 @@ const SidebarChats = ({ auth, chats, displayChatRooms, fetchMessages, createChat
             }}
           >
             <div className='col text-center' >
-              {chats[key].name}
+              {chatRooms[key].name}
             </div>
           </Link>
           </div>
@@ -73,9 +74,6 @@ const SidebarChats = ({ auth, chats, displayChatRooms, fetchMessages, createChat
 
   const chatDisplay = auth.isLoggedIn ? renderChats() : <div className='text-white'>Log in to see your profile</div>
 
-
-
-
   return (
     <div className='d-flex flex-column w-100 align-items-center my-3'>
       {chatDisplay}
@@ -86,8 +84,8 @@ const SidebarChats = ({ auth, chats, displayChatRooms, fetchMessages, createChat
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    chats: state.chat.chats
+    chatRooms: state.chatRooms
   }
 }
 
-export default connect(mapStateToProps, { createChatRoom, displayChatRooms, fetchMessages, closeChat })(SidebarChats);
+export default connect(mapStateToProps, { createChatRoom, displayChatRooms, closeChat })(SidebarChats);
