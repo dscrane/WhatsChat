@@ -9,7 +9,8 @@ import {
 
 const INITIAL_STATE = {
   defaultChat: '5f52268b6d59e14df8174254',
-  chats: {}
+  chats: {},
+  messages: {}
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,7 +33,7 @@ export default (state = INITIAL_STATE, action) => {
       console.log('[DISPLAY_CHATROOMS]:', action.payload)
       return {
         ...state,
-        defaultChat: action.payload[0]._id,
+        defaultChat: action.defaultChat,
         chats: {
           ...state.chats,
           ..._.mapKeys(action.payload, '_id')
@@ -48,33 +49,31 @@ export default (state = INITIAL_STATE, action) => {
       }
     case NEW_MESSAGE:
       console.log('[NEW_MESSAGE]:', action.payload)
-      return {
+      const state1 = {
         ...state,
-        chats: {
-          ...state.chats,
+        messages: {
+          ...state.messages,
           [action.payload.chatId]: {
-            ...state.chats[action.payload.chatId],
-            messages: {
-              ...state.chats[action.payload.chatId].messages,
-              [action.payload._id]: {
-                ...action.payload
-              }
-            }
+            ...[action.payload.chatId].messages,
+            ...[action.payload.message]
           }
         }
       }
+      console.log('===========')
+        console.log('STATE:', state1)
+      console.log('===========')
+        return state1
+
     case LOAD_MESSAGES:
       console.log('[LOAD_MESSAGES]:',action.payload)
+      console.log(action.payload.messages)
       return {
         ...state,
-        chats: {
-          ...state.chats,
+        messages: {
+          ...state.messages,
           [action.payload.chatId]: {
-            ...state.chats[action.payload.chatId],
-            messages: {
-              ...state.chats[action.payload.chatId].messages,
-              ...action.payload.messages
-            }
+            ...[action.payload.chatId].messages,
+            ...action.payload.messages
           }
         }
       }

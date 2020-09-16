@@ -3,25 +3,35 @@ import { connect } from 'react-redux';
 import { sendMessage, joinChat, fetchMessages, displayChatRooms } from '../redux/actions/chat';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
+import { store } from "../store";
 
 
-const Chat = ({ chats, defaultChat, auth, computedMatch, sendMessage, joinChat, fetchMessages, displayChatRooms }) => {
+const Chat = ({ chats, messages, auth, computedMatch, sendMessage, joinChat, fetchMessages }) => {
+  const chatId = computedMatch.params.id;
   const [ message, setMessage ] = useState('');
-  const [ chatId, setChatId ] = useState(defaultChat)
+  const [ chat, setChat ] = useState(null);
+  if (messages ) {
+    console.log('chat', chat)
+  }
+
+
+
 
   useEffect(() => {
-    if (chats === {}) {
-      return displayChatRooms()
-    }
-    if (auth.token && (chatId !== computedMatch.params.id)) {
-      joinChat(computedMatch.params.id, auth.data.name)
+    joinChat(computedMatch.params.id, auth.data.name)
+    Object.keys(chats).forEach(chat => {
+      fetchMessages(chat)
+    })
+
+  }, [JSON.stringify(messages), computedMatch.params.id])
+
+ /* useEffect(() => {
+    console.log('inside use effect for messages')
+    joinChat(computedMatch.params.id, auth.data.name)
       fetchMessages(computedMatch.params.id)
-      setChatId(computedMatch.params.id)
-      return
-    }
-    joinChat(chatId, auth.data.name)
-    fetchMessages(chatId)
-  }, [auth.token, computedMatch.params.id])
+  }, [computedMatch.params.id])*/
+
+
 
   const onChange = e => {
     setMessage(e.target.value)
@@ -29,7 +39,6 @@ const Chat = ({ chats, defaultChat, auth, computedMatch, sendMessage, joinChat, 
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(auth.name)
     sendMessage({
       chatId,
       message,
@@ -45,7 +54,7 @@ const Chat = ({ chats, defaultChat, auth, computedMatch, sendMessage, joinChat, 
         <div className='d-flex flex-row justify-content-center' style={{height: '5%'}}>
           <h2 className='text-white'>{chats[chatId].name}</h2>
         </div>
-        <ChatDisplay messages={chats[chatId].messages} />
+        <ChatDisplay messages={messages[chatId]} />
         <div className='d-flex flex-row align-items-center mb-2 mx-auto' style={{height: '10%', width: '90%'}}>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>
@@ -75,7 +84,8 @@ const mapStateToProps = state => {
   return {
     auth: state.auth,
     defaultChat: state.chat.defaultChat,
-    chats: state.chat.chats
+    chats: state.chat.chats,
+    messages: state.chat.messages
   }
 }
 

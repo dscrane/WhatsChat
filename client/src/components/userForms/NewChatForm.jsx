@@ -8,7 +8,6 @@ export const NewChatForm = (props) => {
   }
 
   const handleForm = e => {
-    console.log('new chat handle form')
     props.handleForm(e)
   }
 
