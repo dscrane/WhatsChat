@@ -41,7 +41,8 @@ export const checkAuth = () => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   LOG_IN ACTION CREATOR    ---- */
-export const login = formValues => async (dispatch, getState) => {
+export const login = formValues => async dispatch => {
+  const defaultChatRoom = '5f52268b6d59e14df8174254';
   const response = await api.post(
     '/login-user',
     { ...formValues }
@@ -65,7 +66,7 @@ export const login = formValues => async (dispatch, getState) => {
    }
  })
 
-  history.push(`/chats/${getState().chat.defaultChat}`);
+  history.push(`/chats/${defaultChatRoom}`);
 }
 /* ----   ****    ---- */
 
@@ -93,7 +94,8 @@ export const logout = () => async (dispatch, getState) => {
 /* ----   ****    ---- */
 
 /* ----   SIGN_UP ACTION CREATOR    ---- */
-export const signup = (formValues) => async (dispatch, getState) => {
+export const signup = (formValues) => async (dispatch) => {
+  const defaultChatRoom = '5f52268b6d59e14df8174254';
   const response = await api.post('/create-user', { ...formValues })
   console.log(response)
   if (response.data.error) {
@@ -114,7 +116,7 @@ export const signup = (formValues) => async (dispatch, getState) => {
              }
            })
 
-  history.push(`/chats/${getState().chat.defaultChat}`)
+  history.push(`/chats/${defaultChatRoom}`)
 }
 /* ----   ****    ---- */
 

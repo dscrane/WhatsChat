@@ -24,6 +24,13 @@ const LoginForm = (props) => {
         <Field name='password' component={renderInput} label='Password' type='password' />
         <button className='btn btn-md btn-secondary btn-block my-4 mx-auto w-25'>Submit</button>
       </div>
+      <div className='d-flex w-100 justify-content-center text-white'>
+        <div className='col'>
+          <p className='m-0 p-0'>Sample User Credentials</p>
+          <p className='m-0 p-0'>Username: sampleuser</p>
+          <p className='m-0 p-0'>Password: examplepass000</p>
+        </div>
+      </div>
     </RenderForm>
   )
 }

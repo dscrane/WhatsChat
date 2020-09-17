@@ -14,7 +14,6 @@ const App = ({ auth, checkAuth, displayChatRooms }) => {
     if (!auth.token) {
       checkAuth()
       displayChatRooms()
-      console.log('[APP]: check auth')
     }
   }, [auth.token, checkAuth, displayChatRooms])
 

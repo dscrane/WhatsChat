@@ -1,15 +1,48 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-
+import './chatStyles.css';
 
 const ChatDisplay = ({ messages, auth }) => {
+  const messageList = useRef(null);
+
   const chatBubbleClass = 'd-flex flex-row justify-content-around';
   const chatBubbleStyle = {borderRadius: '10px', maxWidth: '45%', minWidth: '10%'};
   const timeStampClass = 'd-flex flex-column py-0 pr-1 ml-1 w-100 justify-content-end';
   const timeStampStyle = { color:'#bdbdbd', width: '100%', textAlign: 'right'};
   const chatContentClass = 'd-flex flex-column align-items-start w-100 px-2 py-1';
   const chatTextClass = 'd-flex flex-column py-0 mr-1 justify-content-end align-items-start text-left text-white';
+
+
+  const autoscroll = () => {
+    console.log(messageList)
+    // new message element
+    const newMessage = messageList.current.lastElementChild;
+
+    if (!newMessage) {return};
+
+    // get the height of the newMessage
+    const newMessageStyles = getComputedStyle(newMessage.lastElementChild);
+    const newMessageMargin = parseInt(newMessageStyles.marginBottom);
+    const newMessageHeight = messageList.current.offsetHeight + newMessageMargin;
+
+    // get the visible height
+    const visibleHeight = messageList.current.offsetHeight;
+
+    // get the message container height
+    const contentHeight = messageList.current.scrollHeight;
+
+    // Current scroll location
+    const scrollOffset = messageList.current.scrollTop + visibleHeight;
+
+    if (contentHeight - newMessageHeight <= scrollOffset) {
+      // this will set the scroll top position to the maximum scroll top value being the bottom of the page
+      messageList.current.scrollTop = messageList.current.scrollHeight;
+    }
+  };
+
+  useEffect(autoscroll, [messages.length])
+
 
   const formatTimestamp = (createdAt) => {
     return moment(createdAt).format('h:mm A');
@@ -20,10 +53,15 @@ const ChatDisplay = ({ messages, auth }) => {
 
     return messageKeysArray.map(messageKey => {
       const timestamp = formatTimestamp(messages[messageKey].createdAt)
+      if (messages[messageKey].author === 'systemManager') {
+        return (
+          <div key={messageKey} className='text-white text-left'>{messages[messageKey].message}</div>
+        )
+      }
 
       if (messages[messageKey].userId !== auth._id) {
         return (
-          <div key={messageKey} className='row mb-1 justify-content-start'>
+          <li key={messageKey} className='row mb-1 justify-content-start'>
             <div
               className={chatBubbleClass}
               style={{...chatBubbleStyle, backgroundColor:'#757575'}}
@@ -42,11 +80,12 @@ const ChatDisplay = ({ messages, auth }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </li>
         )
       }
+
       return (
-        <div key={messageKey} className='row mb-1 justify-content-end'>
+        <li key={messageKey} className='row mb-1 justify-content-end'>
           <div
             className={chatBubbleClass}
             style={{...chatBubbleStyle, backgroundColor:'#1565c0'}}
@@ -62,16 +101,16 @@ const ChatDisplay = ({ messages, auth }) => {
               </div>
             </div>
           </div>
-        </div>
+        </li>
       )
     })
   }
 
   return (
       <div className='row align-items-start p-2 ' style={{height: '85%'}}>
-        <div className='d-flex flex-column m-2 px-4 w-100 h-100'>
+        <ul className='chat__display chat__display-scroll d-flex flex-column m-2 px-4 w-100 h-100' ref={messageList}>
           {messages ? renderMessages() : <div className='text-white'>Send a message!!</div>}
-        </div>
+        </ul>
       </div>
 
   )

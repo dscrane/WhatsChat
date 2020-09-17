@@ -101,7 +101,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
                 </button>
               </li>
               <li className='list-group-item '>
-                <button onClick={() => setModalDisplay(true)} className='btn btn-danger'>Delete Account</button>
+                <button onClick={() => setModalDisplay(true)} className='btn btn-danger' disabled={auth.data._id === '5f637fdd0a41ae691c828e50'}>Delete Account</button>
               </li>
             </ul>
           </div>

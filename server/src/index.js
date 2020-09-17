@@ -56,8 +56,8 @@ io.on('connection', socket => {
     console.log(`${userName} joining room ${room}`)
     console.log('=============')
     socket.join(room)
-    socket.emit('welcome-message', { userName: userName })
-    socket.broadcast.to(room).emit('bot-join-message', { userName: userName })
+    socket.emit('system-welcome', { userName: userName, type: 'Welcome', chatRoomId: room })
+    // socket.broadcast.to(room).emit('system-join', { userName: userName, type: 'joined' })
   })
   // Define leave event
   socket.on('leave', ({ room, userName }) => {
@@ -65,11 +65,12 @@ io.on('connection', socket => {
       console.log('=============')
       console.log(`${userName} leaving room ${room}`)
       console.log('=============')
-      io.to(room).emit(`${userName} has left`)
+      // io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
     })
   })
   // Define message event
   socket.on('message', async (message) => {
+    console.log(message)
     try {
       const newMsg = new Message(message)
       const returnMsg = { _id: newMsg._id,  ...message  }

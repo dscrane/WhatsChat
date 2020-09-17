@@ -32,11 +32,12 @@ export const createChatRoom = (name, userId) => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   DISPLAY_CHATROOMS ACTION CREATOR    ---- */
-export const displayChatRooms = () => async dispatch => {
+export const displayChatRooms = () => async (dispatch, getState) => {
   try {
     const { data } = await api.get('/chats');
     const chatRooms = data.chats.map(chat => {
-      return {...chat, messages:[]}
+      const messages = getState().chatRooms.length !== 0 ? getState().chatRooms[chat._id].messages : [];
+      return { ...chat, messages: [...messages]}
     })
     dispatch({
       type: DISPLAY_CHATROOMS,
@@ -49,27 +50,27 @@ export const displayChatRooms = () => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   JOIN_CHATROOM ACTION CREATOR    ---- */
-export const joinChatRoom = (chatId, userName) => async dispatch => {
-  socket.emit('join', { room: chatId, userName:userName }, (room) => {
+export const joinChatRoom = (chatRoomId, userName) => async dispatch => {
+  socket.emit('join', { room: chatRoomId, userName:userName }, (room) => {
     console.info(`connected to ${room}`)
   })
 }
 /* ----   ****    ---- */
 
 /* ----   LEAVE_CHATROOM ACTION CREATOR    ---- */
-export const leaveChatRoom = (chatId, userName) => async dispatch  => {
-  socket.emit('leave', { room: chatId, userName: userName }, room => {
+export const leaveChatRoom = (chatRoomId, userName) => async dispatch  => {
+  socket.emit('leave', { room: chatRoomId, userName: userName }, room => {
     console.log(`leaving ${room}`)
   })
 }
 /* ----   ****    ---- */
 
 /* ----   CLOSE_CHATROOM ACTION CREATOR    ---- */
-export const closeChat = (chatId) => async dispatch => {
-  socket.emit('leave', { room: chatId })
+export const closeChat = (chatRoomId) => async dispatch => {
+  socket.emit('leave', { room: chatRoomId })
   dispatch({
     type: CLOSE_CHAT,
-    payload: chatId
+    payload: chatRoomId
   })
 }
 /* ----   ****    ---- */
@@ -82,9 +83,10 @@ export const fetchMessages = (chatRoomId) => async dispatch => {
 /* ----   ****    ---- */
 
 /* ----   NEW_MESSAGE ACTION CREATOR    ---- */
-export const sendMessage = ({ message, chatRoomId, userId, author }) => async dispatch => {
-  console.log(`[MESSAGE]: ${message} ==> [CHAT]: ${chatRoomId} ==> [FROM]: ${author}`);
-  socket.emit('message', {message, chatRoomId, userId, author})
+export const sendMessage = ({ chatRoomId, message, userId, author }) => async dispatch => {
+  console.log('send message ran')
+  console.log(chatRoomId)
+  socket.emit('message', { chatRoomId, message, userId, author })
 }
 
 const dispatchMessage = (messageType, message) => {
@@ -96,6 +98,41 @@ socket.on('return-message', returnMsg => {
 })
 /* ----   ****    ---- */
 
-// socket.on('welcome-message', ( userName ) => console.log(userName))
+/*
+socket.on(
+  'system-welcome',
+  ({userName, chatRoomId, type} ) => {
+    console.log('welcome ran')
+    return socket.emit('message', {
+      chatRoomId,
+      message: `${type} ${userName}.`,
+      userId: null,
+      author: 'systemManager'
+    })
+  }
+)
 
-// socket.on('bot-join-message', (userName) => console.log(userName))
+socket.on(
+  'system-join',
+  ({ userName, type, chatRoomId }) => {
+    console.log('join ran')
+    socket.emit('message', {
+      chatRoomId,
+      message: `${userName} has ${type}.`,
+      userId: null,
+      author: 'systemManager'
+    })
+  }
+)
+
+socket.on('system-leave',
+  ({ userName, type, chatRoomId }) => {
+  console.log('leave ran')
+    socket.emit('message', {
+      chatRoomId,
+      message: `${userName} has ${type}.`,
+      userId: null,
+      author: 'systemManager'
+    })
+  }
+)*/

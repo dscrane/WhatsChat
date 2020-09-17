@@ -16,25 +16,21 @@ const INITIAL_STATE = {
 export default (state=INITIAL_STATE, action) => {
   switch (action.type) {
     case CHECK_AUTH:
-      console.log('[CHECK_AUTH]:', action.payload)
       return {
         ...state,
         ...action.payload
       };
     case LOG_IN:
-      console.log('[LOG_IN]:', action.payload)
       return {
         ...state,
         ...action.payload
       };
     case LOG_OUT:
-      console.log('[LOG_OUT]:', action.payload);
       return {
         ...state,
         ...INITIAL_STATE
       };
     case UPDATE_USER:
-      console.log('[UPDATE_USER]:', action.payload);
       return {
         ...state,
         data: {

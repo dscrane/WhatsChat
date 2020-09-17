@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import { sendMessage, joinChatRoom, leaveChatRoom, fetchMessages, displayChatRooms } from '../redux/actions/chat';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
+import {socket} from "../socket";
 
 
 const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
   const [ message, setMessage ] = useState('');
   const [ chatRoomId, setChatRoomId] = useState(computedMatch.params.id)
+  const [ systemMessage, setSystemMessage ] = useState({});
+
   // Initial message fetch for all open chat rooms
   useEffect(() => {
     Object.keys(chatRooms).forEach((chatRoom) => {
@@ -36,14 +39,13 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
     })
     setMessage('')
   }
-
   return (
-    <div className='d-flex col justify-content-center bg-secondary' style={{width:'77%'}}>
-      <div className='container m-4' style={{borderRadius: '10px', backgroundColor: '#262B33', width: '70%', minWidth: '675px'}}>
+    <div className='d-flex col justify-content-center align-items-center bg-secondary' style={{width:'77%'}}>
+      <div className='container' style={{borderRadius: '10px', backgroundColor: '#262B33', width: '70%', minWidth: '675px', height: '95%', maxHeight: '98vh'}}>
         <div className='d-flex flex-row justify-content-center' style={{height: '5%'}}>
           <h2 className='text-white'>{chatRooms[chatRoomId].name}</h2>
         </div>
-        <ChatDisplay messages={chatRooms[chatRoomId].messages} />
+        <ChatDisplay messages={chatRooms[chatRoomId].messages} systemMessage={systemMessage} />
         <div className='d-flex flex-row align-items-center mb-2 mx-auto' style={{height: '10%', width: '90%'}}>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>
@@ -57,7 +59,7 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
                 />
               </div>
               <div className='col-2'>
-                <button className='btn btn-md btn-outline-success '>
+                <button className='btn btn-md btn-outline-secondary '>
                   Send
                 </button>
               </div>

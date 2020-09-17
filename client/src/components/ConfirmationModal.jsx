@@ -7,7 +7,6 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 
 
 const ConfirmationModal = ({modalConfig, setModalDisplay, modalDisplay, handleDelete}) => {
-  console.log(modalDisplay)
   const handleDeleteClick = () => {
     setModalDisplay(false)
     handleDelete();
