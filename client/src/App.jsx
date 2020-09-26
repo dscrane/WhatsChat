@@ -7,6 +7,7 @@ import { Home, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
 import ProtectedRoute from './ProtectedRoute'
 import {displayChatRooms} from "./redux/actions/chat";
+import './chatStyles.css';
 
 const App = ({ auth, checkAuth, displayChatRooms }) => {
   const defaultChatRoom = '5f52268b6d59e14df8174254';

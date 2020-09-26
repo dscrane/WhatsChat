@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import './chatStyles.css';
+
 
 const ChatDisplay = ({ messages, auth }) => {
   const messageList = useRef(null);

@@ -53,8 +53,10 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
             </div>
           </Link>
           </div>
-          <div onClick={() => handleClose(key)} className='col-1 text-white my-auto text-center' style={{fontSize:'24px'}}>
-            &times;
+          <div className='d-flex flex-column justify-content-center'>
+            <button onClick={() => handleClose(key)} className='p-0' style={{ background: 'none', outline: 'none', border: 'none', lineHeight: '20px'}}>
+              <p className='chat__close m-auto' style={{ fontSize:'20px', color: '#909090'}}>&#128473;</p>
+            </button>
           </div>
         </li>
       )

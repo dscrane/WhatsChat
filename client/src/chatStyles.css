@@ -3,6 +3,16 @@
   scrollbar-width: thin;
 }
 
+
+ .chat__close:hover {
+   color: white !important;
+ }
+
+ .chat__new-cta:hover {
+   color: white !important;
+
+ }
+
 .chat__display-scroll::-webkit-scrollbar {
   width: 7px;
 }

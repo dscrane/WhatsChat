@@ -25,7 +25,7 @@ export const NewChatForm = (props) => {
             className='btn p-0'
             style={{background: 'none', border: 'none', borderStyle: 'none'}}
           >
-            <div className='d-flex align-items-center text-secondary'  style={{fontSize: '35px'}}>
+            <div className='chat__new-cta d-flex align-items-center text-secondary'  style={{fontSize: '35px'}}>
               {plusIcon}
             </div>
           </button>
