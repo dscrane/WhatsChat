@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
@@ -26,6 +27,15 @@ const app = express();
 // Connect middlewares
 app.use(cors());
 app.use(bodyParser.json());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", "https://img.icons8.com/color/48/000000/secured-letter.png"]
+    }
+  })
+)
 
 // Connect routers
 app.use(userRouter);
