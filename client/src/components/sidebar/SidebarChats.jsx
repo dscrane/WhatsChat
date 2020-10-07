@@ -36,14 +36,13 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
     }
     return Object.keys(chatRooms).map(key => {
       return (
-        <li key={chatRooms[key]._id} className='row justify-content-around' style={{width: '90%'}} >
-          <div className='col-2 my-auto text-secondary' style={{fontSize: '50px', lineHeight: '50px'}} >
+        <li key={chatRooms[key]._id} className='chatroom__item'>
+          <div className='chatroom__icon col-2 my-auto text-secondary'>
             {profileIcon}
           </div>
           <div className='col-8'>
           <Link
-            className='d-flex flex-row justify-content-center align-items-center text-center text-white text-decoration-none'
-            style={{height: '8vh', borderBottom: '1px solid white', outline:'none'}}
+            className='chatroom__chatroom'
             to={{
               pathname: `/chats/${key}`
             }}
@@ -53,9 +52,9 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
             </div>
           </Link>
           </div>
-          <div className='d-flex flex-column justify-content-center'>
-            <button onClick={() => handleClose(key)} className='p-0' style={{ background: 'none', outline: 'none', border: 'none', lineHeight: '20px'}}>
-              <p className='chat__close m-auto' style={{ fontSize:'20px', color: '#909090'}}>&#128473;</p>
+          <div className='chatroom__cta-col'>
+            <button onClick={() => handleClose(key)} className='chatroom__cta-close p-0 text-secondary'>
+              <p className='chatroom__close'>&#128473;</p>
             </button>
           </div>
         </li>
@@ -65,8 +64,8 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
 
   const renderChats = () => {
     return (
-      <ul className='list-unstyled d-flex flex-column align-items-center w-100'>
-        <li className='row justify-content-center' style={{width: '90%'}}>
+      <ul className='chatroom__list list-unstyled'>
+        <li className='chatroom__new'>
           <NewChatForm handleForm={handleForm} onChange={onChange} newRoomName={newRoomName} />
         </li>
         {renderChatData()}
@@ -77,7 +76,7 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
   const chatDisplay = auth.isLoggedIn ? renderChats() : <div className='text-white'>Log in to see your profile</div>
 
   return (
-    <div className='d-flex flex-column w-100 align-items-center my-3'>
+    <div className='chatroom__list my-3'>
       {chatDisplay}
     </div>
   )

@@ -6,14 +6,6 @@ import { connect } from 'react-redux';
 const ChatDisplay = ({ messages, auth }) => {
   const messageList = useRef(null);
 
-  const chatBubbleClass = 'd-flex flex-row justify-content-around';
-  const chatBubbleStyle = {borderRadius: '10px', maxWidth: '45%', minWidth: '10%'};
-  const timeStampClass = 'd-flex flex-column py-0 pr-1 ml-1 w-100 justify-content-end';
-  const timeStampStyle = { color:'#bdbdbd', width: '100%', textAlign: 'right'};
-  const chatContentClass = 'd-flex flex-column align-items-start w-100 px-2 py-1';
-  const chatTextClass = 'd-flex flex-column py-0 mr-1 justify-content-end align-items-start text-left text-white';
-
-
   const autoscroll = () => {
     console.log(messageList)
     // new message element
@@ -61,20 +53,17 @@ const ChatDisplay = ({ messages, auth }) => {
 
       if (messages[messageKey].userId !== auth._id) {
         return (
-          <li key={messageKey} className='row mb-1 justify-content-start'>
-            <div
-              className={chatBubbleClass}
-              style={{...chatBubbleStyle, backgroundColor:'#757575'}}
-            >
-              <div className={chatContentClass}>
-                <div className={chatTextClass}>
-                  <p className='m-0 p-0' style={{fontSize: '12px', color:'#bdbdbd'}}>
+          <li key={messageKey} className='chat__messages chat__messages-rec'>
+            <div className="chat__bubble chat__bubble-rec">
+              <div className={`chat__content px-2 py-1`}>
+                <div className={`chat__area py-0 mr-1`}>
+                  <p className='chat__text chat__text-author' >
                     {messages[messageKey].author}
                   </p>
-                  <p style={{fontSize: '15px', marginBottom:'0px'}}>{messages[messageKey].message}</p>
+                  <p className='chat__text chat__text-message'>{messages[messageKey].message}</p>
                 </div>
-                <div className={timeStampClass} style={{fontSize: '10px'}}>
-                  <div style={timeStampStyle}>
+                <div className={`chat__footer ml-1`}>
+                  <div className='chat__timestamp'>
                     {timestamp}
                   </div>
                 </div>
@@ -85,17 +74,14 @@ const ChatDisplay = ({ messages, auth }) => {
       }
 
       return (
-        <li key={messageKey} className='row mb-1 justify-content-end'>
-          <div
-            className={chatBubbleClass}
-            style={{...chatBubbleStyle, backgroundColor:'#1565c0'}}
-          >
-            <div className={chatContentClass}>
-              <div className={chatTextClass}>
-                <p style={{fontSize: '15px', marginBottom:'0px'}}>{messages[messageKey].message}</p>
+        <li key={messageKey} className='chat__messages chat__messages-sent'>
+          <div className="chat__bubble chat__bubble-sent">
+            <div className={`chat__content px-2 py-1`}>
+              <div className={`chat__area py-0 mr-1`}>
+                <p className='chat__text chat__text-message'>{messages[messageKey].message}</p>
               </div>
-              <div className={`${timeStampClass} text-white`} style={{fontSize: '10px'}}>
-                <div style={timeStampStyle}>
+              <div className={`chat__footer ml-1 text-white`}>
+                <div className='chat__timestamp'>
                   {timestamp}
                 </div>
               </div>
@@ -107,8 +93,8 @@ const ChatDisplay = ({ messages, auth }) => {
   }
 
   return (
-      <div className='row align-items-start p-2 ' style={{height: '85%'}}>
-        <ul className='chat__display chat__display-scroll d-flex flex-column m-2 px-4 w-100 h-100' ref={messageList}>
+      <div className='chat__container'>
+        <ul className='chat__display chat__display-scroll ' ref={messageList}>
           {messages ? renderMessages() : <div className='text-white'>Send a message!!</div>}
         </ul>
       </div>

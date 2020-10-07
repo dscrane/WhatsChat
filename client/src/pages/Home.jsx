@@ -36,9 +36,9 @@ const Home = (props) => {
   }
 
   return (
-    <div className='col d-flex flex-column justify-content-center'>
-      <div className='container align-self-center bg-dark w-50 my-auto pb-3 px-3' style={{borderRadius: '5px'}}>
-        <div className='row  mb-2'>
+    <div className='landing__area col'>
+      <div className='landing__container container pb-3 px-3 bg-dark'>
+        <div className='row mb-2'>
           <div className='col p-0'>
               <button
                 onClick={() => updateCurrentForm()}

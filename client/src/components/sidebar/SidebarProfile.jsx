@@ -91,7 +91,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
                 </li>
               </ul>
               <input type="submit"
-                     style={{position: 'absolute', left: '-9999px', width: '1px', height: '1px'}}
+                     className='profile__submit'
                      tabIndex="-1"/>
             </RenderForm>
             <ul className='list-group list-group-flush'>

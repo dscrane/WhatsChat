@@ -16,16 +16,14 @@ export const NewChatForm = (props) => {
   return (
     <form className='w-100' onSubmit={handleForm}>
       <div
-        className='d-flex flex-row justify-content-center align-items-center text-center text-white w-100 text-decoration-none'
-        style={{height: '8vh', borderBottom: '1px solid white'}}
+        className='chatroom__form'
       >
         <div className='d-flex justify-content-end col-3 mx-auto'>
           <button
             type='submit'
-            className='btn p-0'
-            style={{background: 'none', border: 'none', borderStyle: 'none'}}
+            className='chatroom__cta-new btn p-0'
           >
-            <div className='chat__new-cta d-flex align-items-center text-secondary'  style={{fontSize: '35px'}}>
+            <div className='chatroom__new-cta text-secondary'>
               {plusIcon}
             </div>
           </button>

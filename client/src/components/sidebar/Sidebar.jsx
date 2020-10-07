@@ -42,23 +42,23 @@ const Sidebar = () => {
   }
 
   return (
-    <div className='d-flex justify-content-center' style={{backgroundColor: '#262B33', width:'23%', minWidth: '325px'}}>
-      <nav className='d-flex flex-column min-vh-100 align-items-around' style={{width: '90%'}}>
-        <div className='row justify-content-center py-4'>
+    <div className='sidebar__content'>
+      <nav className='sidebar__nav'>
+        <div className='sidebar__row py-4'>
           <h2 className='text-white'>WhatsChat</h2>
         </div>
-        <div className='row justify-content-center'>
-          <div style={{ width: '80%', borderBottom: '.5px solid white', borderRadius: '75%'}}></div>
+        <div className='sidebar__row'>
+          <div className='sidebar__break'></div>
         </div>
-        <div className='row justify-content-around'>
-          <ul className='list-unstyled d-flex flex-row w-50 justify-content-around components py-3 mb-0'>
+        <div className='sidebar__row'>
+          <ul className='sidebar__list list-unstyled components py-3 mb-0'>
             {renderIcons()}
           </ul>
         </div>
-        <div className='row justify-content-center'>
-          <div style={{ width: '80%', borderBottom: '.5px solid white', borderRadius: '75%'}}></div>
+        <div className='sidebar__row'>
+          <div className='sidebar__break'></div>
         </div>
-        <div className='row justify-content-center'>
+        <div className='sidebar__row'>
           {renderSidebarContent()}
         </div>
       </nav>

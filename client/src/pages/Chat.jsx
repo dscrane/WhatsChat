@@ -40,13 +40,13 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
     setMessage('')
   }
   return (
-    <div className='d-flex col justify-content-center align-items-center bg-secondary' style={{width:'77%'}}>
-      <div className='container' style={{borderRadius: '10px', backgroundColor: '#262B33', width: '70%', minWidth: '675px', height: '95%', maxHeight: '98vh'}}>
-        <div className='d-flex flex-row justify-content-center' style={{height: '5%'}}>
-          <h2 className='text-white'>{chatRooms[chatRoomId].name}</h2>
+    <div className='chatroom__display bg-secondary'>
+      <div className='chatroom__container'>
+        <div className='chatroom__heading'>
+          <h2 className='chatroom__title'>{chatRooms[chatRoomId].name}</h2>
         </div>
         <ChatDisplay messages={chatRooms[chatRoomId].messages} systemMessage={systemMessage} />
-        <div className='d-flex flex-row align-items-center mb-2 mx-auto' style={{height: '10%', width: '90%'}}>
+        <div className='chatroom__input mb-2 mx-auto'>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>
               <div className='col-10'>
