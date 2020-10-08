@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", "https://img.icons8.com/color/48/000000/secured-letter.png"]
+      defaultSrc: ["'self'", 'unsafe-inline'],
+      scriptSrc: ["'self'", 'unsafe-inline'],
+      styleSrc: ["'self'"]
     }
   })
 )
