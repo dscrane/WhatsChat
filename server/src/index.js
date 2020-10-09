@@ -27,15 +27,15 @@ const app = express();
 // Connect middlewares
 app.use(cors());
 app.use(bodyParser.json());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'", 'unsafe-inline'],
-      scriptSrc: ["'self'", 'unsafe-inline'],
-      styleSrc: ["'self'"]
-    }
-  })
-)
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'", 'unsafe-inline'],
+//       scriptSrc: ["'self'", 'unsafe-inline'],
+//       styleSrc: ["'self'"]
+//     }
+//   })
+// )
 
 // Connect routers
 app.use(userRouter);

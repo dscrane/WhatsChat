@@ -14,6 +14,15 @@ router.get('/chats', async (req, res) => {
   }
 })
 
+router.get('/chats/:chatId', async (req, res) => {
+  try {
+    console.log(req.params)
+    // const chat = await ChatRoom.findById(req.params.)
+  } catch (e) {
+    console.log(e)
+  }
+})
+
 router.post('/create-chatRoom', async (req, res) => {
   console.log(req.body)
   const chat = new ChatRoom (req.body);
