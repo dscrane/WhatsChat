@@ -7,7 +7,6 @@ const ChatDisplay = ({ messages, auth }) => {
   const messageList = useRef(null);
 
   const autoscroll = () => {
-    console.log(messageList)
     // new message element
     const newMessage = messageList.current.lastElementChild;
 
