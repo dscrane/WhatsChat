@@ -46,7 +46,9 @@ const ChatDisplay = ({ messages, auth }) => {
       const timestamp = formatTimestamp(messages[messageKey].createdAt)
       if (messages[messageKey].author === 'systemManager') {
         return (
-          <div key={messageKey} className='text-white text-left'>{messages[messageKey].message}</div>
+          <li key={Math.random()*1000} className='chat__message chat__message-system'>
+            <div key={messageKey} className='text-white text-left'>{messages[messageKey].message}</div>
+          </li>
         )
       }
 

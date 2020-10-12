@@ -6,7 +6,7 @@ import { checkAuth } from "./redux/actions/auth";
 import { Home, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
 import ProtectedRoute from './ProtectedRoute'
-import {displayChatRooms} from "./redux/actions/chat";
+import { displayChatRooms } from "./redux/actions/chat";
 import './styles/bootstrap.min.css';
 import './styles/styles.css'
 

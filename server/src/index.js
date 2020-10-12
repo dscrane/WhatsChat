@@ -20,41 +20,36 @@ const PORT = process.env.PORT || 5500;
 require('./db/db');
 /* ----   ****    ---- */
 
-/* ----   CONFIGURE EXPRESS SERVER    ---- */
-// Initialize the express server and the socketio connection
+/* ----   CONFIGURE EXPRESS SERVER & SOCKET.IO    ---- */
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+// io.origins( [`http://dsc-chat-app.herokuapp.com`] );
+/* ----   ****    ---- */
 
-// Connect middlewares
+/* ----   SET UP MIDDLEWARES    ---- */
 app.use(cors());
 app.use(bodyParser.json());
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'", 'unsafe-inline'],
-//       scriptSrc: ["'self'", 'unsafe-inline'],
-//       styleSrc: ["'self'"]
-//     }
-//   })
-// )
+/* ----   ****    ---- */
 
-// Connect routers
+/* ----   CONNECT ROUTERS    ---- */
 app.use(userRouter);
 app.use(chatRoomRouter);
 app.use(messageRouter);
+/* ----   ****    ---- */
 
-// Connect static files
+/* ----   SET STATIC DIRECTORY    ---- */
 app.use(express.static(path.join(__dirname, 'client/build')));
+/* ----   ****    ---- */
 
-// Create root route
+/* ----   CREATE ROOT ROUTE    ---- */
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 /* ----   ****    ---- */
 
-/* ----   CONFIGURE SOCKETIO    ---- */
-const server = http.createServer(app);
-const io = socketio(server);
 
+/* ----   IMPLEMENT SOCKET.IO    ---- */
 // Create new socketio connection
 io.on('connection', socket => {
   console.log('=============')
@@ -62,20 +57,16 @@ io.on('connection', socket => {
   console.log('=============')
   // Define join event
   socket.on('join', ({ room, userName }) => {
-    console.log('=============')
     console.log(`${userName} joining room ${room}`)
-    console.log('=============')
     socket.join(room)
     socket.emit('system-welcome', { userName: userName, type: 'Welcome', chatRoomId: room })
-    // socket.broadcast.to(room).emit('system-join', { userName: userName, type: 'joined' })
+    socket.to(room).emit('system-join', { userName: userName, type: 'joined' })
   })
   // Define leave event
   socket.on('leave', ({ room, userName }) => {
     socket.leave(room, () => {
-      console.log('=============')
       console.log(`${userName} leaving room ${room}`)
-      console.log('=============')
-      // io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
+      io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
     })
   })
   // Define message event

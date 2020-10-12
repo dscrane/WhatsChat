@@ -98,7 +98,7 @@ socket.on('return-message', returnMsg => {
 })
 /* ----   ****    ---- */
 
-/*
+
 socket.on(
   'system-welcome',
   ({userName, chatRoomId, type} ) => {
@@ -135,4 +135,4 @@ socket.on('system-leave',
       author: 'systemManager'
     })
   }
-)*/
+)
