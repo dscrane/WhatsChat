@@ -20,58 +20,52 @@ const PORT = process.env.PORT || 5500;
 require('./db/db');
 /* ----   ****    ---- */
 
-/* ----   CONFIGURE EXPRESS SERVER & SOCKET.IO    ---- */
+/* ----   CONFIGURE EXPRESS SERVER    ---- */
+// Initialize the express server and the socketio connection
 const app = express();
+/* ----   CONFIGURE SOCKETIO    ---- */
 const server = http.createServer(app);
 const io = socketio(server);
-// io.origins( [`http://dsc-chat-app.herokuapp.com`] );
-/* ----   ****    ---- */
-
-/* ----   SET UP MIDDLEWARES    ---- */
+io.origins();
+// Connect middlewares
 app.use(cors());
 app.use(bodyParser.json());
-/* ----   ****    ---- */
 
-/* ----   CONNECT ROUTERS    ---- */
+// Connect routers
 app.use(userRouter);
 app.use(chatRoomRouter);
 app.use(messageRouter);
-/* ----   ****    ---- */
 
-/* ----   SET STATIC DIRECTORY    ---- */
+// Connect static files
 app.use(express.static(path.join(__dirname, 'client/build')));
-/* ----   ****    ---- */
 
-/* ----   CREATE ROOT ROUTE    ---- */
+// Create root route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 /* ----   ****    ---- */
 
 
-/* ----   IMPLEMENT SOCKET.IO    ---- */
+
 // Create new socketio connection
 io.on('connection', socket => {
-  console.log('=============')
-  console.log('new websocket connection', socket.id );
-  console.log('=============')
+  console.info('new websocket connection', socket.id );
   // Define join event
   socket.on('join', ({ room, userName }) => {
-    console.log(`${userName} joining room ${room}`)
+    console.info(`${userName} joining room ${room}`)
     socket.join(room)
     socket.emit('system-welcome', { userName: userName, type: 'Welcome', chatRoomId: room })
-    socket.to(room).emit('system-join', { userName: userName, type: 'joined' })
+    // socket.broadcast.to(room).emit('system-join', { userName: userName, type: 'joined' })
   })
   // Define leave event
   socket.on('leave', ({ room, userName }) => {
     socket.leave(room, () => {
-      console.log(`${userName} leaving room ${room}`)
-      io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
+      console.info(`${userName} leaving room ${room}`)
+      // io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
     })
   })
   // Define message event
   socket.on('message', async (message) => {
-    console.log(message)
     try {
       const newMsg = new Message(message)
       const returnMsg = { _id: newMsg._id,  ...message  }

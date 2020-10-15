@@ -12,7 +12,6 @@ router.post('/create-user', async (req, res) => {
     await user.generateAvatar();
     res.send({ user, token })
   } catch (e) {
-    console.log(e)
     res.send({ error: e})
   }
 })
@@ -21,7 +20,6 @@ router.post('/login-user', async (req, res) => {
   try {
     const user = await User.findByCredentials(req.body.username, req.body.password);
     const token = await user.generateAuthToken();
-
     res.send({ user, token });
   } catch(e) {
     res.send({ error: { ...e } })
@@ -43,7 +41,7 @@ router.patch('/user-update', authenticate, async (req, res) => {
     await req.user.save();
     res.send(req.user)
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 })
 
@@ -60,7 +58,7 @@ router.post('/user-delete', authenticate, async (req, res) => {
     await req.user.remove();
     res.send({ userDeleted: true })
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 })
 

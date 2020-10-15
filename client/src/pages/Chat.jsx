@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { sendMessage, joinChatRoom, leaveChatRoom, fetchMessages, displayChatRooms } from '../redux/actions/chat';
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
-import {socket} from "../socket";
-
 
 const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
   const [ message, setMessage ] = useState('');

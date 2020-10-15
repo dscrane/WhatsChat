@@ -39,6 +39,7 @@ export const displayChatRooms = () => async (dispatch, getState) => {
       const messages = getState().chatRooms.length !== 0 ? getState().chatRooms[chat._id].messages : [];
       return { ...chat, messages: [...messages]}
     })
+    console.log('chatRooms', chatRooms)
     dispatch({
       type: DISPLAY_CHATROOMS,
       payload: {...chatRooms}
@@ -77,7 +78,7 @@ export const closeChat = (chatRoomId) => async dispatch => {
 
 /* ----   FETCH_MESSAGES ACTION CREATOR    ---- */
 export const fetchMessages = (chatRoomId) => async dispatch => {
-  const { data } = await api.get(`/messages/${chatRoomId}`);
+  const { data } = await api.get(`/messages?chatRoomId=${chatRoomId}`);
   dispatch({ type: LOAD_MESSAGES, payload: {chatRoomId, messages: data.messages }})
 }
 /* ----   ****    ---- */
@@ -99,40 +100,40 @@ socket.on('return-message', returnMsg => {
 /* ----   ****    ---- */
 
 
-socket.on(
-  'system-welcome',
-  ({userName, chatRoomId, type} ) => {
-    console.log('welcome ran')
-    return socket.emit('message', {
-      chatRoomId,
-      message: `${type} ${userName}.`,
-      userId: null,
-      author: 'systemManager'
-    })
-  }
-)
-
-socket.on(
-  'system-join',
-  ({ userName, type, chatRoomId }) => {
-    console.log('join ran')
-    socket.emit('message', {
-      chatRoomId,
-      message: `${userName} has ${type}.`,
-      userId: null,
-      author: 'systemManager'
-    })
-  }
-)
-
-socket.on('system-leave',
-  ({ userName, type, chatRoomId }) => {
-  console.log('leave ran')
-    socket.emit('message', {
-      chatRoomId,
-      message: `${userName} has ${type}.`,
-      userId: null,
-      author: 'systemManager'
-    })
-  }
-)
+// socket.on(
+//   'system-welcome',
+//   ({userName, chatRoomId, type} ) => {
+//     console.log('welcome ran')
+//     return socket.emit('message', {
+//       chatRoomId,
+//       message: `${type} ${userName}.`,
+//       userId: null,
+//       author: 'systemManager'
+//     })
+//   }
+// )
+//
+// socket.on(
+//   'system-join',
+//   ({ userName, type, chatRoomId }) => {
+//     console.log('join ran')
+//     socket.emit('message', {
+//       chatRoomId,
+//       message: `${userName} has ${type}.`,
+//       userId: null,
+//       author: 'systemManager'
+//     })
+//   }
+// )
+//
+// socket.on('system-leave',
+//   ({ userName, type, chatRoomId }) => {
+//   console.log('leave ran')
+//     socket.emit('message', {
+//       chatRoomId,
+//       message: `${userName} has ${type}.`,
+//       userId: null,
+//       author: 'systemManager'
+//     })
+//   }
+// )

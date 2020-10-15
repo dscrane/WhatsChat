@@ -3,13 +3,12 @@ const Message = require('../models/message')
 
 const router = express.Router();
 
-router.get('/messages/:chatRoomId', async (req, res) => {
+router.get('/messages', async (req, res) => {
   try {
-    console.log(req.params)
-    const messages = await Message.find({chatRoomId: req.params.chatRoomId}).limit(50).sort({createdAt: 1});
-    res.send({ chatId: req.params.chatRoomId, messages: messages });
+    const messages = await Message.find({chatRoomId: req.query.chatRoomId}).limit(50).sort({createdAt: 1});
+    res.send({ chatId: req.query.chatRoomId, messages: messages });
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 })
 

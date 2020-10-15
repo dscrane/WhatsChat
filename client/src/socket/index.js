@@ -1,3 +1,9 @@
 import io from 'socket.io-client';
-// const url = process.env.NODE_ENV !== 'development' ? '' : 'http://localhost:5500'
-export const socket = io();
+let socket;
+if (process.env.NODE_ENV === 'production') {
+  socket = io()
+} else {
+  socket = io('http://localhost:5500');
+}
+
+export { socket };
