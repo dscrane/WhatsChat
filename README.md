@@ -1,7 +1,7 @@
-##WhatsChat
+## WhatsChat
 A WhatsApp clone made using React, Express, Node, Mongo and Redux. 
 
-###Usage
+### Usage
 ***
 **On Heroku**  
 The demo can be found here [dsc-chat-app.herokuapp.com/]()
