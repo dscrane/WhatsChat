@@ -4,7 +4,6 @@ const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
-const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');

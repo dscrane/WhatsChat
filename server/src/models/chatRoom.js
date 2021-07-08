@@ -1,5 +1,4 @@
 require('dotenv').config();
-const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 const chatRoomSchema = new mongoose.Schema(

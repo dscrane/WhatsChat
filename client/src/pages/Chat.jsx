@@ -7,7 +7,6 @@ import { ChatDisplay } from "../components/chats";
 const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
   const [ message, setMessage ] = useState('');
   const [ chatRoomId, setChatRoomId] = useState(computedMatch.params.id)
-  const [ systemMessage, setSystemMessage ] = useState({});
 
   // Initial message fetch for all open chat rooms
   useEffect(() => {
@@ -37,13 +36,14 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
     })
     setMessage('')
   }
+
   return (
     <div className='chatroom__display bg-secondary'>
       <div className='chatroom__container'>
         <div className='chatroom__heading'>
           <h2 className='chatroom__title'>{chatRooms[chatRoomId].name}</h2>
         </div>
-        <ChatDisplay messages={chatRooms[chatRoomId].messages} systemMessage={systemMessage} />
+        <ChatDisplay messages={chatRooms[chatRoomId].messages} />
         <div className='chatroom__input mb-2 mx-auto'>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>

@@ -29,7 +29,7 @@ export const NewChatForm = (props) => {
           </button>
         </div>
         <div className='col-9'>
-          <input onChange={onChange} className={`form-control ${errorStyle}`} type='text' placeholder={'Create Chat Room....'} name='chatForm' required/>
+          <input onChange={onChange} className={`form-control ${errorStyle}`} type='text' placeholder={'Create Chat Room....'} name='chatForm' required />
         </div>
       </div>
     </form>

@@ -99,7 +99,7 @@ socket.on('return-message', returnMsg => {
 })
 /* ----   ****    ---- */
 
-
+// Currently Unused System Actions
 // socket.on(
 //   'system-welcome',
 //   ({userName, chatRoomId, type} ) => {

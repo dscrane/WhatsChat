@@ -2,7 +2,15 @@ const express = require('express');
 const { User } = require('../models/user');
 const authenticate = require('../middleware/authenticate')
 
-const router = new express.Router();
+const router = express.Router();
+
+router.get('/user-id', authenticate, (req, res) => {
+  res.send(req.user)
+})
+
+router.get('/user', authenticate, (req, res) => {
+  res.send({user: req.user})
+})
 
 router.post('/create-user', async (req, res) => {
   const user = new User(req.body);
@@ -26,33 +34,6 @@ router.post('/login-user', async (req, res) => {
   }
 });
 
-router.patch('/user-update', authenticate, async (req, res) => {
-  const updates = Object.keys(req.body);
-  const allowedUpdates = ['name', 'email', 'password'];
-
-  const isValidUpdate = updates.every(update => allowedUpdates.includes(update))
-
-  if (!isValidUpdate) {
-    return res.send({error: 'Invalid Updates'})
-  }
-  console.log(updates)
-  try {
-    updates.forEach(update => req.user[update] = req.body[update])
-    await req.user.save();
-    res.send(req.user)
-  } catch (e) {
-    console.error(e)
-  }
-})
-
-router.get('/user-id', authenticate, (req, res) => {
-  res.send(req.user)
-})
-
-router.get('/user', authenticate, (req, res) => {
-  res.send({user: req.user})
-})
-
 router.post('/user-delete', authenticate, async (req, res) => {
   try {
     await req.user.remove();
@@ -74,5 +55,23 @@ router.post('/logout', authenticate, async (req, res) => {
   }
 })
 
+router.patch('/user-update', authenticate, async (req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ['name', 'email', 'password'];
+
+  const isValidUpdate = updates.every(update => allowedUpdates.includes(update))
+
+  if (!isValidUpdate) {
+    return res.send({error: 'Invalid Updates'})
+  }
+  console.log(updates)
+  try {
+    updates.forEach(update => req.user[update] = req.body[update])
+    await req.user.save();
+    res.send(req.user)
+  } catch (e) {
+    console.error(e)
+  }
+})
 
 module.exports = router;
