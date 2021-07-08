@@ -21,7 +21,7 @@ JWT_SECRET=<yourSecreteKey>
 MONGO_URL=mongodb+srv://account:passwd@***.***.***.mongodb.net/db_count
 ```
 
-###Credits
+### Credits
 - [React](reactjs.org/)
 - [NodeJS](nodejs.dev/)
 - [Socket.io](socket.io/)
