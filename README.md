@@ -1,7 +1,7 @@
-##WhatsChat
+## WhatsChat
 A WhatsApp clone made using React, Express, Node, Mongo and Redux. 
 
-###Usage
+### Usage
 ***
 **On Heroku**  
 The demo can be found here [dsc-chat-app.herokuapp.com/]()
@@ -21,7 +21,7 @@ JWT_SECRET=<yourSecreteKey>
 MONGO_URL=mongodb+srv://account:passwd@***.***.***.mongodb.net/db_count
 ```
 
-###Credits
+### Credits
 - [React](reactjs.org/)
 - [NodeJS](nodejs.dev/)
 - [Socket.io](socket.io/)
