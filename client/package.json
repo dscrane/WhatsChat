@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -r ../../fullstack_prod/server/src/public/* && react-scripts build && mv build/* ../../fullstack_prod/server/src/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
+const helmet = require("helmet");
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoutes');
 const chatRoomRouter = require('./routes/chatRoomRoutes');
@@ -27,8 +28,20 @@ const server = http.createServer(app);
 const io = socketio(server);
 io.origins();
 // Connect middlewares
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: "*",
+      scriptSrc: ["*", "'unsafe-inline'"],
+      imgSrc: [
+        "data:",
+        "https://img.icons8.com/color/48/000000/secured-letter.png",
+      ],
+    },
+  })
+);
 
 // Connect routers
 app.use(userRouter);
@@ -36,11 +49,11 @@ app.use(chatRoomRouter);
 app.use(messageRouter);
 
 // Connect static files
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Create root route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 })
 /* ----   ****    ---- */
 
