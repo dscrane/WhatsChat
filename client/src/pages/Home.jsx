@@ -6,7 +6,6 @@ import { SignupForm, LoginForm } from "../components";
 
 const Home = (props) => {
   const [activeForm, setActiveForm] = useState('signup');
-
   const handleSignup = (formValues) => {
     props.signup(formValues)
   }

@@ -2,7 +2,8 @@ import {
   CHECK_AUTH,
   LOG_IN,
   LOG_OUT,
-  UPDATE_USER
+  UPDATE_USER,
+  SET_CHATROOM
 } from '../types'
 
 // Do not modify
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   _id: null,
   token: null,
+  currentChatRoom: '5f52268b6d59e14df8174254',
   data: {}
 }
 
@@ -37,7 +39,12 @@ export default (state=INITIAL_STATE, action) => {
           ...state.data,
           ...action.payload
         }
-      }
+      };
+    case SET_CHATROOM:
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { setChatRoom } from "../../redux/actions/auth"
 import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
 import { NewChatForm } from '../userForms';
 import { profileIcon } from "../../icons/icons";
 
-const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, closeChat }) => {
+const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, closeChat, setChatRoom }) => {
   const [ newRoomName, setNewRoomName ] = useState('');
   const numChats = Object.keys(chatRooms).length
   useEffect(() => {
@@ -30,6 +31,11 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
     }
   }
 
+  // const renderChatRoom = (chatRoomId) => {
+  //   setChatRoom(chatRoomId);
+  //   history.push(`/chats/${chatRoomId}`);
+  // };
+
   const renderChatData = () => {
     if (chatRooms === {}) {
       return
@@ -42,6 +48,7 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
           </div>
           <div className='col-8'>
           <Link
+            onClick={() => setChatRoom(key)}
             className='chatroom__chatroom'
             to={{
               pathname: `/chats/${key}`
@@ -89,4 +96,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { createChatRoom, displayChatRooms, closeChat })(SidebarChats);
+export default connect(mapStateToProps, { createChatRoom, displayChatRooms, closeChat, setChatRoom })(SidebarChats);

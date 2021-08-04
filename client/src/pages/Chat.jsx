@@ -4,23 +4,24 @@ import { sendMessage, joinChatRoom, leaveChatRoom, fetchMessages, displayChatRoo
 import { checkAuth } from '../redux/actions/auth';
 import { ChatDisplay } from "../components/chats";
 
-const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
+const Chat = ({ chatRooms, auth, sendMessage, joinChatRoom, leaveChatRoom, fetchMessages }) => {
   const [ message, setMessage ] = useState('');
-  const [ chatRoomId, setChatRoomId] = useState(computedMatch.params.id)
+  const [ activeChatRoom, setActiveChatRoom] = useState(auth.currentChatRoom)
 
-  // Initial message fetch for all open chat rooms
-  useEffect(() => {
-    Object.keys(chatRooms).forEach((chatRoom) => {
-      fetchMessages(chatRoom)
-    })
-  }, [])
 
   // Update the current chatRoom
   useEffect(() => {
-    leaveChatRoom(chatRoomId, auth.data.name);
-    joinChatRoom(computedMatch.params.id, auth.data.name)
-    setChatRoomId(computedMatch.params.id)
-  }, [computedMatch.params.id, auth.data.name, chatRoomId, leaveChatRoom, joinChatRoom])
+    leaveChatRoom(activeChatRoom, auth.data.name);
+    joinChatRoom(auth.currentChatRoom, auth.data.name)
+    setActiveChatRoom(auth.currentChatRoom)
+  }, [auth.data.name, activeChatRoom, auth.currentChatRoom, joinChatRoom])
+
+  // fetch messages for current chatroom
+  useEffect(() => {
+    if (chatRooms[activeChatRoom].messages.length < 1) {
+      fetchMessages(activeChatRoom)
+    }
+  }, [activeChatRoom])
 
   const onChange = e => {
     setMessage(e.target.value)
@@ -29,8 +30,8 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
   const onSubmit = e => {
     e.preventDefault();
     sendMessage({
-      chatRoomId,
       message,
+      chatRoomId: auth.currentChatRoom,
       userId: auth._id,
       author: auth.data.username
     })
@@ -41,9 +42,9 @@ const Chat = ({ chatRooms, auth, computedMatch, sendMessage, joinChatRoom, leave
     <div className='chatroom__display bg-secondary'>
       <div className='chatroom__container'>
         <div className='chatroom__heading'>
-          <h2 className='chatroom__title'>{chatRooms[chatRoomId].name}</h2>
+          <h2 className='chatroom__title'>{chatRooms[auth.currentChatRoom].name}</h2>
         </div>
-        <ChatDisplay messages={chatRooms[chatRoomId].messages} />
+        <ChatDisplay messages={chatRooms[activeChatRoom].messages} />
         <div className='chatroom__input mb-2 mx-auto'>
           <form className='w-100' onSubmit={onSubmit}>
             <div className='row '>

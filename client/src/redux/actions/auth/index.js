@@ -4,7 +4,7 @@ import {
   CHECK_AUTH,
   LOG_IN,
   LOG_OUT,
-  UPDATE_USER
+  UPDATE_USER, SET_CHATROOM
 } from '../../types';
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
@@ -36,12 +36,15 @@ export const checkAuth = () => async dispatch => {
      isLoggedIn: true,
      data: response.data
    }
+
   })
+  // history.push(`/chats/5f52268b6d59e14df8174254`);
 }
 /* ----   ****    ---- */
 
 /* ----   LOG_IN ACTION CREATOR    ---- */
 export const login = formValues => async dispatch => {
+  console.log('login ran')
   const defaultChatRoom = '5f52268b6d59e14df8174254';
   const response = await api.post(
     '/login-user',
@@ -105,6 +108,8 @@ export const signup = (formValues) => async (dispatch) => {
     }
     return
   }
+
+  localStorage.setItem('jwt-token', response.data.token);
 
   dispatch({
              type: CHECK_AUTH,
@@ -172,4 +177,13 @@ export const deleteUser = () => async (dispatch, getState) => {
   }
 }
 
+/* ----   ****    ---- */
+
+/* ----   SET_CHATROOM ACTION CREATOR    ---- */
+export const setChatRoom = (currentChatRoom) => async (dispatch) => {
+  dispatch({
+    type: SET_CHATROOM,
+    payload: { currentChatRoom },
+  });
+};
 /* ----   ****    ---- */

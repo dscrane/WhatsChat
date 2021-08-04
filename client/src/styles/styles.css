@@ -207,12 +207,12 @@
         }
 
         .chat__messages-rec {
-          justify-content: start;
+          justify-content: flex-start;
         }
 
         .chat__messages-sent {
           margin-right: 15px;
-          justify-content: end;
+          justify-content: flex-end;
         }
 
         .chat__bubble {

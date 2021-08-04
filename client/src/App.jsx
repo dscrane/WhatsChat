@@ -5,13 +5,12 @@ import history from './history';
 import { checkAuth } from "./redux/actions/auth";
 import { Home, Chat } from './pages';
 import { Sidebar } from './components/sidebar';
-import ProtectedRoute from './ProtectedRoute'
+// import ProtectedRoute from './ProtectedRoute'
 import { displayChatRooms } from "./redux/actions/chat";
 import './styles/bootstrap.min.css';
 import './styles/styles.css'
 
 const App = ({ auth, checkAuth, displayChatRooms }) => {
-  const defaultChatRoom = '5f52268b6d59e14df8174254';
   useEffect(() => {
     if (!auth.token) {
       checkAuth()
@@ -23,12 +22,14 @@ const App = ({ auth, checkAuth, displayChatRooms }) => {
     <div className='wrapper d-flex align-items-stretch'>
       <Router history={history}>
         <>
-          <Sidebar />
+          <Sidebar auth={auth.isLoggedIn} />
           <Switch>
-            <Route path='/' exact>
-              {auth.isLoggedIn ? <Redirect to={`/chats/${defaultChatRoom}`} /> : <Home />}
+            <Route path="/" exact>
+              {auth.isLoggedIn ? <Redirect to={`/chats/${auth.currentChatRoom}`} /> : <Home />}
             </Route>
-            <ProtectedRoute path='/chats/:id' auth={auth.isLoggedIn} component={Chat} />
+            <Route path="/chats">
+              {auth.isLoggedIn ? <Chat /> : <Redirect to="/" />}
+            </Route>
           </Switch>
         </>
       </Router>

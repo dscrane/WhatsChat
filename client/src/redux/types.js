@@ -10,3 +10,4 @@ export const CHECK_AUTH = 'CHECK_AUTH';
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const UPDATE_USER = 'UPDATE_USER';
+export const SET_CHATROOM = 'SET_CHATROOM';

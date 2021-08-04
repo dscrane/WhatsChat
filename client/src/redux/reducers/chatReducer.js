@@ -45,7 +45,6 @@ export default (state = INITIAL_STATE, action) => {
         [action.payload.chatRoomId]: {
           ...state[action.payload.chatRoomId],
           messages: [
-            ...state[action.payload.chatRoomId].messages,
             ...action.payload.messages
           ]
         }
