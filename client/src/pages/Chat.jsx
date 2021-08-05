@@ -39,14 +39,14 @@ const Chat = ({ chatRooms, auth, sendMessage, joinChatRoom, leaveChatRoom, fetch
   }
 
   return (
-    <div className='chatroom__display bg-secondary'>
+    <div className='chatroom__display'>
       <div className='chatroom__container'>
         <div className='chatroom__heading'>
           <h2 className='chatroom__title'>{chatRooms[auth.currentChatRoom].name}</h2>
         </div>
         <ChatDisplay messages={chatRooms[activeChatRoom].messages} />
-        <div className='chatroom__input mb-2 mx-auto'>
-          <form className='w-100' onSubmit={onSubmit}>
+        <div className='chatroom__input mb-2 mx-auto justify-content-center'>
+          <form className='w-75 ' onSubmit={onSubmit}>
             <div className='row '>
               <div className='col-10'>
                 <input
@@ -58,7 +58,7 @@ const Chat = ({ chatRooms, auth, sendMessage, joinChatRoom, leaveChatRoom, fetch
                 />
               </div>
               <div className='col-2'>
-                <button className='btn btn-md btn-outline-secondary '>
+                <button className='chatroom__cta btn btn-md'>
                   Send
                 </button>
               </div>

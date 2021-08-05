@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setChatRoom } from "../../redux/actions/auth"
+import ListGroup from 'react-bootstrap/ListGroup';
+import { setChatRoom } from "../../redux/actions/auth";
 import { createChatRoom, displayChatRooms, closeChat } from "../../redux/actions/chat";
 import { NewChatForm } from '../userForms';
 import { profileIcon } from "../../icons/icons";
@@ -31,52 +32,47 @@ const SidebarChats = ({ auth, chatRooms, displayChatRooms, createChatRoom, close
     }
   }
 
-  // const renderChatRoom = (chatRoomId) => {
-  //   setChatRoom(chatRoomId);
-  //   history.push(`/chats/${chatRoomId}`);
-  // };
-
-  const renderChatData = () => {
+  const renderChatroomList = () => {
     if (chatRooms === {}) {
       return
     }
     return Object.keys(chatRooms).map(key => {
       return (
-        <li key={chatRooms[key]._id} className='chatroom__item'>
-          <div className='chatroom__icon col-2 my-auto text-secondary'>
-            {profileIcon}
-          </div>
-          <div className='col-8'>
+        <ListGroup.Item key={chatRooms[key]._id} className='chatroom__item' >
           <Link
             onClick={() => setChatRoom(key)}
-            className='chatroom__chatroom'
+            className='chatroom__link'
             to={{
               pathname: `/chats/${key}`
             }}
           >
-            <div className='col text-center' >
-              {chatRooms[key].name}
+            <div className='chatroom__icon my-auto'>
+              {profileIcon}
+            </div>
+            <div className='chatroom__name'>
+                <div className='chatroom__link_text col text-center' >
+                  {chatRooms[key].name}
+                </div>
             </div>
           </Link>
-          </div>
           <div className='chatroom__cta-col'>
-            <button onClick={() => handleClose(key)} className='chatroom__cta-close p-0 text-secondary'>
+            <button onClick={() => handleClose(key)} className='chatroom__cta-close p-0'>
               <p className='chatroom__close'>&#128473;</p>
             </button>
           </div>
-        </li>
+        </ListGroup.Item>
       )
     })
   }
 
   const renderChats = () => {
     return (
-      <ul className='chatroom__list list-unstyled'>
-        <li className='chatroom__new'>
+      <ListGroup className='chatroom__list'>
+        <ListGroup.Item className='chatroom__item chatroom__item-new'>
           <NewChatForm handleForm={handleForm} onChange={onChange} newRoomName={newRoomName} />
-        </li>
-        {renderChatData()}
-      </ul>
+        </ListGroup.Item>
+        {renderChatroomList()}
+      </ListGroup>
     )
   }
 

@@ -1,0 +1,20 @@
+:root {
+  --dark-bg: #748386;
+  --dark-bg-6: rgba(170, 181, 183, 0.6);
+  --dark-bg-4: rgba(170, 181, 183, 0.4);
+  --dark-bg-deep: #221d28;
+  --dark-bg-main: #483f54;
+  --dark-accent: #766396;
+  --dark-accent-faded: rgba(118, 99, 150, 0.5);
+  --dark-highlight: #D9B8C4;
+  --dark-highlight-faded: rgba(217, 184, 196, 0.6);
+  --dark-bg-chat-rec: #5a5946;
+  --dark-bg-chat-sent: #36513c;
+  --text-light: #FFFFF0FF;
+  --text-light-faded: #626262;
+  --text-dark: #0b1015;
+  --white: #FFFFFF;
+  --black: #000000;
+
+
+}

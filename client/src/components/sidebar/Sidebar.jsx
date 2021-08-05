@@ -28,7 +28,7 @@ const Sidebar = ({ auth }) => {
         <li
           id={`${icon}-cta`}
           key={icon}
-          className='nav-item'
+          className={`nav__item ${activeIcon === icon ? 'nav__item-active' : ''} nav-item`}
           onClick={(e) => setCurrentIcon(e)}
         >
           <IconButton icon={icon} activeIcon={activeIcon} />
@@ -47,26 +47,20 @@ const Sidebar = ({ auth }) => {
   }
 
   return (
-    <div className='sidebar__content'>
+    <div className='sidebar'>
       <nav className='sidebar__nav'>
+        <ul className='nav__list list-unstyled components py-3 mb-0'>
+          {renderIcons()}
+        </ul>
+      </nav>
+    <div className='sidebar__content'>
         <div className='sidebar__row py-4'>
-          <h2 className='text-white'>WhatsChat</h2>
-        </div>
-        <div className='sidebar__row'>
-          <div className='sidebar__break'></div>
-        </div>
-        <div className='sidebar__row'>
-          <ul className='sidebar__list list-unstyled components py-3 mb-0'>
-            {renderIcons()}
-          </ul>
-        </div>
-        <div className='sidebar__row'>
-          <div className='sidebar__break'></div>
+          <h2 className='sidebar__title'>WhatsChat</h2>
         </div>
         <div className='sidebar__row'>
           {renderSidebarContent()}
         </div>
-      </nav>
+    </div>
     </div>
   )
 }

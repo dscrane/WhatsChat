@@ -15,21 +15,26 @@ export const NewChatForm = (props) => {
 
   return (
     <form className='w-100' onSubmit={handleForm}>
-      <div
-        className='chatroom__form'
-      >
-        <div className='d-flex justify-content-end col-3 mx-auto'>
+      <div className='chatroom__form'>
+        <div className='d-flex justify-content-start mx-auto'>
+            <input
+              onChange={onChange}
+              className={`chatroom__form_input form-control ${errorStyle}`}
+              type='text'
+              placeholder={'Start new chat'}
+              name='chatForm'
+              required
+            />
+        </div>
+        <div className='d-flex justify-content-end'>
           <button
             type='submit'
             className='chatroom__cta-new btn p-0'
           >
-            <div className='chatroom__new-cta text-secondary'>
+            <div className='chatroom__new-cta'>
               {plusIcon}
             </div>
           </button>
-        </div>
-        <div className='col-9'>
-          <input onChange={onChange} className={`form-control ${errorStyle}`} type='text' placeholder={'Create Chat Room....'} name='chatForm' required />
         </div>
       </div>
     </form>

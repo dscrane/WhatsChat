@@ -13,11 +13,11 @@ const IconButton = (props) => {
   }
   return (
     <button
-      className={classNames( 'icon__button',
-        'btn btn-outline-dark p-0',
+      className={classNames( 'nav__icon',
+        'btn p-0',
         {
-          'text-white': props.icon === props.activeIcon,
-          'text-secondary': props.icon !== props.activeIcon
+          'icon__button-active': props.icon === props.activeIcon,
+          '': props.icon !== props.activeIcon
         }
       )}
       disabled={props.icon === props.activeIcon}

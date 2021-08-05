@@ -19,7 +19,7 @@ const App = ({ auth, checkAuth, displayChatRooms }) => {
   }, [auth.token, checkAuth, displayChatRooms])
 
   return (
-    <div className='wrapper d-flex align-items-stretch'>
+    <div className='display wrapper d-flex align-items-stretch'>
       <Router history={history}>
         <>
           <Sidebar auth={auth.isLoggedIn} />
