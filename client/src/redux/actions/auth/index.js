@@ -170,7 +170,7 @@ export const deleteUser = () => async (dispatch, getState) => {
 
   if (response.data.userDeleted) {
     await localStorage.removeItem('jwt-token');
-    dispatch({
+    await dispatch({
      type: LOG_OUT,
     })
     history.push('/')
