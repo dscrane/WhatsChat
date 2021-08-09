@@ -3,7 +3,7 @@ const { ChatRoom } = require('../models/chatRoom')
 
 const router = express.Router();
 
-router.get('/chats', async (req, res) => {
+router.get('/MessagesDisplay', async (req, res) => {
   try {
     const chats = await ChatRoom.find().limit(8);
     res.send({ chats });

@@ -6,7 +6,7 @@
   --dark-bg-main: #483f54;
   --dark-accent: #766396;
   --dark-accent-faded: rgba(118, 99, 150, 0.5);
-  --dark-highlight: #D9B8C4;
+  --dark-highlight: #d2c4e9;
   --dark-highlight-faded: rgba(217, 184, 196, 0.6);
   --dark-bg-chat-rec: #5a5946;
   --dark-bg-chat-sent: #36513c;
@@ -15,6 +15,8 @@
   --text-dark: #0b1015;
   --white: #FFFFFF;
   --black: #000000;
+  --warning-red: #d27676
+
 
 
 }

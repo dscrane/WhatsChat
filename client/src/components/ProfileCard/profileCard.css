@@ -1,0 +1,39 @@
+.profile__card {
+  border: none !important;
+  color: var(--text-light);
+  background-color: transparent !important;
+}
+.profile__avatar {
+  border-radius: .75rem !important;
+  height: 150px;
+  width: 150px !important;
+  margin: 0 auto;
+}
+.profile__body {
+  background-color: transparent !important;
+}
+.profile__row {
+  display: flex;
+  justify-content: space-around;
+  background-color: transparent !important;
+  padding: 1rem;
+}
+.profile__input-placeholder {
+  color: var(--text-light-faded)
+}
+.profile__cta-edit {
+  color: var(--text-light-faded);
+}
+.profile__cta-edit:hover {
+  color: var(--text-light);
+  cursor: pointer;
+}
+.profile__footer {
+  background-color: transparent !important;
+}
+.profile__submit {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
