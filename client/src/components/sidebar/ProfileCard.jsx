@@ -1,12 +1,12 @@
 /* IMPORTS */
 import React, {useState} from 'react';
-import {pencilIcon} from "../../icons/icons";
-import Card from "react-bootstrap/Card";
-import {RenderForm} from "../userForms";
-import _ from "lodash";
-import ListGroup from "react-bootstrap/ListGroup";
-import {Field} from "redux-form";
 import moment from "moment";
+import _ from "lodash";
+import { Field } from "redux-form";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import { pencilIcon } from "../../icons/icons";
+import { RenderForm } from "../userForms";
 /* ------ */
 
 
