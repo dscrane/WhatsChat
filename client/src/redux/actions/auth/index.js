@@ -38,7 +38,7 @@ export const checkAuth = () => async dispatch => {
    }
 
   })
-  // history.push(`/chats/5f52268b6d59e14df8174254`);
+  // history.push(`/MessagesDisplay/5f52268b6d59e14df8174254`);
 }
 /* ----   ****    ---- */
 

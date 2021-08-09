@@ -17,7 +17,7 @@ const Sidebar = ({ auth }) => {
     if (e.currentTarget.id === 'profile-cta') {
       setActiveIcon('profile');
     }
-    if (e.currentTarget.id === 'chats-cta') {
+    if (e.currentTarget.id === 'MessagesDisplay-cta') {
       setActiveIcon('chats');
     }
   }

@@ -34,7 +34,7 @@ export const createChatRoom = (name, userId) => async dispatch => {
 /* ----   DISPLAY_CHATROOMS ACTION CREATOR    ---- */
 export const displayChatRooms = () => async (dispatch, getState) => {
   try {
-    const { data } = await api.get('/chats');
+    const { data } = await api.get('/MessagesDisplay');
     const chatRooms = data.chats.map(chat => {
       const messages = getState().chatRooms.length !== 0 ? getState().chatRooms[chat._id].messages : [];
       return { ...chat, messages: [...messages]}
