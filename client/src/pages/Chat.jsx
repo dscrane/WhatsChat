@@ -3,5 +3,5 @@ import { ChatroomDisplay } from "../components/ChatroomDisplay";
 
 export const Chat = () => <ChatroomDisplay />
 
- 
+
 

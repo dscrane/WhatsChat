@@ -1,5 +1,6 @@
 /* IMPORTS */
 import React from 'react';
+import "./messageBubble.css"
 /* ------ */
 
 
@@ -7,8 +8,8 @@ export const MessageBubble = ({ type, messageKey, timestamp, author, message }) 
   return (
     <li key={messageKey} className={`message message__${type}`}>
       <div className={`message__container message__container-${type}`}>
-        <div className={`message__content px-2 py-1`}>
-          <div className={`message__row message__row-body py-0 mr-1`}>
+        <div className={`message__content`}>
+          <div className={`message__row message__row-body`}>
             <p className='message__text message__text-author' >
               {author}
             </p>
@@ -16,7 +17,7 @@ export const MessageBubble = ({ type, messageKey, timestamp, author, message }) 
               {message}
             </p>
           </div>
-          <div className={`message__row message__row-footer ml-1`}>
+          <div className={`message__row message__row-footer`}>
             <div className='message__timestamp'>
               {timestamp}
             </div>

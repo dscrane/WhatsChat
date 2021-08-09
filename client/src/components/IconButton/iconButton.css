@@ -1,0 +1,8 @@
+.nav__icon {
+  font-size: 30px;
+  line-height: 30px;
+  border: none;
+  color: var(--text-light);
+  background-color: transparent !important;
+
+}

@@ -1,31 +1,27 @@
 /* IMPORTS */
-import React from 'react';
+import React from "react";
+import "./messageInput.css";
 /* ------ */
 
-
-export const MessageInput = ({message, onSubmit, onChange}) => {
+export const MessageInput = ({ message, onSubmit, onChange }) => {
   return (
-    <div className='chatroom__input'>
-      <form className='w-75 ' onSubmit={onSubmit}>
-        <div className='row '>
-          <div className='col-10'>
+    <div className="new-message-container">
+      <form className="new-message__form" onSubmit={onSubmit}>
+        <div className="message-form__row">
+          <div className="message-form__col message-form__col-input">
             <input
-              className='form-control w-100'
-              placeholder='Message...'
-              type='text'
+              className="message-form__input form-control"
+              placeholder="Message..."
+              type="text"
               value={message}
               onChange={onChange}
             />
           </div>
-          <div className='col-2'>
-            <button className='chatroom__cta btn btn-md'>
-              Send
-            </button>
+          <div className="message-form__col message-form__col-cta">
+            <button className="message-form__cta btn">Send</button>
           </div>
         </div>
       </form>
     </div>
   );
 };
-
-
