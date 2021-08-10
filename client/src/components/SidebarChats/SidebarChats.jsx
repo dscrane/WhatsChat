@@ -78,7 +78,7 @@ const SidebarChats = ({
   const chatDisplay = auth.isLoggedIn ? (
     renderChats()
   ) : (
-    <div className="text-white">Log in to see your profile</div>
+    <div className="text-white">Log in to see chatrooms</div>
   );
 
   return <div className="chatroom__list">{chatDisplay}</div>;

@@ -5,7 +5,7 @@ import "./messageInput.css";
 
 export const MessageInput = ({ message, onSubmit, onChange }) => {
   return (
-    <div className="new-message-container">
+    <div className="chatroom__message">
       <form className="new-message__form" onSubmit={onSubmit}>
         <div className="message-form__row">
           <div className="message-form__col message-form__col-input">
@@ -18,7 +18,7 @@ export const MessageInput = ({ message, onSubmit, onChange }) => {
             />
           </div>
           <div className="message-form__col message-form__col-cta">
-            <button className="message-form__cta btn">Send</button>
+            <button className="message-form__cta button">Send</button>
           </div>
         </div>
       </form>

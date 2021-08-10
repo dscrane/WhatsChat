@@ -5,16 +5,18 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.15);
-
 }
 
 .chatroom__container {
-  border: 1px solid var(--dark-bg-deep);
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   border-radius: 10px;
-  background-color: var(--dark-bg-main);
+  background-color: var(--purple-700);
   width: 70%;
   min-width: 675px;
   height: 95%;
   max-height: 98vh;
-  /*opacity: 80%;*/
+  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+
 }

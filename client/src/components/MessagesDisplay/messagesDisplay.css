@@ -2,21 +2,21 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 85%;
+  flex: 20;
 }
 
 .message__display {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0 1rem 0;
+  padding: 1.5rem 2rem 1.5rem 2rem;
   margin: 0;
   width: 95%;
   height: 100%;
   overflow: auto !important;
   scrollbar-width: thin;
-  background-color: var(--dark-accent-faded);
+  background-color: var(--purple-500-faded);
   border-radius: .5rem;
-  box-shadow: inset 0 0 20px 3px rgba(0,0,0,0.6);
+  box-shadow: inset 0 0 5px 3px rgba(0,0,0,0.6);
 }
 
 .message__display-scroll::-webkit-scrollbar {

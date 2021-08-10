@@ -1,7 +1,9 @@
 .sidebar {
   display: flex;
   min-width: 400px;
-  border-right: 1px solid var(--dark-bg-deep);
+  border-right: 1px solid var(--purple-900);
+  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+
 }
 
 .sidebar__nav {
@@ -9,14 +11,14 @@
   flex-direction: column;
   align-content: space-around;
   width: 15%;
-  background-color: var(--dark-bg-deep)  !important;
+  background-color: var(--purple-900)  !important;
 }
 
 .sidebar__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--dark-bg-main);
+  background-color: var(--purple-700);
   width: 100%;
 }
 
@@ -32,7 +34,7 @@
 }
 
 .nav__item-active {
-  background-color: var(--dark-bg-main);
+  background-color: var(--purple-700);
 }
 
 .sidebar__title {

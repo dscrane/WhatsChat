@@ -22,16 +22,16 @@
 }
 
 .sidebar__form_input {
-  border: 1px solid var(--dark-bg-deep) !important;
+  border: .15rem solid var(--purple-900) !important;
   color: var(--text-dark);
-  background-color: var(--dark-highlight) !important;
+  background-color: var(--purple-highlight) !important;
 }
 
 .sidebar__cta-new {
   display: flex;
   align-items: center;
   font-size: 35px;
-  color: var(--dark-accent);
+  color: var(--purple-500);
   padding: 0 !important;
   outline: none;
   background-color: transparent;
@@ -41,6 +41,6 @@
 
 .sidebar__cta-new:hover {
   color: var(--text-light);
-  background-color: var(--dark-accent);
+  background-color: var(--purple-500);
   border-radius: .5rem;
 }

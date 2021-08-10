@@ -24,7 +24,7 @@
 
 .link__icon {
   flex: 1;
-  color: var(--dark-accent);
+  color: var(--purple-500);
   font-size: 40px;
   line-height: 40px;
   margin: auto 0;

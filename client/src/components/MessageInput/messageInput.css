@@ -1,8 +1,8 @@
-.new-message-container {
+.chatroom__message {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10%;
+  flex: 3;
   width: 90%;
   margin: 0 auto;
 }
@@ -13,6 +13,7 @@
 
 .message-form__row {
   display: flex;
+  align-items: center;
 }
 
 .message-form__col-input {
@@ -26,26 +27,26 @@
 .message-form__input {
   width: 100%;
   color: var(--text-dark) !important;
-  background-color: var(--dark-highlight) !important;
-  border: 1px solid var(--dark-bg-deep) !important;
+  background-color: var(--purple-highlight) !important;
+  border: .15rem solid var(--purple-900) !important;
   outline: none !important;
 }
 
 .message-form__input:focus {
-  box-shadow: 0 0 0 .2rem var(--dark-accent-faded) !important;
+  box-shadow: 0 0 0 .2rem var(--purple-500-faded) !important;
 }
 
 .message-form__cta {
-  outline: 1px solid var(--dark-bg-deep);
+  outline: 1px solid var(--purple-900);
   background-color: transparent;
   color: var(--text-light) !important;
-  transition-property: background-color, color, outline;
+  transition-property: background-color, color, border;
   transition-duration: 150ms;
   transition-delay: 50ms;
 }
 
 .message-form__cta:hover {
-  background-color: var(--dark-accent-faded);
-  color: var(--dark-bg-deep) !important;
-  outline: 1px solid var(--dark-bg-deep) !important;
+  background-color: var(--purple-500-faded);
+  color: var(--purple-900) !important;
+  outline: 1px solid var(--purple-900) !important;
 }

@@ -31,30 +31,24 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
   const renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
-      <div
-        className={`row justify-content-between align-items-center ${className}`}
-      >
-        <div className="col-3 text-left p-0">
-          <label className="m-auto font-weight-bold">{label}</label>
+      <div className={`row__content ${className}`}>
+        <div className="content__col content__col-label">
+          <label className="profile__label">{label}</label>
         </div>
-        <div className="col-7">
+        <div className="content__col content__col-input">
           {editing === label ? (
-            <input
-              className="profile__input form-control text-left"
-              {...input}
-            />
+            <input className="profile__input form-control" {...input} />
           ) : (
             <input
-              className="profile__input-placeholder form-control-plaintext text-left"
+              className="profile__input-placeholder form-control-plaintext"
               {...input}
             />
           )}
         </div>
-        <div
-          onClick={() => setEditing(label)}
-          className="profile__cta-edit col-1"
-        >
-          {pencilIcon}
+        <div className="content__col content__col-cta">
+          <div onClick={() => setEditing(label)} className="profile__cta-edit">
+            {pencilIcon}
+          </div>
         </div>
         {renderError(meta)}
       </div>
@@ -81,16 +75,24 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
         >
           <ListGroup className="profile__content" variant="flush">
             <ListGroup.Item className="profile__row">
-              <Field name="name" component={renderInput} label="Name" />
+              <Field name="name" component={renderInput} label="Name:" />
             </ListGroup.Item>
             <ListGroup.Item className="profile__row">
-              <Field name="username" component={renderInput} label="Username" />
+              <Field
+                name="username"
+                component={renderInput}
+                label="Username:"
+              />
             </ListGroup.Item>
             <ListGroup.Item className="profile__row">
-              <Field name="email" component={renderInput} label="Email" />
+              <Field name="email" component={renderInput} label="Email:" />
             </ListGroup.Item>
             <ListGroup.Item className="profile__row">
-              <Field name="password" component={renderInput} label="Password" />
+              <Field
+                name="password"
+                component={renderInput}
+                label="Password:"
+              />
             </ListGroup.Item>
 
             <input type="submit" className="profile__submit" tabIndex="-1" />
@@ -107,14 +109,17 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
             </div>
           </ListGroup.Item>
           <ListGroup.Item className="profile__row">
-            <button onClick={() => logout()} className="btn btn-secondary mt-2">
+            <button
+              onClick={() => logout()}
+              className="profile__cta profile__cta-logout button"
+            >
               Log Out
             </button>
           </ListGroup.Item>
           <ListGroup.Item className="profile__row">
             <button
               onClick={() => setModalDisplay(true)}
-              className="btn btn-danger"
+              className="profile__cta profile__cta-delete button"
               disabled={auth.data._id === "5f637fdd0a41ae691c828e50"}
             >
               Delete Account

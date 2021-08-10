@@ -1,22 +1,54 @@
 :root {
   --dark-bg: #748386;
-  --dark-bg-6: rgba(170, 181, 183, 0.6);
+  --dark-bg-6: hsla(189, 8%, 69%, 0.6);
   --dark-bg-4: rgba(170, 181, 183, 0.4);
-  --dark-bg-deep: #221d28;
-  --dark-bg-main: #483f54;
-  --dark-accent: #766396;
-  --dark-accent-faded: rgba(118, 99, 150, 0.5);
-  --dark-highlight: #d2c4e9;
-  --dark-highlight-faded: rgba(217, 184, 196, 0.6);
-  --dark-bg-chat-rec: #5a5946;
-  --dark-bg-chat-sent: #36513c;
-  --text-light: #FFFFF0FF;
-  --text-light-faded: #626262;
-  --text-dark: #0b1015;
-  --white: #FFFFFF;
-  --black: #000000;
-  --warning-red: #d27676
+  --purple-900: hsl(266, 16%, 15%);
+  --purple-700: hsl(266, 16%, 30%);
+  --purple-500: hsl(266, 16%, 45%);
+  --purple-500-faded: hsla(266, 16%, 49%, 0.5);
+  --purple-highlight: hsl(263, 46%, 84%);
+  --purple-highlight-faded: rgba(217, 184, 196, 0.5);
+  --olive-900: hsl(57, 13%, 20%);
+  --olive-700: hsl(57, 13%, 30%);
+  --green-900: hsl(133, 20%, 18%);
+  --green-700: hsl(133, 20%, 25%);
+  --text-light: hsl(60, 100%, 97%);
+  --text-light-faded: hsl(0, 0%, 38%);
+  --text-dark: hsl(210, 31%, 6%);
+  --white-500: #FFFFFF;
+  --black-500: #000000;
+  --red-500: #d05b5b;
+  --warning-red: hsl(0, 51%, 64%)
 
+}
 
+body {
+  background-color: var(--purple-900);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+}
 
+.display {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+}
+
+.button {
+  padding: .25rem .75rem;
+  color: var(--text-light);
+  font-size: 1rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  outline: 1px solid var(--purple-900);
+  transition-property: background-color, color, outline;
+  transition-duration: 150ms;
+  transition-delay: 50ms;
+}
+
+.button:hover {
+  background-color: var(--purple-500-faded);
+  color: var(--purple-900);
+  outline: 1px solid var(--purple-900);
 }

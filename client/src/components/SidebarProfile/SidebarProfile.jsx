@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { ProfileCard } from "../ProfileCard";
 import { ConfirmationModal } from "../ConfirmationModal";
 import { logout, updateUser, deleteUser } from "../../redux/actions/auth";
+import "./sidebarProfile.css";
 
 const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
   const [modalDisplay, setModalDisplay] = useState(false);
@@ -29,7 +30,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
   );
 
   return (
-    <div className="d-flex flex-column m-3" style={{ width: "90%" }}>
+    <div className="sidebar__profile">
       {profileDisplay}
       <ConfirmationModal
         modalConfig={deleteAccountModalConfig}

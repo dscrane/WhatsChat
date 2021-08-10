@@ -1,10 +1,11 @@
 .chatroom__heading {
-  height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 2;
 }
 
 .chatroom__title {
+  margin: 0;
   color: var(--text-light);
 }

@@ -4,5 +4,6 @@
   border: none;
   color: var(--text-light);
   background-color: transparent !important;
+  outline: none !important;
 
 }
