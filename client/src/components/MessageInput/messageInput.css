@@ -30,6 +30,7 @@
   background-color: var(--purple-highlight) !important;
   border: .15rem solid var(--purple-900) !important;
   outline: none !important;
+  font-min-size: 0;
 }
 
 .message-form__input:focus {
