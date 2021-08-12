@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,9 +49,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.16.3" />
-    <property name="javascript.nodejs.core.library.typings.version" value="12.12.56" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../client" />
+    <property name="javascript.nodejs.core.library.configured.version" value="16.4.0" />
+    <property name="javascript.nodejs.core.library.typings.version" value="16.4.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -82,6 +83,7 @@
       <workItem from="1598965313235" duration="1205000" />
       <workItem from="1599477371255" duration="19569000" />
       <workItem from="1599739292445" duration="4180000" />
+      <workItem from="1628798588648" duration="267000" />
     </task>
     <servers />
   </component>
