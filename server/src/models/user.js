@@ -1,11 +1,10 @@
-require('dotenv').config();
-const crypto = require('crypto');
-const bcrypt = require('bcrypt');
-const Identicon = require('identicon.js')
-const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose');
+import crypto from "crypto";
+import bcrypt from "bcrypt";
+import Identicon from 'identicon.js';
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+export const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -98,7 +97,6 @@ userSchema.statics.findByCredentials = async (username, password) => {
   if (!user) {
     throw new LoginError('The username or password is incorrect')
   }
-  console.log('loginUser', user.name)
 
   const passwordMatch = await bcrypt.compare(password, user.password);
    if (!passwordMatch) {
@@ -118,6 +116,5 @@ userSchema.pre('save', async function (next) {
   next();
 })
 
-const User = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);
 
-module.exports = { User, userSchema };

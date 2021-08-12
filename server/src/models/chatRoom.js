@@ -1,7 +1,6 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const chatRoomSchema = new mongoose.Schema(
+export const chatroomSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -16,5 +15,4 @@ const chatRoomSchema = new mongoose.Schema(
   }
 )
 
-const ChatRoom = mongoose.model('ChatRoom', chatRoomSchema);
-module.exports = { ChatRoom, chatRoomSchema };
+export const Chatroom = mongoose.model('Chatroom', chatroomSchema);

@@ -29,8 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -r ../../fullstack_prod/server/src/public/* && react-scripts build && mv build/* ../../fullstack_prod/server/src/public",
-    "startserver": "npm --prefix ../../fullstack_prod/server run dev",
+    "build": "rm -r ../server/src/public/* && react-scripts build && mv build/* ../server/src/public",
+    "startserver": "npm --prefix ../server run dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

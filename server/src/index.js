@@ -1,96 +1,58 @@
 /* ----   IMPORTS    ---- */
-const http = require('http');
-const path = require('path');
-const express = require('express');
-const socketio = require('socket.io');
-const cors = require('cors');
-const helmet = require("helmet");
-const bodyParser = require('body-parser');
-const userRouter = require('./routes/userRoutes');
-const chatRoomRouter = require('./routes/chatRoomRoutes');
-const messageRouter = require('./routes/messageRoutes')
-const Message = require('./models/message');
+import { createServer } from "http";
+import path from "path";
+import express from "express";
+import { Server } from "socket.io";
+import bodyParser from "body-parser";
+import cors from "cors";
+import { default as userRouter } from "./routes/userRoutes.js";
+import { default as messageRouter } from "./routes/messageRoutes.js";
+import { default as chatroomRouter } from "./routes/chatroomRoutes.js";
+import { socketConfig } from "./config/socket.js";
+import { db } from "./db/db.js";
+import { log } from "./utils/logs.js"
 /* ----   ****    ---- */
 
-/* ----   DEFINE PORT    ---- */
-const PORT = process.env.PORT || 5500;
-/* ----   ****    ---- */
+// Initialize database
+db();
 
-/* ----   INITIALIZE DATABASE    ---- */
-require('./db/db');
-/* ----   ****    ---- */
-
-/* ----   CONFIGURE EXPRESS SERVER    ---- */
 // Initialize the express server and the socketio connection
 const app = express();
-/* ----   CONFIGURE SOCKETIO    ---- */
-const server = http.createServer(app);
-const io = socketio(server);
-io.origins();
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
+
+// Define port
+const PORT = process.env.PORT || 5500;
+
 // Connect middlewares
 app.use(bodyParser.json());
 app.use(cors());
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: "*",
-      scriptSrc: ["*", "'unsafe-inline'"],
-      imgSrc: [
-        "data:",
-        "https://img.icons8.com/color/48/000000/secured-letter.png",
-      ],
-    },
-  })
-);
 
 // Connect routers
 app.use(userRouter);
-app.use(chatRoomRouter);
+app.use(chatroomRouter);
 app.use(messageRouter);
 
 // Connect static files
-app.use(express.static(path.join(__dirname, '/public')));
+const __dirname = path.resolve();
+console.log(__dirname)
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Create root route
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-})
-/* ----   ****    ---- */
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
+// Link up socket config
+socketConfig(io);
 
+// Spin up server
+httpServer.listen(PORT, () => {
+  log.app(`listening on localhost:${PORT}`);
+});
 
-// Create new socketio connection
-io.on('connection', socket => {
-  console.info('new websocket connection', socket.id );
-  // Define join event
-  socket.on('join', ({ room, userName }) => {
-    console.info(`${userName} joining room ${room}`)
-    socket.join(room)
-    socket.emit('system-welcome', { userName: userName, type: 'Welcome', chatRoomId: room })
-    // socket.broadcast.to(room).emit('system-join', { userName: userName, type: 'joined' })
-  })
-  // Define leave event
-  socket.on('leave', ({ room, userName }) => {
-    socket.leave(room, () => {
-      console.info(`${userName} leaving room ${room}`)
-      // io.to(room).emit('system-leave', { userName: userName, type: 'left', chatRoomId: room })
-    })
-  })
-  // Define message event
-  socket.on('message', async (message) => {
-    try {
-      const newMsg = new Message(message)
-      const returnMsg = { _id: newMsg._id,  ...message  }
-      io.sockets.in(message.chatRoomId).emit('return-message', returnMsg)
-      await newMsg.save();
-    } catch (e) {
-      console.log(e)
-    }
-  })
-})
-/* ----   ****    ---- */
-
-/* ----   SPIN UP THE SERVER    ---- */
-server.listen(PORT)
-console.log(`[APP]: listening on ${PORT}`)
-/* ----   ****    ---- */

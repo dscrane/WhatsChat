@@ -1,5 +1,4 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema(
   {
@@ -12,7 +11,7 @@ const messageSchema = new mongoose.Schema(
     author: {
       type: String
     },
-    chatRoomId: {
+    chatroomId: {
       type: String
     },
   },
@@ -21,4 +20,4 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Message', messageSchema)
+export default mongoose.model('Message', messageSchema)

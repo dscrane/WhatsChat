@@ -1,6 +1,5 @@
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
-const { User } = require('../models/user');
+import jwt from 'jsonwebtoken';
+import { User } from '../models/user.js';
 
 const authenticate = async (req, res, next) => {
   try {
@@ -9,7 +8,6 @@ const authenticate = async (req, res, next) => {
       throw new Error();
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log('decoded-token', decoded)
     const user = await User.findOne({
       _id: decoded._id,
       'tokens.token': token
@@ -23,7 +21,6 @@ const authenticate = async (req, res, next) => {
 
     next();
   } catch (e) {
-    console.log(e)
     res.send({message: 'Please authenticate'})
   }
 }
@@ -31,4 +28,4 @@ const authenticate = async (req, res, next) => {
 
 
 
-module.exports = authenticate;
+export { authenticate };
