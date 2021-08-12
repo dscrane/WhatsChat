@@ -24,12 +24,13 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0",
-    "socket.io-client": "^2.3.0",
+    "socket.io-client": "^4.1.3",
     "uuid": "^8.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -r ../../fullstack_prod/server/src/public/* && react-scripts build && mv build/* ../../fullstack_prod/server/src/public",
+    "startserver": "npm --prefix ../../fullstack_prod/server run dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

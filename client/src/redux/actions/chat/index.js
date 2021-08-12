@@ -1,7 +1,6 @@
 import api from "../../../config/api";
-import { store } from "../../../config/store";
 import history from "../../../config/history";
-import { socket } from "../../../socket";
+import { socket } from "../../../config/socket";
 import {
   DISPLAY_CHATROOMS,
   NEW_MESSAGE,
@@ -9,6 +8,7 @@ import {
   CLOSE_CHAT,
   ADD_CHATROOM,
 } from "../../types";
+import {log} from "../../../utils/log";
 
 /* ----   ADD_CHATROOM ACTION CREATOR    ---- */
 export const createChatRoom = (name, userId) => async (dispatch) => {
@@ -42,7 +42,6 @@ export const displayChatRooms = () => async (dispatch, getState) => {
           : [];
       return { ...chat, messages: [...messages] };
     });
-    console.log("chatRooms", chatRooms);
     dispatch({
       type: DISPLAY_CHATROOMS,
       payload: { ...chatRooms },
@@ -55,9 +54,9 @@ export const displayChatRooms = () => async (dispatch, getState) => {
 
 /* ----   JOIN_CHATROOM ACTION CREATOR    ---- */
 export const joinChatRoom = (chatRoomId, userName) => async (dispatch) => {
-  socket.emit("join", { room: chatRoomId, userName: userName }, (room) => {
-    console.info(`connected to ${room}`);
-  });
+  socket.data = userName
+  socket.emit("join", { room: chatRoomId, userName: userName }, (ack) => log.ack(ack))
+
 };
 /* ----   ****    ---- */
 
@@ -98,16 +97,13 @@ export const sendMessage =
     socket.emit("message", { chatRoomId, message, userId, author });
   };
 
-const dispatchMessage = (messageType, message) => {
-  return {
-    type: messageType,
+export const receiveMessage = (message) => (dispatch) => {
+  dispatch({
+    type: NEW_MESSAGE,
     payload: { chatRoomId: message.chatRoomId, message: message },
-  };
+  });
 };
 
-socket.on("return-message", (returnMsg) => {
-  store.dispatch(dispatchMessage(NEW_MESSAGE, returnMsg));
-});
 /* ----   ****    ---- */
 
 // Currently Unused System Actions

@@ -28,7 +28,6 @@ const ChatroomDisplay = ({
 
   // Update the current chatRoom
   useEffect(() => {
-    console.log(auth.data.name);
     leaveChatRoom(activeChatRoom, auth.data.name);
     joinChatRoom(auth.currentChatRoom, auth.data.name);
     setActiveChatRoom(auth.currentChatRoom);
