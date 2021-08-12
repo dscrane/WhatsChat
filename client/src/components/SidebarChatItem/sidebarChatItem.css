@@ -49,9 +49,9 @@
   outline: none;
   border: none;
   font-size: 20px;
-  color: var(--text-light-faded);
+  color: var(--text-light-50) !important;
 }
 
 .item__cta:hover {
-  color: var(--warning-red);
+  color: var(--purple-900) !important;
 }

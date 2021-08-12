@@ -1,0 +1,21 @@
+.dropdown__item {
+  color: var(--text-light-75) !important;
+  margin: .2rem 0 !important;
+}
+
+.dropdown__item:hover {
+  background-color: var(--purple-500-faded) !important;
+  color: var(--text-light) !important;
+
+}
+
+.dropdown__content {
+  padding: .1rem 0 !important;
+  background-color: var(--purple-900) !important;
+}
+
+.dropdown__divider {
+  background-color: var(--dark-bg-4) !important;
+  border-color: var(--dark-bg-4) !important;
+  margin: .2rem 0 !important;
+}

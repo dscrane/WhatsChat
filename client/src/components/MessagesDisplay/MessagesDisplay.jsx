@@ -11,18 +11,18 @@ const MessagesDisplay = ({ messages, auth }) => {
   const renderMessages = () => {
     const messageKeysArray = Object.keys(messages);
     return messageKeysArray.map((messageKey) => {
-      const timestamp = formatTimestamp(messages[messageKey].createdAt);
-      if (messages[messageKey].author === "systemManager") {
+      if (messages[messageKey].author === "system") {
         return (
+          // <span>{messages[messageKey].message}</span>
           <MessageBubble
             key={messageKey}
             type="system"
-            timestamp={timestamp}
             author={messages[messageKey].author}
             message={messages[messageKey].message}
           />
         );
       } else {
+        const timestamp = formatTimestamp(messages[messageKey].createdAt);
         return (
           <MessageBubble
             key={messageKey}

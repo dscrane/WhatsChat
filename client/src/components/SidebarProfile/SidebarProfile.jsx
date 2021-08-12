@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { ProfileCard } from "../ProfileCard";
 import { ConfirmationModal } from "../ConfirmationModal";
-import { logout, updateUser, deleteUser } from "../../redux/actions/auth";
+import {
+  logout,
+  updateUser,
+  deleteUser,
+} from "../../redux/actions/authActions";
 import "./sidebarProfile.css";
 
 const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {

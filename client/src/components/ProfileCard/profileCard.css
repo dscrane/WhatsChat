@@ -36,7 +36,7 @@
 }
 .content__col-input {
   flex: 7;
-  color: var(--text-light-faded);
+  color: var(--text-light-50);
 }
 .content__col-cta {
   flex: 1;
@@ -47,11 +47,11 @@
   font-weight: 300;
 }
 .profile__input-placeholder {
-  color: var(--text-light-faded) !important;
+  color: var(--text-light-50) !important;
   text-align: center !important;
 }
 .profile__cta-edit {
-  color: var(--text-light-faded);
+  color: var(--text-light-50);
 }
 .profile__cta-edit:hover {
   color: var(--text-light);
@@ -83,6 +83,6 @@
 }
 .profile__cta-delete:disabled,
 .profile__cta-delete:hover {
-  color: var(--text-light-faded) !important;
+  color: var(--text-light-50) !important;
   background-color: var(--warning-red) !important;
 }

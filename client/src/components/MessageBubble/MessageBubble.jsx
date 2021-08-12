@@ -11,9 +11,9 @@ export const MessageBubble = ({ type, messageKey, timestamp, author, message }) 
         <div className={`message__content`}>
           <div className={`message__row message__row-body`}>
             <p className='message__text message__text-author' >
-              {author}
+              {author !== "system" ? author : null}
             </p>
-            <p className='message__text message__text-message'>
+            <p className={`message__text ${author !== "system" ? "message__text-message" : "message__text-system"}`}>
               {message}
             </p>
           </div>

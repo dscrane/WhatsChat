@@ -13,7 +13,8 @@
   --green-900: hsl(133, 20%, 18%);
   --green-700: hsl(133, 20%, 25%);
   --text-light: hsl(60, 100%, 97%);
-  --text-light-faded: hsl(0, 0%, 38%);
+  --text-light-75: hsl(0, 0%, 65%);
+  --text-light-50: hsl(0, 0%, 38%);
   --text-dark: hsl(210, 31%, 6%);
   --white-500: #FFFFFF;
   --black-500: #000000;

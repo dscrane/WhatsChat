@@ -2,20 +2,20 @@ import React, { useEffect } from "react";
 import { Redirect, Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import history from "./config/history";
-import { checkAuth } from "./redux/actions/auth";
+import { checkAuth } from "./redux/actions/authActions";
 import { Home, Chat } from "./pages";
 import { Sidebar } from "./components/Sidebar";
-import { displayChatRooms } from "./redux/actions/chat";
+import { displayChatrooms } from "./redux/actions/chatActions";
 import "./styles/bootstrap.min.css";
 import "./styles/root.css";
 
-const App = ({ auth, checkAuth, displayChatRooms }) => {
+const App = ({ auth, checkAuth, displayChatrooms }) => {
   useEffect(() => {
     if (!auth.token) {
       checkAuth();
-      displayChatRooms();
+      displayChatrooms();
     }
-  }, [auth.token, checkAuth, displayChatRooms]);
+  }, [auth.token, checkAuth, displayChatrooms]);
 
   return (
     <div className="display wrapper">
@@ -25,7 +25,7 @@ const App = ({ auth, checkAuth, displayChatRooms }) => {
           <Switch>
             <Route path="/" exact>
               {auth.isLoggedIn ? (
-                <Redirect to={`/chats/${auth.currentChatRoom}`} />
+                <Redirect to={`/chats/${auth.currentChatroom}`} />
               ) : (
                 <Home />
               )}
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { checkAuth, displayChatRooms })(App);
+export default connect(mapStateToProps, { checkAuth, displayChatrooms })(App);

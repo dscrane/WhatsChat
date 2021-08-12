@@ -13,6 +13,10 @@
   justify-content: flex-end;
 }
 
+.message__system {
+  justify-content: center;
+}
+
 .message__container {
   border-radius: 10px;
   max-width: 45%;
@@ -28,7 +32,13 @@
 .message__container-rec {
   background-color: var(--olive-700);
   border: 1px solid var(--olive-900);
+}
 
+.message__container-system {
+  background-color: transparent;
+  color: /*var(--text-light-50) !important*/ red ;
+  border: none;
+  box-shadow: none;
 }
 
 .message__content {

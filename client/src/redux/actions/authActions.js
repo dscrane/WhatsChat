@@ -1,12 +1,12 @@
-import api from "../../../config/api";
-import history from "../../../config/history";
+import api from "../../config/api";
+import history from "../../config/history";
 import {
   CHECK_AUTH,
   LOG_IN,
   LOG_OUT,
   UPDATE_USER,
   SET_CHATROOM,
-} from "../../types";
+} from "../types";
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
 export const checkAuth = () => async (dispatch) => {
@@ -42,7 +42,7 @@ export const checkAuth = () => async (dispatch) => {
 /* ----   LOG_IN ACTION CREATOR    ---- */
 export const login = (formValues) => async (dispatch) => {
   console.log("login ran");
-  const defaultChatRoom = "5f52268b6d59e14df8174254";
+  const defaultChatroom = "5f52268b6d59e14df8174254";
   const response = await api.post("/login-user", { ...formValues });
 
   if (response.data.error) {
@@ -63,7 +63,7 @@ export const login = (formValues) => async (dispatch) => {
     },
   });
 
-  history.push(`/chats/${defaultChatRoom}`);
+  history.push(`/chats/${defaultChatroom}`);
 };
 /* ----   ****    ---- */
 
@@ -92,7 +92,7 @@ export const logout = () => async (dispatch, getState) => {
 
 /* ----   SIGN_UP ACTION CREATOR    ---- */
 export const signup = (formValues) => async (dispatch) => {
-  const defaultChatRoom = "5f52268b6d59e14df8174254";
+  const defaultChatroom = "5f52268b6d59e14df8174254";
   const response = await api.post("/create-user", { ...formValues });
   console.log(response);
   if (response.data.error) {
@@ -117,7 +117,7 @@ export const signup = (formValues) => async (dispatch) => {
     },
   });
 
-  history.push(`/chats/${defaultChatRoom}`);
+  history.push(`/chats/${defaultChatroom}`);
 };
 /* ----   ****    ---- */
 
@@ -177,10 +177,17 @@ export const deleteUser = () => async (dispatch, getState) => {
 /* ----   ****    ---- */
 
 /* ----   SET_CHATROOM ACTION CREATOR    ---- */
-export const setChatRoom = (currentChatRoom) => async (dispatch) => {
+export const setChatroom = (currentChatroom) => async (dispatch) => {
   dispatch({
     type: SET_CHATROOM,
-    payload: { currentChatRoom },
+    payload: { currentChatroom },
   });
 };
 /* ----   ****    ---- */
+
+export const setSocket = (socket) => (dispatch) => {
+  dispatch({
+    type: "SET_SOCKET",
+    payload: socket,
+  });
+};

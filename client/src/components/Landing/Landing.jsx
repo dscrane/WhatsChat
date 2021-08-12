@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
-import { login, signup } from "../../redux/actions/auth";
+import { login, signup, setSocket } from "../../redux/actions/authActions";
 import { LoginForm } from "../LoginForm";
 import { SignupForm } from "../SignupForm";
 import "./landing.css";
+import { io } from "socket.io-client";
 
 const Landing = (props) => {
   const [activeForm, setActiveForm] = useState("signup");
@@ -12,8 +13,13 @@ const Landing = (props) => {
     props.signup(formValues);
   };
 
-  const handleLogin = (formValues) => {
+  const handleLogin = async (formValues) => {
     props.login(formValues);
+    const socket =
+      process.env.NODE_ENV === "production"
+        ? io()
+        : io("http://localhost:5500");
+    await setSocket(socket);
   };
 
   const updateCurrentForm = () => {
@@ -71,4 +77,4 @@ const Landing = (props) => {
   );
 };
 
-export default connect(null, { signup, login })(Landing);
+export default connect(null, { signup, login, setSocket })(Landing);

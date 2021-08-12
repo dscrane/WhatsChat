@@ -1,60 +1,74 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import ListGroup from "react-bootstrap/ListGroup";
-import { setChatRoom } from "../../redux/actions/auth";
+import { setChatroom } from "../../redux/actions/authActions";
 import {
-  createChatRoom,
-  displayChatRooms,
-  closeChat,
-} from "../../redux/actions/chat";
+  createChatroom,
+  displayChatrooms,
+  closeChatroom,
+} from "../../redux/actions/chatActions";
+import {
+  joinChatroomEmitter,
+  leaveChatroomEmitter,
+  deleteChatroomEmitter,
+} from "../../socket.io/emitters";
 import { SidebarForm } from "../SidebarForm";
 import { SidebarChatItem } from "../SidebarChatItem";
 import "./SidebarChats.css";
 
 const SidebarChats = ({
   auth,
-  chatRooms,
-  displayChatRooms,
-  createChatRoom,
-  closeChat,
-  setChatRoom,
+  chatrooms,
+  displayChatrooms,
+  createChatroom,
+  closeChatroom,
+  setChatroom,
 }) => {
   const [newRoomName, setNewRoomName] = useState("");
-  const numChats = Object.keys(chatRooms).length;
+  const numChats = Object.keys(chatrooms).length;
   useEffect(() => {
     if (auth.token) {
-      displayChatRooms();
+      displayChatrooms();
     }
-  }, [numChats, auth.token, displayChatRooms]);
+  }, [numChats, auth.token, displayChatrooms, closeChatroom]);
 
   const onChange = (e) => {
     setNewRoomName(e.target.value);
   };
 
   const handleClose = (key) => {
-    closeChat(key);
+    closeChatroom(key);
+  };
+  const handleLeave = (key) => {
+    leaveChatroomEmitter(key);
+  };
+  const handleDelete = (key) => {
+    deleteChatroomEmitter(key);
   };
 
   const handleForm = (e) => {
     e.preventDefault();
     if (newRoomName.length >= 5) {
-      createChatRoom(newRoomName, auth._id);
+      createChatroom(newRoomName, auth._id);
       setNewRoomName("");
     }
   };
 
   const renderChatroomList = () => {
-    if (chatRooms === {}) {
+    if (chatrooms === {}) {
       return;
     }
-    return Object.keys(chatRooms).map((key) => {
+    return Object.keys(chatrooms).map((key) => {
       return (
         <SidebarChatItem
-          key={chatRooms[key]._id}
-          chatRoomId={chatRooms[key]._id}
-          chatRoomName={chatRooms[key].name}
-          setChatRoom={setChatRoom}
+          key={chatrooms[key]._id}
+          auth={auth}
+          chatroom={chatrooms[key]}
+          setChatroom={setChatroom}
+          joinChatroom={joinChatroomEmitter}
           handleClose={handleClose}
+          handleLeave={handleLeave}
+          handleDelete={handleDelete}
         />
       );
     });
@@ -87,13 +101,13 @@ const SidebarChats = ({
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    chatRooms: state.chatRooms,
+    chatrooms: state.chatrooms,
   };
 };
 
 export default connect(mapStateToProps, {
-  createChatRoom,
-  displayChatRooms,
-  closeChat,
-  setChatRoom,
+  createChatroom,
+  displayChatrooms,
+  closeChatroom,
+  setChatroom,
 })(SidebarChats);
