@@ -14,6 +14,8 @@ export const SidebarChatItem = ({
   joinChatroom,
   auth,
   handleClose,
+  handleLeave,
+  handleDelete,
 }) => {
   const handleClick = async () => {
     setChatroom(chatroom._id);
@@ -38,8 +40,10 @@ export const SidebarChatItem = ({
 
       <div className="item__col item__col-cta">
         <SidebarContextMenu
-          handleClose={handleClose}
           chatroomId={chatroom._id}
+          handleClose={handleClose}
+          handleLeave={handleLeave}
+          handleDelete={handleDelete}
         />
       </div>
     </ListGroup.Item>

@@ -41,11 +41,11 @@ app.use(messageRouter);
 // Connect static files
 const __dirname = path.resolve();
 console.log(__dirname)
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "/src/public")));
 
 // Create root route
 app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "/src/public/index.html"));
 });
 
 // Link up socket config

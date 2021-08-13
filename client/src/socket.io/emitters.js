@@ -2,19 +2,20 @@
 import { log } from "../utils/log";
 
 export const joinChatroomEmitter = (chatroomId, userName, socket) => {
-  socket.emit("join", chatroomId, userName, (ack) => log.ack(ack));
+  console.log("hit");
+  socket.emit("join-chatroom", chatroomId, userName, (ack) => log.ack(ack));
 };
 /* ----   ****    ---- */
 
 /* ----   LEAVE_CHATROOM ACTION CREATOR    ---- */
 export const leaveChatroomEmitter = (chatroomId, userName, socket) => {
-  socket.emit("leave", chatroomId, userName, (ack) => log.ack(ack));
+  socket.emit("leave-chatroom", chatroomId, userName, (ack) => log.ack(ack));
 };
 /* ----   ****    ---- */
 
 /* ----   DELETE_CHATROOM ACTION CREATOR    ---- */
 export const deleteChatroomEmitter = (chatroomId, userName, socket) => {
-  socket.emit("delete", chatroomId, userName, (ack) => log.ack(ack));
+  socket.emit("delete-chatroom", chatroomId, userName, (ack) => log.ack(ack));
 };
 /* ----   ****    ---- */
 

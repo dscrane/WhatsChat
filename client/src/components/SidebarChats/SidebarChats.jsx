@@ -36,14 +36,14 @@ const SidebarChats = ({
     setNewRoomName(e.target.value);
   };
 
-  const handleClose = (key) => {
-    closeChatroom(key);
+  const handleClose = (chatroomId) => {
+    closeChatroom(chatroomId);
   };
-  const handleLeave = (key) => {
-    leaveChatroomEmitter(key);
+  const handleLeave = (chatroomId) => {
+    leaveChatroomEmitter(chatroomId, auth.data.name, auth.socket);
   };
-  const handleDelete = (key) => {
-    deleteChatroomEmitter(key);
+  const handleDelete = (chatroomId) => {
+    deleteChatroomEmitter(chatroomId, auth.data.name, auth.socket);
   };
 
   const handleForm = (e) => {

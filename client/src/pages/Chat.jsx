@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { io } from "socket.io-client";
 import { ChatroomDisplay } from "../components/ChatroomDisplay";
+import { joinChatroomEmitter } from "../socket.io/emitters";
 import { setSocket } from "../redux/actions/authActions";
 import {
   renderNewMessage,
   renderMessages,
   closeChatroom,
 } from "../redux/actions/chatActions";
-import { joinChatroomEmitter } from "../socket.io/emitters";
 import { log } from "../utils/log";
 
 const Chat = ({
@@ -28,25 +28,22 @@ const Chat = ({
       return;
     }
 
-    auth.socket.on("connect", () =>
-      joinChatroomEmitter(auth.currentChatroom, auth.data.name, auth.socket)
-    );
-
+    auth.socket.on("connect", () => {
+      joinChatroomEmitter(auth.currentChatroom, auth.data.name, auth.socket);
+    });
     auth.socket.on("chatroom-left", (chatroomId) => {
       closeChatroom(chatroomId);
     });
-
     auth.socket.on("chatroom-deleted", (chatroomId) => {
       closeChatroom(chatroomId);
     });
-
-    auth.socket.on("fetched-messages", (chatroomId, messages) =>
-      renderMessages(chatroomId, messages)
-    );
-
-    auth.socket.on("return-message", (chatroomId, message) =>
-      renderNewMessage(chatroomId, message)
-    );
+    auth.socket.on("fetched-messages", (chatroomId, messages) => {
+      renderMessages(chatroomId, messages);
+    });
+    auth.socket.on("return-message", (chatroomId, message) => {
+      renderNewMessage(chatroomId, message);
+    });
+    auth.socket.on("return-system-message", (chatroomId, message) => {});
   }, [
     auth.socket,
     auth.currentChatroom,
@@ -54,6 +51,7 @@ const Chat = ({
     setSocket,
     renderMessages,
     renderNewMessage,
+    closeChatroom,
   ]);
 
   return <ChatroomDisplay />;

@@ -70,6 +70,13 @@ export const renderMessages = (chatroomId, messages) => (dispatch) => {
 /* ----   ****    ---- */
 
 export const renderNewMessage = (chatroomId, message) => (dispatch) => {
+  if (message.type) {
+    dispatch({
+      type: "RENDER_NEW_SYSTEM_MESSAGE",
+      payload: { chatroomId, message },
+    });
+  }
+
   dispatch({
     type: RENDER_NEW_MESSAGE,
     payload: { chatroomId, message },

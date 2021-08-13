@@ -8,10 +8,10 @@
   --purple-500-faded: hsla(266, 16%, 49%, 0.5);
   --purple-highlight: hsl(263, 46%, 84%);
   --purple-highlight-faded: rgba(217, 184, 196, 0.5);
-  --olive-900: hsl(57, 13%, 20%);
-  --olive-700: hsl(57, 13%, 30%);
-  --green-900: hsl(133, 20%, 18%);
-  --green-700: hsl(133, 20%, 25%);
+  --olive-900: hsl(59, 15%, 35%);
+  --olive-700: hsl(59, 29%, 35%);
+  --green-900: hsl(126, 16%, 34%);
+  --green-700: hsl(126, 41%, 34%);
   --text-light: hsl(60, 100%, 97%);
   --text-light-75: hsl(0, 0%, 65%);
   --text-light-50: hsl(0, 0%, 38%);
