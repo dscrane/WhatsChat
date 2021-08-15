@@ -6,6 +6,7 @@ import {
   LOG_OUT,
   UPDATE_USER,
   SET_CHATROOM,
+  SET_SOCKET,
 } from "../types";
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */
@@ -42,7 +43,7 @@ export const checkAuth = () => async (dispatch) => {
 /* ----   LOG_IN ACTION CREATOR    ---- */
 export const login = (formValues) => async (dispatch) => {
   console.log("login ran");
-  const defaultChatroom = "5f52268b6d59e14df8174254";
+  const defaultChatroom = "Buddies";
   const response = await api.post("/login-user", { ...formValues });
 
   if (response.data.error) {
@@ -187,7 +188,7 @@ export const setChatroom = (currentChatroom) => async (dispatch) => {
 
 export const setSocket = (socket) => (dispatch) => {
   dispatch({
-    type: "SET_SOCKET",
+    type: SET_SOCKET,
     payload: socket,
   });
 };

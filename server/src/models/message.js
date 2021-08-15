@@ -11,7 +11,7 @@ const messageSchema = new mongoose.Schema(
     author: {
       type: String
     },
-    chatroomId: {
+    chatroomName: {
       type: String
     },
   },

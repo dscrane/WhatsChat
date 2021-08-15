@@ -1,6 +1,6 @@
 import { log } from "../utils/logs.js";
 
-export const joinChatroom = async (
+export const rejoinChatroom = async (
   socket,
   newChatroomName,
   oldChatroomName,
@@ -17,9 +17,5 @@ export const joinChatroom = async (
   //   chatroomName: newChatroomName,
   // };
   // await socket.emit("system-message", newChatroomName, { ...joinedMessage });
-  cb(`%cjoin-room %c${newChatroomName} %ccomplete`);
-
-  await socket.emit("fetch-messages", newChatroomName);
-
-  // socket.broadcast.emit("return-message", newChatroomName, { ...joiningMessage })
+  cb(`%crejoin-room %c${newChatroomName} %ccomplete`);
 };

@@ -2,17 +2,20 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { io } from "socket.io-client";
 import { ChatroomDisplay } from "../components/ChatroomDisplay";
-import { joinChatroomEmitter } from "../socket.io/emitters";
+import {
+  joinChatroomEmitter,
+  fetchMessagesEmitter,
+} from "../socket.io/emitters";
 import { setSocket } from "../redux/actions/authActions";
 import {
   renderNewMessage,
   renderMessages,
   closeChatroom,
 } from "../redux/actions/chatActions";
-import { log } from "../utils/log";
 
 const Chat = ({
   auth,
+  chatrooms,
   renderNewMessage,
   renderMessages,
   closeChatroom,
@@ -27,38 +30,41 @@ const Chat = ({
       setSocket(socket);
       return;
     }
-
-    auth.socket.on("connect", () => {
-      joinChatroomEmitter(auth.currentChatroom, auth.data.name, auth.socket);
+    auth.socket.on("connect", async () => {
+      await joinChatroomEmitter(
+        auth.currentChatroom,
+        null,
+        auth.data.name,
+        auth.socket
+      );
     });
-    auth.socket.on("chatroom-left", (chatroomId) => {
-      closeChatroom(chatroomId);
+    auth.socket.on("fetch-messages", (chatroomName) => {
+      fetchMessagesEmitter(chatroomName, auth.socket);
     });
-    auth.socket.on("chatroom-deleted", (chatroomId) => {
-      closeChatroom(chatroomId);
+    auth.socket.on("chatroom-left", async (chatroomName) => {
+      await closeChatroom(chatroomName);
     });
-    auth.socket.on("fetched-messages", (chatroomId, messages) => {
-      renderMessages(chatroomId, messages);
+    auth.socket.on("chatroom-deleted", async (chatroomName) => {
+      await closeChatroom(chatroomName);
     });
-    auth.socket.on("return-message", (chatroomId, message) => {
-      renderNewMessage(chatroomId, message);
+    auth.socket.on("fetched-messages", async (chatroomName, messages) => {
+      await renderMessages(chatroomName, messages);
     });
-    auth.socket.on("return-system-message", (chatroomId, message) => {});
-  }, [
-    auth.socket,
-    auth.currentChatroom,
-    auth.data.name,
-    setSocket,
-    renderMessages,
-    renderNewMessage,
-    closeChatroom,
-  ]);
+    // auth.socket.on("system-message", async (chatroomName, message) => {
+    //   await renderNewMessage(chatroomName, message);
+    // });
+    auth.socket.on("return-message", async (chatroomName, message) => {
+      await renderNewMessage(chatroomName, message);
+    });
+    auth.socket.on("return-system-message", (chatroomName, message) => {});
+  }, [auth.socket, setSocket, renderMessages, renderNewMessage, closeChatroom]);
 
   return <ChatroomDisplay />;
 };
 
 const mapsStateToProps = (state) => ({
   auth: state.auth,
+  chatrooms: state.chatrooms,
 });
 
 export default connect(mapsStateToProps, {

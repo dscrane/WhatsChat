@@ -20,7 +20,7 @@ const ChatroomDisplay = ({ chatrooms, auth }) => {
     sendMessageEmitter(
       {
         message,
-        chatroomId: auth.currentChatroom,
+        chatroomName: auth.currentChatroom,
         userId: auth._id,
         author: auth.data.username,
       },

@@ -11,15 +11,31 @@ import "./sidebarChatItem.css";
 export const SidebarChatItem = ({
   chatroom,
   setChatroom,
-  joinChatroom,
+  joinChatroomEmitter,
+  rejoinChatroomEmitter,
   auth,
   handleClose,
   handleLeave,
   handleDelete,
 }) => {
   const handleClick = async () => {
-    setChatroom(chatroom._id);
-    joinChatroom(chatroom._id, auth.data.name, auth.socket);
+    setChatroom(chatroom.name);
+    console.log("chatroommessages again", chatroom.messages.length);
+    if (chatroom.messages.length !== 0) {
+      rejoinChatroomEmitter(
+        chatroom.name,
+        auth.currentChatroom,
+        auth.data.name,
+        auth.socket
+      );
+    } else {
+      joinChatroomEmitter(
+        chatroom.name,
+        auth.currentChatroom,
+        auth.data.name,
+        auth.socket
+      );
+    }
   };
   return (
     <ListGroup.Item className="list__item">
@@ -30,6 +46,7 @@ export const SidebarChatItem = ({
           to={{
             pathname: `/chats/${chatroom._id}`,
           }}
+          disabled={chatroom.name === auth.currentChatroom}
         >
           <div className="link__icon">{profileIcon}</div>
           <div className="link__name">

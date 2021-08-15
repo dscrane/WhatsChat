@@ -35,11 +35,11 @@ export const displayChatrooms = () => async (dispatch, getState) => {
   try {
     const { data } = await api.get("/MessagesDisplay");
     const chatrooms = data.chats.map((chat) => {
-      const messages =
-        getState().chatrooms.length !== 0
-          ? getState().chatrooms[chat._id].messages
-          : [];
-      return { ...chat, messages: [...messages] };
+      // const messages =
+      //   getState().chatrooms.length !== 0
+      //     ? getState().chatrooms[chat.name].messages
+      //     : [];
+      return { ...chat, messages: [] };
     });
     dispatch({
       type: DISPLAY_CHATROOMS,
@@ -51,8 +51,8 @@ export const displayChatrooms = () => async (dispatch, getState) => {
 };
 /* ----   ****    ---- */
 /* ----   CLOSE_CHATROOM ACTION CREATOR    ---- */
-export const closeChatroom = (chatroomId) => (dispatch, getState) => {
-  const chatrooms = _.omit(getState().chatrooms, [chatroomId]);
+export const closeChatroom = (chatroomName) => (dispatch, getState) => {
+  const chatrooms = _.omit(getState().chatrooms, [chatroomName]);
   dispatch({
     type: DISPLAY_CHATROOMS,
     payload: { ...chatrooms },
@@ -61,25 +61,18 @@ export const closeChatroom = (chatroomId) => (dispatch, getState) => {
 /* ----   ****    ---- */
 
 /* ----   FETCH_MESSAGES ACTION CREATOR    ---- */
-export const renderMessages = (chatroomId, messages) => (dispatch) => {
-  dispatch({
+export const renderMessages = (chatroomName, messages) => async (dispatch) => {
+  await dispatch({
     type: RENDER_MESSAGES,
-    payload: { chatroomId, messages },
+    payload: { chatroomName, messages },
   });
 };
 /* ----   ****    ---- */
 
-export const renderNewMessage = (chatroomId, message) => (dispatch) => {
-  if (message.type) {
-    dispatch({
-      type: "RENDER_NEW_SYSTEM_MESSAGE",
-      payload: { chatroomId, message },
-    });
-  }
-
-  dispatch({
+export const renderNewMessage = (chatroomName, message) => async (dispatch) => {
+  await dispatch({
     type: RENDER_NEW_MESSAGE,
-    payload: { chatroomId, message },
+    payload: { chatroomName, message },
   });
 };
 

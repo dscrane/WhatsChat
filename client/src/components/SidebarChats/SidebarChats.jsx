@@ -9,6 +9,7 @@ import {
 } from "../../redux/actions/chatActions";
 import {
   joinChatroomEmitter,
+  rejoinChatroomEmitter,
   leaveChatroomEmitter,
   deleteChatroomEmitter,
 } from "../../socket.io/emitters";
@@ -65,7 +66,8 @@ const SidebarChats = ({
           auth={auth}
           chatroom={chatrooms[key]}
           setChatroom={setChatroom}
-          joinChatroom={joinChatroomEmitter}
+          joinChatroomEmitter={joinChatroomEmitter}
+          rejoinChatroomEmitter={rejoinChatroomEmitter}
           handleClose={handleClose}
           handleLeave={handleLeave}
           handleDelete={handleDelete}

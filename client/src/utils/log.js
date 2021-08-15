@@ -6,17 +6,24 @@ const player = (log, data) => console.info(log, "color: cyan", data);
 const emit = (log) => console.group("%c[IO_em]: ", "color: coral", log);
 
 const ack = (log) => {
-  console.info(`%c[IO_ack]: %c${log}`, "color: lightsalmon", "color: white");
+  console.info(
+    `%c[IO_ack]: ${log}`,
+    "color: lightsalmon",
+    "color: white",
+    "color: yellow",
+    "color: white"
+  );
   console.groupEnd();
 };
 
-const gif = (log, data) =>
-  console.info(log, "color: lightslategrey", "color: white", data);
+const reducer = (reducer, log) => {
+  console.log(`%c[${reducer}]:`, "color: lightblue", log);
+};
 
 export const log = {
   io,
+  reducer,
   player,
   emit,
   ack,
-  gif,
 };

@@ -20,17 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Sidebar/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Sidebar/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/sidebarChatItem.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/sidebarChatItem.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/authReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/redux/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/types.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/socket.io/emitters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/socket.io/emitters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/styles/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/styles/root.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/utils/log.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/utils/log.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/socket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/joinRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/joinChatroom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/chatroomRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/chatroomRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +66,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="16.4.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="16.4.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../client" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Roaming/nvm/v16.4.0/node_modules/prettier" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,7 +74,8 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\daega\AppData\Roaming\nvm\v16.4.0\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -96,7 +102,9 @@
       <workItem from="1628798588648" duration="499000" />
       <workItem from="1628800398149" duration="1145000" />
       <workItem from="1628859071351" duration="2453000" />
-      <workItem from="1628874660561" duration="595000" />
+      <workItem from="1628874660561" duration="9428000" />
+      <workItem from="1628972905404" duration="4769000" />
+      <workItem from="1629030307189" duration="4116000" />
     </task>
     <servers />
   </component>
@@ -117,5 +125,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
