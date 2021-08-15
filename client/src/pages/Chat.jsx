@@ -6,8 +6,9 @@ import {
   joinChatroomEmitter,
   fetchMessagesEmitter,
 } from "../socket.io/emitters";
-import { setSocket } from "../redux/actions/authActions";
+import { setChatroom, setSocket } from "../redux/actions/authActions";
 import {
+  createChatroom,
   renderNewMessage,
   renderMessages,
   closeChatroom,
@@ -15,10 +16,11 @@ import {
 
 const Chat = ({
   auth,
-  chatrooms,
+  createChatroom,
   renderNewMessage,
   renderMessages,
   closeChatroom,
+  setChatroom,
   setSocket,
 }) => {
   useEffect(() => {
@@ -38,6 +40,10 @@ const Chat = ({
         auth.socket
       );
     });
+    auth.socket.on("chatroom-created", async (chatroom) => {
+      await createChatroom(chatroom, auth.socket);
+      await setChatroom(chatroom.name);
+    });
     auth.socket.on("fetch-messages", (chatroomName) => {
       fetchMessagesEmitter(chatroomName, auth.socket);
     });
@@ -50,26 +56,34 @@ const Chat = ({
     auth.socket.on("fetched-messages", async (chatroomName, messages) => {
       await renderMessages(chatroomName, messages);
     });
-    // auth.socket.on("system-message", async (chatroomName, message) => {
-    //   await renderNewMessage(chatroomName, message);
-    // });
     auth.socket.on("return-message", async (chatroomName, message) => {
       await renderNewMessage(chatroomName, message);
     });
-    auth.socket.on("return-system-message", (chatroomName, message) => {});
-  }, [auth.socket, setSocket, renderMessages, renderNewMessage, closeChatroom]);
+    // auth.socket.on("system-message", async (chatroomName, message) => {
+    //   await renderNewMessage(chatroomName, message);
+    // });
+    // auth.socket.on("return-system-message", (chatroomName, message) => {});
+  }, [
+    auth.socket,
+    createChatroom,
+    setSocket,
+    renderMessages,
+    renderNewMessage,
+    closeChatroom,
+  ]);
 
   return <ChatroomDisplay />;
 };
 
 const mapsStateToProps = (state) => ({
   auth: state.auth,
-  chatrooms: state.chatrooms,
 });
 
 export default connect(mapsStateToProps, {
+  createChatroom,
   renderNewMessage,
   renderMessages,
   closeChatroom,
+  setChatroom,
   setSocket,
 })(Chat);

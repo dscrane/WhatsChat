@@ -32,7 +32,7 @@ const ChatroomDisplay = ({ chatrooms, auth }) => {
   return (
     <div className="chatroom__display">
       <div className="chatroom__container">
-        <ChatroomHeading chatroomName={chatrooms[auth.currentChatroom].name} />
+        <ChatroomHeading chatroomName={auth.currentChatroom} />
         <MessagesDisplay messages={chatrooms[auth.currentChatroom].messages} />
         <MessageInput
           message={message}

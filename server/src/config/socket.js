@@ -1,16 +1,22 @@
-import { default as Message } from "../models/message.js";
-import { joinChatroom } from "../controllers/joinChatroom.js";
-import { rejoinChatroom } from "../controllers/rejoinChatroom.js";
-import { leaveChatroom } from "../controllers/leaveChatroom.js";
-import { deleteChatroom } from "../controllers/deleteChatroom.js";
-import { fetchMessages } from "../controllers/fetchMessages.js";
-import { User } from "../models/user.js";
+import {
+  joinChatroom,
+  rejoinChatroom,
+  leaveChatroom,
+  deleteChatroom,
+  fetchMessages,
+  newMessage,
+  createChatroom,
+} from "../controllers/index.js";
 import { log } from "../utils/logs.js";
 
 export const socketConfig = (io) => {
   io.on("connection", async (socket) => {
     log.socket(socket.id, "connected");
-    // Define join event
+    // Define create chatroom event
+    socket.on("create-chatroom", (chatroomName, userId, cb) =>
+      createChatroom(socket, chatroomName, userId, cb)
+    );
+    // Define join chatroom event
     socket.on(
       "join-chatroom",
       (newChatroomName, oldChatroomName, userName, cb) =>
@@ -34,18 +40,8 @@ export const socketConfig = (io) => {
       deleteChatroom(socket, chatroomId, username, cb)
     );
     // Define message event
-    socket.on("message", async (message, cb) => {
-      try {
-        const newMsg = new Message(message);
-        const returnMsg = { _id: newMsg._id, ...message };
-        io.sockets
-          .in(message.chatroomName)
-          .emit("return-message", message.chatroomName, returnMsg);
-        await newMsg.save();
-        cb("%cmessage complete");
-      } catch (e) {
-        console.log(e);
-      }
+    socket.on("new-message", (message, cb) => {
+      newMessage(io, socket, message, cb);
     });
   });
 };

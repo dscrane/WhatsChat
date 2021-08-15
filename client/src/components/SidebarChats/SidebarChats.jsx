@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import ListGroup from "react-bootstrap/ListGroup";
 import { setChatroom } from "../../redux/actions/authActions";
 import {
-  createChatroom,
   displayChatrooms,
   closeChatroom,
 } from "../../redux/actions/chatActions";
 import {
+  createChatroomEmitter,
   joinChatroomEmitter,
   rejoinChatroomEmitter,
   leaveChatroomEmitter,
@@ -21,7 +21,6 @@ const SidebarChats = ({
   auth,
   chatrooms,
   displayChatrooms,
-  createChatroom,
   closeChatroom,
   setChatroom,
 }) => {
@@ -47,12 +46,12 @@ const SidebarChats = ({
     deleteChatroomEmitter(chatroomId, auth.data.name, auth.socket);
   };
 
-  const handleForm = (e) => {
+  const handleForm = async (e) => {
     e.preventDefault();
     if (newRoomName.length >= 5) {
-      createChatroom(newRoomName, auth._id);
-      setNewRoomName("");
+      await createChatroomEmitter(newRoomName, auth._id, auth.socket);
     }
+    await setNewRoomName("");
   };
 
   const renderChatroomList = () => {
@@ -108,7 +107,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  createChatroom,
   displayChatrooms,
   closeChatroom,
   setChatroom,

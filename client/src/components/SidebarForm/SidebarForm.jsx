@@ -20,6 +20,7 @@ export const SidebarForm = (props) => {
     <form className="sidebar__form" onSubmit={handleForm}>
       <div className="sidebar__form_col sidebar__form_col-start">
         <input
+          value={props.newRoomName}
           onChange={onChange}
           className={`sidebar__form_input form-control ${errorStyle}`}
           type="text"

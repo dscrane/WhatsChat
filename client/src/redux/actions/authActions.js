@@ -7,6 +7,7 @@ import {
   UPDATE_USER,
   SET_CHATROOM,
   SET_SOCKET,
+  ADD_CHATROOM,
 } from "../types";
 
 /* ----   CHECK_AUTH ACTION CREATOR    ---- */

@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
       log.reducer(action.type, action.payload);
       return {
         ...state,
-        [action.payload._id]: {
+        [action.payload.name]: {
           ...action.payload,
         },
       };

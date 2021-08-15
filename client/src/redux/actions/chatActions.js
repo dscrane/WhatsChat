@@ -5,22 +5,19 @@ import {
   RENDER_NEW_MESSAGE,
   RENDER_MESSAGES,
   ADD_CHATROOM,
+  SET_CHATROOM,
 } from "../types";
-import { log } from "../../utils/log";
 import _ from "lodash";
 
-/* ----   ADD_CHATROOM ACTION CREATOR    ---- */
-export const createChatroom = (name, userId) => async (dispatch) => {
+// Create a new chatroom
+export const createChatroom = (chatroom) => async (dispatch) => {
+  console.log(chatroom);
   try {
-    const { data } = await api.post("/create-chatroom", {
-      name,
-      createdBy: userId,
-    });
     dispatch({
       type: ADD_CHATROOM,
-      payload: { ...data.chat, messages: [] },
+      payload: { ...chatroom, messages: [] },
     });
-    history.push(`/chats/${data.chat._id}`);
+    history.push(`/chats/${chatroom._id}`);
   } catch (e) {
     dispatch({
       type: "ERROR",
@@ -28,17 +25,12 @@ export const createChatroom = (name, userId) => async (dispatch) => {
     });
   }
 };
-/* ----   ****    ---- */
 
-/* ----   DISPLAY_CHATROOMS ACTION CREATOR    ---- */
+// Display current chatrooms
 export const displayChatrooms = () => async (dispatch, getState) => {
   try {
     const { data } = await api.get("/MessagesDisplay");
     const chatrooms = data.chats.map((chat) => {
-      // const messages =
-      //   getState().chatrooms.length !== 0
-      //     ? getState().chatrooms[chat.name].messages
-      //     : [];
       return { ...chat, messages: [] };
     });
     dispatch({
@@ -49,8 +41,8 @@ export const displayChatrooms = () => async (dispatch, getState) => {
     console.log(e);
   }
 };
-/* ----   ****    ---- */
-/* ----   CLOSE_CHATROOM ACTION CREATOR    ---- */
+
+// Close a chatroom
 export const closeChatroom = (chatroomName) => (dispatch, getState) => {
   const chatrooms = _.omit(getState().chatrooms, [chatroomName]);
   dispatch({
@@ -58,61 +50,19 @@ export const closeChatroom = (chatroomName) => (dispatch, getState) => {
     payload: { ...chatrooms },
   });
 };
-/* ----   ****    ---- */
 
-/* ----   FETCH_MESSAGES ACTION CREATOR    ---- */
+// Render historic messages
 export const renderMessages = (chatroomName, messages) => async (dispatch) => {
   await dispatch({
     type: RENDER_MESSAGES,
     payload: { chatroomName, messages },
   });
 };
-/* ----   ****    ---- */
 
+// Render new message
 export const renderNewMessage = (chatroomName, message) => async (dispatch) => {
   await dispatch({
     type: RENDER_NEW_MESSAGE,
     payload: { chatroomName, message },
   });
 };
-
-/* ----   ****    ---- */
-
-// Currently Unused System Actions
-// socket.on(
-//   'system-welcome',
-//   ({userName, chatroomId, type} ) => {
-//     console.log('welcome ran')
-//     return socket.emit('message', {
-//       chatroomId,
-//       message: `${type} ${userName}.`,
-//       userId: null,
-//       author: 'systemManager'
-//     })
-//   }
-// )
-//
-// socket.on(
-//   'system-join',
-//   ({ userName, type, chatroomId }) => {
-//     console.log('join ran')
-//     socket.emit('message', {
-//       chatroomId,
-//       message: `${userName} has ${type}.`,
-//       userId: null,
-//       author: 'systemManager'
-//     })
-//   }
-// )
-//
-// socket.on('system-leave',
-//   ({ userName, type, chatroomId }) => {
-//   console.log('leave ran')
-//     socket.emit('message', {
-//       chatroomId,
-//       message: `${userName} has ${type}.`,
-//       userId: null,
-//       author: 'systemManager'
-//     })
-//   }
-// )

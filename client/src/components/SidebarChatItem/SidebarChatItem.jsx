@@ -20,7 +20,6 @@ export const SidebarChatItem = ({
 }) => {
   const handleClick = async () => {
     setChatroom(chatroom.name);
-    console.log("chatroommessages again", chatroom.messages.length);
     if (chatroom.messages.length !== 0) {
       rejoinChatroomEmitter(
         chatroom.name,
