@@ -12,6 +12,7 @@ import {
   renderNewMessage,
   renderMessages,
   closeChatroom,
+  displayChatrooms,
 } from "../redux/actions/chatActions";
 
 const Chat = ({
@@ -22,6 +23,7 @@ const Chat = ({
   closeChatroom,
   setChatroom,
   setSocket,
+  displayChatrooms,
 }) => {
   useEffect(() => {
     if (!auth.socket) {
@@ -33,12 +35,16 @@ const Chat = ({
       return;
     }
     auth.socket.on("connect", async () => {
+      await auth.socket.emit("fetch-initial-data", auth.data._id);
       await joinChatroomEmitter(
         auth.currentChatroom,
         null,
         auth.data.name,
         auth.socket
       );
+    });
+    auth.socket.on("initial-data", async (chatrooms) => {
+      await displayChatrooms(chatrooms);
     });
     auth.socket.on("chatroom-created", async (chatroom) => {
       await createChatroom(chatroom, auth.socket);
@@ -71,6 +77,7 @@ const Chat = ({
     renderMessages,
     renderNewMessage,
     closeChatroom,
+    displayChatrooms,
   ]);
 
   return <ChatroomDisplay />;
@@ -87,4 +94,5 @@ export default connect(mapsStateToProps, {
   closeChatroom,
   setChatroom,
   setSocket,
+  displayChatrooms,
 })(Chat);

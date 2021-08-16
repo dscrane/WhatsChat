@@ -57,7 +57,12 @@ export const SidebarChatItem = ({
   };
 
   return (
-    <ListGroup.Item className="list__item">
+    <ListGroup.Item
+      className={`list__item ${
+        chatroom.name === auth.currentChatroom ? "list__item-active" : ""
+      }`}
+      disabled={chatroom.name === auth.currentChatroom}
+    >
       <div className="item__col">
         <Link
           onClick={() => handleClick()}
@@ -65,7 +70,6 @@ export const SidebarChatItem = ({
           to={{
             pathname: `/chats/${chatroom._id}`,
           }}
-          disabled={chatroom.name === auth.currentChatroom}
         >
           <div className="link__icon">{profileIcon}</div>
           <div className="link__name">

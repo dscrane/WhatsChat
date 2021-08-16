@@ -27,19 +27,14 @@ export const createChatroom = (chatroom) => async (dispatch) => {
 };
 
 // Display current chatrooms
-export const displayChatrooms = () => async (dispatch, getState) => {
-  try {
-    const { data } = await api.get("/MessagesDisplay");
-    const chatrooms = data.chats.map((chat) => {
-      return { ...chat, messages: [] };
-    });
-    dispatch({
-      type: DISPLAY_CHATROOMS,
-      payload: { ...chatrooms },
-    });
-  } catch (e) {
-    console.log(e);
-  }
+export const displayChatrooms = (chatrooms) => async (dispatch) => {
+  const mappedChatrooms = chatrooms.map((chat) => {
+    return { ...chat, messages: [] };
+  });
+  dispatch({
+    type: DISPLAY_CHATROOMS,
+    payload: { ...mappedChatrooms },
+  });
 };
 
 // Close a chatroom

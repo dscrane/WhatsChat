@@ -4,15 +4,20 @@ export const chatroomSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true
+      unique: true,
     },
     createdBy: {
-      type: String
-    }
+      type: String,
+    },
+    currentMembers: [
+      {
+        type: String,
+      },
+    ],
   },
   {
-    timestamps: true
+    timestamps: true,
   }
-)
+);
 
-export const Chatroom = mongoose.model('Chatroom', chatroomSchema);
+export const Chatroom = mongoose.model("Chatroom", chatroomSchema);

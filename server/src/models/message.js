@@ -3,21 +3,21 @@ import mongoose from "mongoose";
 const messageSchema = new mongoose.Schema(
   {
     message: {
-      type: String
+      type: String,
     },
     userId: {
-      type: String
+      type: String,
     },
     author: {
-      type: String
+      type: String,
     },
     chatroomName: {
-      type: String
+      type: String,
     },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-export default mongoose.model('Message', messageSchema)
+export const Message = mongoose.model("Message", messageSchema);

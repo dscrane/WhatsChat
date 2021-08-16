@@ -6,12 +6,17 @@ import {
   fetchMessages,
   newMessage,
   createChatroom,
+  fetchInitialData,
 } from "../controllers/index.js";
 import { log } from "../utils/logs.js";
 
 export const socketConfig = (io) => {
   io.on("connection", async (socket) => {
     log.socket(socket.id, "connected");
+    // Emit initialization info
+    socket.on("fetch-initial-data", (userId) =>
+      fetchInitialData(socket, userId)
+    );
     // Define create chatroom event
     socket.on("create-chatroom", (chatroomName, userId, cb) =>
       createChatroom(socket, chatroomName, userId, cb)

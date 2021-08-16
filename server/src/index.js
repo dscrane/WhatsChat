@@ -6,8 +6,6 @@ import { Server } from "socket.io";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { default as userRouter } from "./routes/userRoutes.js";
-import { default as messageRouter } from "./routes/messageRoutes.js";
-import { default as chatroomRouter } from "./routes/chatroomRoutes.js";
 import { socketConfig } from "./config/socket.js";
 import { db } from "./db/db.js";
 import { log } from "./utils/logs.js";
@@ -35,8 +33,6 @@ app.use(cors());
 
 // Connect routers
 app.use(userRouter);
-app.use(chatroomRouter);
-app.use(messageRouter);
 
 // Connect static files
 const __dirname = path.resolve();

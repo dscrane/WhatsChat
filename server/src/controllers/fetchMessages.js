@@ -1,4 +1,4 @@
-import { default as Message } from "../models/message.js";
+import { Message } from "../models/index.js";
 
 export const fetchMessages = async (socket, chatroomName, cb) => {
   let messages = await Message.find({ chatroomName: chatroomName })

@@ -10,7 +10,7 @@ import {
   ADD_CHATROOM,
 } from "../types";
 
-/* ----   CHECK_AUTH ACTION CREATOR    ---- */
+// Authorize a user
 export const checkAuth = () => async (dispatch) => {
   const token = localStorage.getItem("jwt-token");
   if (!token) {
@@ -37,14 +37,12 @@ export const checkAuth = () => async (dispatch) => {
       data: response.data,
     },
   });
-  // history.push(`/MessagesDisplay/5f52268b6d59e14df8174254`);
+  history.push(`/chats/5f52268b6d59e14df8174254`);
 };
-/* ----   ****    ---- */
 
-/* ----   LOG_IN ACTION CREATOR    ---- */
+// Log a user in
 export const login = (formValues) => async (dispatch) => {
-  console.log("login ran");
-  const defaultChatroom = "Buddies";
+  const defaultURL = "5f52268b6d59e14df8174254";
   const response = await api.post("/login-user", { ...formValues });
 
   if (response.data.error) {
@@ -65,11 +63,10 @@ export const login = (formValues) => async (dispatch) => {
     },
   });
 
-  history.push(`/chats/${defaultChatroom}`);
+  history.push(`/chats/${defaultURL}`);
 };
-/* ----   ****    ---- */
 
-/* ----   LOG_OUT ACTION CREATOR    ---- */
+// Log a user out
 export const logout = () => async (dispatch, getState) => {
   const { token } = getState().auth;
 
@@ -90,11 +87,10 @@ export const logout = () => async (dispatch, getState) => {
 
   history.push("/");
 };
-/* ----   ****    ---- */
 
-/* ----   SIGN_UP ACTION CREATOR    ---- */
+// Sign up a new user
 export const signup = (formValues) => async (dispatch) => {
-  const defaultChatroom = "5f52268b6d59e14df8174254";
+  const defaultURL = "5f52268b6d59e14df8174254";
   const response = await api.post("/create-user", { ...formValues });
   console.log(response);
   if (response.data.error) {
@@ -119,11 +115,10 @@ export const signup = (formValues) => async (dispatch) => {
     },
   });
 
-  history.push(`/chats/${defaultChatroom}`);
+  history.push(`/chats/${defaultURL}`);
 };
-/* ----   ****    ---- */
 
-/* ----   UPDATE_USER ACTION CREATOR    ---- */
+// Update a user account
 export const updateUser = (formValues) => async (dispatch, getState) => {
   const { token } = getState().auth;
   const response = await api.patch(
@@ -152,9 +147,7 @@ export const updateUser = (formValues) => async (dispatch, getState) => {
   });
 };
 
-/* ----   ****    ---- */
-
-/* ----   DELETE_USER ACTION CREATOR    ---- */
+// Delete a user account
 export const deleteUser = () => async (dispatch, getState) => {
   const { token } = getState().auth;
   const response = await api.post(
@@ -176,17 +169,18 @@ export const deleteUser = () => async (dispatch, getState) => {
   }
 };
 
-/* ----   ****    ---- */
-
-/* ----   SET_CHATROOM ACTION CREATOR    ---- */
-export const setChatroom = (currentChatroom) => async (dispatch) => {
+// Set the current chatroom
+export const setChatroom = (currentChatroom) => async (dispatch, getState) => {
+  const { chatrooms } = getState();
   dispatch({
     type: SET_CHATROOM,
     payload: { currentChatroom },
   });
+  console.log(chatrooms[currentChatroom]._id);
+  history.push(`/chats/${chatrooms[currentChatroom]._id}`);
 };
-/* ----   ****    ---- */
 
+// Set the socket instance
 export const setSocket = (socket) => (dispatch) => {
   dispatch({
     type: SET_SOCKET,

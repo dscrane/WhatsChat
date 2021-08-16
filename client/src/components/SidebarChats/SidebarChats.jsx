@@ -1,30 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import ListGroup from "react-bootstrap/ListGroup";
 import { setChatroom } from "../../redux/actions/authActions";
-import {
-  displayChatrooms,
-  closeChatroom,
-} from "../../redux/actions/chatActions";
+import { closeChatroom } from "../../redux/actions/chatActions";
 import { createChatroomEmitter } from "../../socket.io/emitters";
 import { SidebarForm } from "../SidebarForm";
 import { SidebarChatItem } from "../SidebarChatItem";
 import "./SidebarChats.css";
 
-const SidebarChats = ({
-  auth,
-  chatrooms,
-  displayChatrooms,
-  closeChatroom,
-  setChatroom,
-}) => {
+const SidebarChats = ({ auth, chatrooms, closeChatroom, setChatroom }) => {
   const [newRoomName, setNewRoomName] = useState("");
-  const numChats = Object.keys(chatrooms).length;
-  useEffect(() => {
-    if (auth.token) {
-      displayChatrooms();
-    }
-  }, [numChats, auth.token, displayChatrooms, closeChatroom]);
 
   const onChange = (e) => {
     setNewRoomName(e.target.value);
@@ -91,7 +76,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  displayChatrooms,
   closeChatroom,
   setChatroom,
 })(SidebarChats);

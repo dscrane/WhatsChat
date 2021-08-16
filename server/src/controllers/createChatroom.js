@@ -1,10 +1,13 @@
-import { Chatroom } from "../models/chatroom.js";
-import { User } from "../models/user.js";
+import { Chatroom, User } from "../models/index.js";
 
 export const createChatroom = async (socket, chatroomName, userId, cb) => {
-  const chat = new Chatroom({ name: chatroomName, createdBy: userId });
+  const chat = new Chatroom({
+    name: chatroomName,
+    createdBy: userId,
+    currentMembers: [userId],
+  });
   const user = await User.findById(userId);
-  user.favoriteRooms = [...user.favoriteRooms, chatroomName];
+  user.currentRooms = [...user.currentRooms, chatroomName];
   user.createdRooms = [...user.createdRooms, chatroomName];
 
   try {

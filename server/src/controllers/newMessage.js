@@ -1,4 +1,4 @@
-import { default as Message } from "../models/message.js";
+import { Message } from "../models/index.js";
 
 export const newMessage = async (io, socket, message, cb) => {
   try {
@@ -8,7 +8,7 @@ export const newMessage = async (io, socket, message, cb) => {
       .in(message.chatroomName)
       .emit("return-message", message.chatroomName, returnMsg);
     await newMsg.save();
-    cb("%cnew-message complete");
+    cb(`%cnew-message %c${message.chatroomName} %ccomplete`);
   } catch (e) {
     console.log(e);
   }

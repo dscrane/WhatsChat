@@ -13,7 +13,8 @@ const App = ({ auth, checkAuth, displayChatrooms }) => {
   useEffect(() => {
     if (!auth.token) {
       checkAuth();
-      displayChatrooms();
+
+      // displayChatrooms(auth.data.favoriteRooms);
     }
   }, [auth.token, checkAuth, displayChatrooms]);
 
@@ -46,4 +47,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { checkAuth, displayChatrooms })(App);
+export default connect(mapStateToProps, {
+  checkAuth,
+  displayChatrooms,
+})(App);
