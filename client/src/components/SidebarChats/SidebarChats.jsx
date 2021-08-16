@@ -6,13 +6,7 @@ import {
   displayChatrooms,
   closeChatroom,
 } from "../../redux/actions/chatActions";
-import {
-  createChatroomEmitter,
-  joinChatroomEmitter,
-  rejoinChatroomEmitter,
-  leaveChatroomEmitter,
-  deleteChatroomEmitter,
-} from "../../socket.io/emitters";
+import { createChatroomEmitter } from "../../socket.io/emitters";
 import { SidebarForm } from "../SidebarForm";
 import { SidebarChatItem } from "../SidebarChatItem";
 import "./SidebarChats.css";
@@ -39,12 +33,6 @@ const SidebarChats = ({
   const handleClose = (chatroomId) => {
     closeChatroom(chatroomId);
   };
-  const handleLeave = (chatroomId) => {
-    leaveChatroomEmitter(chatroomId, auth.data.name, auth.socket);
-  };
-  const handleDelete = (chatroomId) => {
-    deleteChatroomEmitter(chatroomId, auth.data.name, auth.socket);
-  };
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -65,11 +53,7 @@ const SidebarChats = ({
           auth={auth}
           chatroom={chatrooms[key]}
           setChatroom={setChatroom}
-          joinChatroomEmitter={joinChatroomEmitter}
-          rejoinChatroomEmitter={rejoinChatroomEmitter}
           handleClose={handleClose}
-          handleLeave={handleLeave}
-          handleDelete={handleDelete}
         />
       );
     });

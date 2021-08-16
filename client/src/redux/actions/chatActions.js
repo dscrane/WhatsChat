@@ -45,6 +45,7 @@ export const displayChatrooms = () => async (dispatch, getState) => {
 // Close a chatroom
 export const closeChatroom = (chatroomName) => (dispatch, getState) => {
   const chatrooms = _.omit(getState().chatrooms, [chatroomName]);
+  console.log(chatrooms);
   dispatch({
     type: DISPLAY_CHATROOMS,
     payload: { ...chatrooms },

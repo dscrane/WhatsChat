@@ -51,6 +51,7 @@ const Chat = ({
       await closeChatroom(chatroomName);
     });
     auth.socket.on("chatroom-deleted", async (chatroomName) => {
+      await setChatroom("Buddies");
       await closeChatroom(chatroomName);
     });
     auth.socket.on("fetched-messages", async (chatroomName, messages) => {

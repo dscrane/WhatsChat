@@ -8,7 +8,8 @@ import "./sidebarContextMenu.css";
 export const SidebarContextMenu = ({
   handleClose,
   handleLeave,
-  handleDelete,
+  displayDelete,
+  setModalDisplay,
   chatroomId,
 }) => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -25,6 +26,18 @@ export const SidebarContextMenu = ({
       {threeDotIcon}
     </a>
   ));
+
+  const toggleDeleteCTA = displayDelete ? (
+    <>
+      <Dropdown.Divider className="dropdown__divider" />
+      <Dropdown.Item
+        className="dropdown__item"
+        onClick={() => setModalDisplay(true)}
+      >
+        Delete Chatroom
+      </Dropdown.Item>
+    </>
+  ) : null;
 
   return (
     <Dropdown>
@@ -43,13 +56,7 @@ export const SidebarContextMenu = ({
         >
           Leave Chatroom
         </Dropdown.Item>
-        <Dropdown.Divider className="dropdown__divider" />
-        <Dropdown.Item
-          className="dropdown__item"
-          onClick={() => handleDelete(chatroomId)}
-        >
-          Delete Chatroom
-        </Dropdown.Item>
+        {toggleDeleteCTA}
       </Dropdown.Menu>
     </Dropdown>
   );

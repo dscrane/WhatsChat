@@ -51,15 +51,15 @@ export const sendMessageEmitter = (messageData, socket) => {
 };
 
 /* ----   LEAVE_CHATROOM ACTION CREATOR    ---- */
-export const leaveChatroomEmitter = (chatroomId, userName, socket) => {
+export const leaveChatroomEmitter = (chatroomName, userName, socket) => {
   log.emit("leaving chatroom...");
-  socket.emit("leave-chatroom", chatroomId, userName, (ack) => log.ack(ack));
+  socket.emit("leave-chatroom", chatroomName, userName, (ack) => log.ack(ack));
 };
 /* ----   ****    ---- */
 
 /* ----   DELETE_CHATROOM ACTION CREATOR    ---- */
-export const deleteChatroomEmitter = (chatroomId, userName, socket) => {
+export const deleteChatroomEmitter = (chatroomName, socket) => {
   log.emit("deleting chatroom...");
-  socket.emit("delete-chatroom", chatroomId, userName, (ack) => log.ack(ack));
+  socket.emit("delete-chatroom", chatroomName, (ack) => log.ack(ack));
 };
 /* ----   ****    ---- */

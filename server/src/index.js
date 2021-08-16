@@ -10,7 +10,7 @@ import { default as messageRouter } from "./routes/messageRoutes.js";
 import { default as chatroomRouter } from "./routes/chatroomRoutes.js";
 import { socketConfig } from "./config/socket.js";
 import { db } from "./db/db.js";
-import { log } from "./utils/logs.js"
+import { log } from "./utils/logs.js";
 /* ----   ****    ---- */
 
 // Initialize database
@@ -40,7 +40,7 @@ app.use(messageRouter);
 
 // Connect static files
 const __dirname = path.resolve();
-console.log(__dirname)
+console.log(__dirname);
 app.use(express.static(path.join(__dirname, "/src/public")));
 
 // Create root route
@@ -55,4 +55,3 @@ socketConfig(io);
 httpServer.listen(PORT, () => {
   log.app(`listening on localhost:${PORT}`);
 });
-

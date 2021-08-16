@@ -8,7 +8,7 @@ export const newMessage = async (io, socket, message, cb) => {
       .in(message.chatroomName)
       .emit("return-message", message.chatroomName, returnMsg);
     await newMsg.save();
-    cb("%cmessage complete");
+    cb("%cnew-message complete");
   } catch (e) {
     console.log(e);
   }

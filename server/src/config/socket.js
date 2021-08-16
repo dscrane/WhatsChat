@@ -36,8 +36,8 @@ export const socketConfig = (io) => {
       leaveChatroom(socket, chatroomId, username, cb)
     );
     // Define delete event
-    socket.on("delete-chatroom", (chatroomId, username, cb) =>
-      deleteChatroom(socket, chatroomId, username, cb)
+    socket.on("delete-chatroom", (chatroomName, cb) =>
+      deleteChatroom(io, chatroomName, cb)
     );
     // Define message event
     socket.on("new-message", (message, cb) => {

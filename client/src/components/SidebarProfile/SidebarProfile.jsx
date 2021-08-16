@@ -40,7 +40,7 @@ const SidebarProfile = ({ auth, logout, updateUser, deleteUser }) => {
         modalConfig={deleteAccountModalConfig}
         setModalDisplay={setModalDisplay}
         modalDisplay={modalDisplay}
-        handleDelete={handleDelete}
+        fnHandler={handleDelete}
       />
     </div>
   );

@@ -9,11 +9,11 @@ export const ConfirmationModal = ({
   modalConfig,
   setModalDisplay,
   modalDisplay,
-  handleDelete,
+  fnHandler,
 }) => {
   const handleDeleteClick = () => {
     setModalDisplay(false);
-    handleDelete();
+    fnHandler();
   };
 
   if (modalDisplay) {

@@ -20,20 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/Sidebar/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/Sidebar/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/ConfirmationModal/ConfirmationModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ConfirmationModal/ConfirmationModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarForm/SidebarForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarForm/SidebarForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarContextMenu/SidebarContextMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarContextMenu/SidebarContextMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarContextMenu/sidebarContextMenu.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarContextMenu/sidebarContextMenu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarProfile/SidebarProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarProfile/SidebarProfile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/reducers/chatReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/socket.io/emitters.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/socket.io/emitters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/socket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/createChatroom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/createChatroom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/deleteChatroom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/deleteChatroom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/newMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/newMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +103,9 @@
       <workItem from="1628859071351" duration="2453000" />
       <workItem from="1628874660561" duration="9428000" />
       <workItem from="1628972905404" duration="4769000" />
-      <workItem from="1629030307189" duration="8196000" />
+      <workItem from="1629030307189" duration="9227000" />
+      <workItem from="1629049009842" duration="210000" />
+      <workItem from="1629120101693" duration="4082000" />
     </task>
     <servers />
   </component>

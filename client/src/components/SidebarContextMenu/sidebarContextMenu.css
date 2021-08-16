@@ -6,7 +6,12 @@
 .dropdown__item:hover {
   background-color: var(--purple-500-faded) !important;
   color: var(--text-light) !important;
+}
 
+
+.dropdown__item-disabled {
+  /*background-color: var(--purple-700) !important;*/
+  color: var(--text-light-50) !important;
 }
 
 .dropdown__content {

@@ -1,8 +1,15 @@
 /* IMPORTS */
-import React from "react";
+import React, { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import { SidebarContextMenu } from "../SidebarContextMenu";
+import { ConfirmationModal } from "../ConfirmationModal";
+import {
+  joinChatroomEmitter,
+  rejoinChatroomEmitter,
+  leaveChatroomEmitter,
+  deleteChatroomEmitter,
+} from "../../socket.io/emitters";
 import { profileIcon } from "../../icons/icons";
 import "./sidebarChatItem.css";
 
@@ -11,13 +18,21 @@ import "./sidebarChatItem.css";
 export const SidebarChatItem = ({
   chatroom,
   setChatroom,
-  joinChatroomEmitter,
-  rejoinChatroomEmitter,
   auth,
   handleClose,
-  handleLeave,
-  handleDelete,
 }) => {
+  const [modalDisplay, setModalDisplay] = useState(false);
+  const deleteChatroomModalConfig = {
+    title: "Delete Chatroom",
+    message: "Are you sure you would like to delete this chat room?",
+    btnText: "Delete",
+    btnStyle: "danger",
+  };
+
+  const handleLeave = () => {
+    leaveChatroomEmitter(chatroom.name, auth.data.name, auth.socket);
+  };
+
   const handleClick = async () => {
     setChatroom(chatroom.name);
     if (chatroom.messages.length !== 0) {
@@ -36,6 +51,11 @@ export const SidebarChatItem = ({
       );
     }
   };
+
+  const onDelete = () => {
+    deleteChatroomEmitter(chatroom.name, auth.socket);
+  };
+
   return (
     <ListGroup.Item className="list__item">
       <div className="item__col">
@@ -59,9 +79,16 @@ export const SidebarChatItem = ({
           chatroomId={chatroom._id}
           handleClose={handleClose}
           handleLeave={handleLeave}
-          handleDelete={handleDelete}
+          displayDelete={auth._id === chatroom.createdBy}
+          setModalDisplay={setModalDisplay}
         />
       </div>
+      <ConfirmationModal
+        modalConfig={deleteChatroomModalConfig}
+        setModalDisplay={setModalDisplay}
+        modalDisplay={modalDisplay}
+        fnHandler={onDelete}
+      />
     </ListGroup.Item>
   );
 };
