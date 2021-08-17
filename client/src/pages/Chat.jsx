@@ -38,7 +38,6 @@ const Chat = ({
       await auth.socket.emit("fetch-initial-data", auth.data._id);
     });
     auth.socket.on("initial-data", async (chatrooms) => {
-      console.log("its this one");
       await displayChatrooms(chatrooms);
       await joinChatroomEmitter(
         auth.currentChatroom,
@@ -67,10 +66,6 @@ const Chat = ({
     auth.socket.on("return-message", async (chatroomName, message) => {
       await renderNewMessage(chatroomName, message);
     });
-    // auth.socket.on("system-message", async (chatroomName, message) => {
-    //   await renderNewMessage(chatroomName, message);
-    // });
-    // auth.socket.on("return-system-message", (chatroomName, message) => {});
   }, [
     auth.socket,
     createChatroom,
