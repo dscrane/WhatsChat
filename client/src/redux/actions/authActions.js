@@ -141,9 +141,9 @@ export const updateUser = (formValues) => async (dispatch, getState) => {
     return;
   }
 
-  dispatch({
+  await dispatch({
     type: UPDATE_USER,
-    payload: response.data.user,
+    payload: response.data,
   });
 };
 

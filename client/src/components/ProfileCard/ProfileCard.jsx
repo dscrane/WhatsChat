@@ -1,22 +1,32 @@
 /* IMPORTS */
 import React, { useState } from "react";
-import { pencilIcon } from "../../icons/icons";
-import Card from "react-bootstrap/Card";
-import { RenderForm } from "../RenderForm";
 import _ from "lodash";
+import moment from "moment";
+import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Field } from "redux-form";
-import moment from "moment";
+import { RenderForm } from "../RenderForm";
+import { pencilIcon } from "../../icons/icons";
 import "./profileCard.css";
 /* ------ */
 
 export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
   const [editing, setEditing] = useState("");
 
-  const handleForm = (formValues) => {
-    updateUser(formValues);
+  const handleForm = async (formValues) => {
+    console.log("form handled", formValues);
+    await updateUser(formValues);
     setEditing("");
   };
+
+  const renderSubmitButton =
+    editing === "" ? null : (
+      <ListGroup.Item className="profile__row">
+        <button type="submit" className="profile__submit button">
+          Update
+        </button>
+      </ListGroup.Item>
+    );
 
   const renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -41,13 +51,18 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
           ) : (
             <input
               className="profile__input-placeholder form-control-plaintext"
-              {...input}
+              placeholder={meta.initial}
             />
           )}
         </div>
         <div className="content__col content__col-cta">
-          <div onClick={() => setEditing(label)} className="profile__cta-edit">
-            {pencilIcon}
+          <div
+            onClick={() =>
+              editing === label ? setEditing("") : setEditing(label)
+            }
+            className="profile__cta-edit"
+          >
+            {editing === label ? "\u2715" : pencilIcon}
           </div>
         </div>
         {renderError(meta)}
@@ -94,8 +109,7 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
                 label="Password:"
               />
             </ListGroup.Item>
-
-            <input type="submit" className="profile__submit" tabIndex="-1" />
+            {renderSubmitButton}
           </ListGroup>
         </RenderForm>
       </Card.Body>

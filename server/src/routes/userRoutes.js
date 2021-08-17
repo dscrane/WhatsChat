@@ -15,6 +15,12 @@ router.get("/user", authenticate, (req, res) => {
 router.post("/create-user", async (req, res) => {
   const user = new User(req.body);
   try {
+    user.currentRooms = [
+      ...user.currentRooms,
+      "Buddies",
+      "soccer",
+      "welcome room",
+    ];
     await user.save();
     const token = await user.generateAuthToken();
     await user.generateAvatar();
@@ -61,7 +67,7 @@ router.post("/logout", authenticate, async (req, res) => {
 
 router.patch("/user-update", authenticate, async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ["name", "email", "password"];
+  const allowedUpdates = ["name", "username", "email", "password"];
 
   const isValidUpdate = updates.every((update) =>
     allowedUpdates.includes(update)
@@ -72,8 +78,8 @@ router.patch("/user-update", authenticate, async (req, res) => {
   }
   try {
     updates.forEach((update) => (req.user[update] = req.body[update]));
-    await req.user.save();
     res.send(req.user);
+    await req.user.save();
   } catch (e) {
     console.error(e);
   }

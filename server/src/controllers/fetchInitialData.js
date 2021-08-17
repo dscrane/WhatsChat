@@ -3,19 +3,19 @@ import { User, Chatroom } from "../models/index.js";
 export const fetchInitialData = async (socket, userId) => {
   const user = await User.findById(userId);
 
-  const fetchChatroomData = async (chatroomName) => {
+  const fetchChatroomDocument = async (chatroomName) => {
     return Chatroom.findOne({ name: chatroomName });
   };
 
-  const fetchAllChatroomData = async () => {
+  const fetchAllChatroomDocuments = async () => {
     return Promise.all(
       user.currentRooms.map((chatroomName) => {
-        return fetchChatroomData(chatroomName);
+        return fetchChatroomDocument(chatroomName);
       })
     );
   };
 
-  fetchAllChatroomData().then((chatrooms) =>
+  fetchAllChatroomDocuments().then((chatrooms) =>
     socket.emit("initial-data", chatrooms)
   );
 };

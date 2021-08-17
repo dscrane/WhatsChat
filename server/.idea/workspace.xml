@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="18dceb6c-ff1d-4262-9e15-2cabb7519905" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ChatroomDisplay/ChatroomDisplay.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChatItem/SidebarChatItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/SidebarChats/SidebarChats.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/ProfileCard/ProfileCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ProfileCard/ProfileCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/ProfileCard/profileCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/ProfileCard/profileCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/components/RenderForm/RenderForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/components/RenderForm/RenderForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/pages/Chat.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/authActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/redux/actions/chatActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/socket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/createChatroom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/createChatroom.js" afterDir="false" />
@@ -39,6 +36,7 @@
       <change beforePath="$PROJECT_DIR$/src/models/chatroom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/chatroom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/userRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +108,8 @@
       <workItem from="1628972905404" duration="4769000" />
       <workItem from="1629030307189" duration="9227000" />
       <workItem from="1629049009842" duration="210000" />
-      <workItem from="1629120101693" duration="11331000" />
+      <workItem from="1629120101693" duration="12273000" />
+      <workItem from="1629206331529" duration="2128000" />
     </task>
     <servers />
   </component>

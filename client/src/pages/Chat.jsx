@@ -36,15 +36,16 @@ const Chat = ({
     }
     auth.socket.on("connect", async () => {
       await auth.socket.emit("fetch-initial-data", auth.data._id);
+    });
+    auth.socket.on("initial-data", async (chatrooms) => {
+      console.log("its this one");
+      await displayChatrooms(chatrooms);
       await joinChatroomEmitter(
         auth.currentChatroom,
         null,
         auth.data.name,
         auth.socket
       );
-    });
-    auth.socket.on("initial-data", async (chatrooms) => {
-      await displayChatrooms(chatrooms);
     });
     auth.socket.on("chatroom-created", async (chatroom) => {
       await createChatroom(chatroom, auth.socket);
