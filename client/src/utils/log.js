@@ -5,9 +5,9 @@ const player = (log, data) => console.info(log, "color: cyan", data);
 
 const emit = (log) => console.group("%c[IO_em]: ", "color: coral", log);
 
-const ack = (log) => {
+const ack = (data) => {
   console.info(
-    `%c[IO_ack]: ${log}`,
+    `%c[IO_ack]: %c${data[0]} %c${data[1]} %c${data[2]}`,
     "color: lightsalmon",
     "color: white",
     "color: yellow",

@@ -14,6 +14,7 @@ import {
   closeChatroom,
   displayChatrooms,
 } from "../redux/actions/chatActions";
+import { log } from "../utils/log";
 
 const Chat = ({
   auth,
@@ -30,12 +31,16 @@ const Chat = ({
       const socket =
         process.env.NODE_ENV === "production"
           ? io()
-          : io("http://localhost:5500");
+          : io("http://localhost:5500", {autoConnect: false});
+      socket.auth = {username: auth.data.username, userId: auth.data._id, token: auth.token};
+      console.log(socket);
       setSocket(socket);
+      socket.connect();
       return;
     }
     auth.socket.on("connect", async () => {
-      await auth.socket.emit("fetch-initial-data", auth.data._id);
+      console.log(auth.socket)
+      await auth.socket.emit("fetch-initial-data", (ack) => log.ack(ack));
     });
     auth.socket.on("initial-data", async (chatrooms) => {
       await displayChatrooms(chatrooms);
@@ -66,6 +71,11 @@ const Chat = ({
     auth.socket.on("return-message", async (chatroomName, message) => {
       await renderNewMessage(chatroomName, message);
     });
+
+    return function cleanUp() {
+      console.log('clean up ran')
+      auth.socket.disconnect();
+    }
   }, [
     auth.socket,
     createChatroom,
@@ -75,6 +85,8 @@ const Chat = ({
     closeChatroom,
     displayChatrooms,
   ]);
+
+
 
   return <ChatroomDisplay />;
 };

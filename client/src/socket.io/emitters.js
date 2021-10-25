@@ -2,8 +2,8 @@
 import { log } from "../utils/log";
 
 export const createChatroomEmitter = (chatroomName, userId, socket) => {
-  log.emit("creating chatroom...");
-  socket.emit("create-chatroom", chatroomName, userId, (ack) => log.ack(ack));
+  log.emit("creating public connection...");
+  socket.emit("create-public", chatroomName, userId, (ack) => log.ack(ack));
 };
 
 export const joinChatroomEmitter = (
