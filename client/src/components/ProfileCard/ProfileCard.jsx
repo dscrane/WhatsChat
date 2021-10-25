@@ -14,7 +14,7 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
   const [editing, setEditing] = useState("");
 
   const handleForm = async (formValues) => {
-    console.log("form handled", formValues);
+    log.emit("form handled", formValues);
     await updateUser(formValues);
     setEditing("");
   };
@@ -57,8 +57,13 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
         </div>
         <div className="content__col content__col-cta">
           <div
-            onClick={() =>
+            onClick={() => {
+              if (auth.data.name === 'Sample User') {
+                alert('Sample User profile cannot be edited');
+                return;
+              }
               editing === label ? setEditing("") : setEditing(label)
+            }
             }
             className="profile__cta-edit"
           >

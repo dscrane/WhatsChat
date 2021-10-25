@@ -10,7 +10,7 @@ export const SidebarContextMenu = ({
   handleLeave,
   displayDelete,
   setModalDisplay,
-  chatroomId,
+  chatroomName,
 }) => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -45,14 +45,14 @@ export const SidebarContextMenu = ({
       <Dropdown.Menu className="dropdown__content" variant="dark">
         <Dropdown.Item
           className="dropdown__item"
-          onClick={() => handleClose(chatroomId)}
+          onClick={() => handleClose(chatroomName)}
         >
           Close Chatroom
         </Dropdown.Item>
         <Dropdown.Divider className="dropdown__divider" />
         <Dropdown.Item
           className="dropdown__item"
-          onClick={() => handleLeave(chatroomId)}
+          onClick={() => handleLeave(chatroomName)}
         >
           Leave Chatroom
         </Dropdown.Item>

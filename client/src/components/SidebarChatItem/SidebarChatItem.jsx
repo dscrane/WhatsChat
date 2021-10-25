@@ -28,6 +28,12 @@ export const SidebarChatItem = ({
     btnText: "Delete",
     btnStyle: "danger",
   };
+  const sampleUserDeleteModalConfig = {
+    title: "Delete Chatroom",
+    message: "The Sample User profile is unable to delete chatrooms",
+    btnText: "Return",
+    btnStyle: "warning",
+  }
 
   const handleLeave = () => {
     leaveChatroomEmitter(chatroom.name, auth.data.name, auth.socket);
@@ -53,7 +59,12 @@ export const SidebarChatItem = ({
   };
 
   const onDelete = () => {
+    if (auth.data.username === 'sampleuser') {
+      setModalDisplay(false);
+    }
+
     deleteChatroomEmitter(chatroom.name, auth.socket);
+
   };
 
   return (
@@ -80,7 +91,7 @@ export const SidebarChatItem = ({
 
       <div className="item__col item__col-cta">
         <SidebarContextMenu
-          chatroomId={chatroom._id}
+          chatroomName={chatroom.name}
           handleClose={handleClose}
           handleLeave={handleLeave}
           displayDelete={auth._id === chatroom.createdBy}
@@ -88,7 +99,7 @@ export const SidebarChatItem = ({
         />
       </div>
       <ConfirmationModal
-        modalConfig={deleteChatroomModalConfig}
+        modalConfig={auth.data.username === 'sampleuser' ? sampleUserDeleteModalConfig : deleteChatroomModalConfig }
         setModalDisplay={setModalDisplay}
         modalDisplay={modalDisplay}
         fnHandler={onDelete}

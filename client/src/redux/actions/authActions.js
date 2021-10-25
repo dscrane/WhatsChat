@@ -92,7 +92,7 @@ export const logout = () => async (dispatch, getState) => {
 export const signup = (formValues) => async (dispatch) => {
   const defaultURL = "5f52268b6d59e14df8174254";
   const response = await api.post("/create-user", { ...formValues });
-  console.log(response);
+  log.emit(response);
   if (response.data.error) {
     const error = response.data.error;
     if (error.code === 11000) {
@@ -176,7 +176,7 @@ export const setChatroom = (currentChatroom) => async (dispatch, getState) => {
     type: SET_CHATROOM,
     payload: { currentChatroom },
   });
-  console.log(chatrooms[currentChatroom]._id);
+  log.emit(chatrooms[currentChatroom]._id);
   history.push(`/chats/${chatrooms[currentChatroom]._id}`);
 };
 

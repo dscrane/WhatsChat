@@ -1,17 +1,14 @@
-import api from "../../config/api";
 import history from "../../config/history";
 import {
   DISPLAY_CHATROOMS,
   RENDER_NEW_MESSAGE,
   RENDER_MESSAGES,
   ADD_CHATROOM,
-  SET_CHATROOM,
 } from "../types";
 import _ from "lodash";
 
 // Create a new chatroom
 export const createChatroom = (chatroom) => async (dispatch) => {
-  console.log(chatroom);
   try {
     dispatch({
       type: ADD_CHATROOM,
@@ -40,7 +37,6 @@ export const displayChatrooms = (chatrooms) => async (dispatch) => {
 // Close a chatroom
 export const closeChatroom = (chatroomName) => (dispatch, getState) => {
   const chatrooms = _.omit(getState().chatrooms, [chatroomName]);
-  console.log(chatrooms);
   dispatch({
     type: DISPLAY_CHATROOMS,
     payload: { ...chatrooms },

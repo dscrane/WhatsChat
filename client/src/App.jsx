@@ -13,8 +13,6 @@ const App = ({ auth, checkAuth, displayChatrooms }) => {
   useEffect(() => {
     if (!auth.token) {
       checkAuth();
-
-      // displayChatrooms(auth.data.favoriteRooms);
     }
   }, [auth.token, checkAuth, displayChatrooms]);
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-console.log("PROCESS.ENV", process.env.NODE_ENV);
+log.emit("PROCESS.ENV", process.env.NODE_ENV);
 export default axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
