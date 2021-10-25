@@ -5,7 +5,7 @@ import { mapSidebarIcons } from "../../utils";
 import "./sidebar.css";
 const Sidebar = ({ auth }) => {
   const [activeIcon, setActiveIcon] = useState("chats");
-  const icons = ["profile", "chats"];
+  const icons = ["chats", "profile"];
 
   useEffect(() => {
     return () => {
@@ -30,7 +30,7 @@ const Sidebar = ({ auth }) => {
       </nav>
       <div className="sidebar__content">
         <div className="sidebar__row py-4">
-          <h2 className="sidebar__title">WhatsChat</h2>
+          <h2 className="sidebar__title">{activeIcon === "chats" ? "WhatsChat" : "Profile"}</h2>
         </div>
         <div className="sidebar__row">{renderSidebarContent}</div>
       </div>
