@@ -1,4 +1,5 @@
 import { Chatroom, User } from "../models/index.js";
+import { DatabaseError } from "../utils/errors.js";
 
 export const createPublicConnection = async (
   socket,

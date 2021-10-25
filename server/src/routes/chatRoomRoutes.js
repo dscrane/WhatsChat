@@ -4,9 +4,12 @@ import { User } from "../models/user.js";
 
 const router = express.Router();
 
-router.get("/MessagesDisplay", async (req, res) => {
+router.post("/MessagesDisplay", async (req, res) => {
+  if (typeof req.body === 'string') {
+    req.body = JSON.parse(req.body);
+  }
   try {
-    const chats = await Chatroom.find().limit(8);
+    const chats = await Chatroom.find({"name": {$in: req.body.rooms}})
     res.send({ chats });
   } catch (e) {
     console.error(e);

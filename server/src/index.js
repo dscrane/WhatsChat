@@ -6,6 +6,7 @@ import { Server } from "socket.io";
 import bodyParser from "body-parser";
 import cors from "cors";
 import { default as userRouter } from "./routes/userRoutes.js";
+import { default as chatRouter } from "./routes/chatRoomRoutes.js";
 import { socketConfig } from "./config/socket.js";
 import { db } from "./db/db.js";
 import { log } from "./utils/logs.js";
@@ -18,8 +19,13 @@ db();
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
+  allowEIO3: true,
   cors: {
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:39918",
+      "http://127.0.0.1:9102/",
+    ],
     methods: ["GET", "POST"],
   },
 });
@@ -28,11 +34,12 @@ const io = new Server(httpServer, {
 const PORT = process.env.PORT || 5500;
 
 // Connect middlewares
-app.use(bodyParser.json());
+app.use(express.json(), express.urlencoded({ extended: true }), express.text());
 app.use(cors());
 
 // Connect routers
 app.use(userRouter);
+app.use(chatRouter);
 
 // Connect static files
 const __dirname = path.resolve();

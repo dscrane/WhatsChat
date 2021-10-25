@@ -7,11 +7,13 @@ export const joinChatroom = async (
   userName,
   cb
 ) => {
-  await socket.leave(oldChatroomName);
-  await socket.join(newChatroomName);
+  console.log('join room hit')
+  if (oldChatroomName) {
+    await socket.leave(oldChatroomName)
+  }
   log.socket(userName, `has joined room`, newChatroomName);
+  await socket.join(newChatroomName);
 
-  cb(`%cjoin-room %c${newChatroomName} %ccomplete`);
-
+  cb(['join-room', newChatroomName, 'complete']);
   await socket.emit("fetch-messages", newChatroomName);
 };

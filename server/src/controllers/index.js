@@ -1,4 +1,4 @@
-export * from "./createChatroom.js";
+export * from "./createPrivateConnection.js";
 export * from "./joinChatroom.js";
 export * from "./rejoinChatroom.js";
 export * from "./fetchMessages.js";

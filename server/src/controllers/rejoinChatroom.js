@@ -11,5 +11,5 @@ export const rejoinChatroom = async (
   await socket.join(newChatroomName);
   log.socket(userName, `has joined room`, newChatroomName);
 
-  cb(`%crejoin-room %c${newChatroomName} %ccomplete`);
+  cb(['rejoin-room',newChatroomName, 'complete']);
 };

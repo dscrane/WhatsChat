@@ -14,6 +14,12 @@ export const chatroomSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    type: {
+      type: String,
+    },
+    lastMessage: {
+      type: String,
+    },
   },
   {
     timestamps: true,

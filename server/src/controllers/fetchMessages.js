@@ -7,5 +7,5 @@ export const fetchMessages = async (socket, chatroomName, cb) => {
   messages = [...messages];
   await socket.emit("fetched-messages", chatroomName, messages);
 
-  cb(`%cfetch-messages %c${chatroomName} %ccomplete`);
+  cb(['fetch-messages', chatroomName, 'complete']);
 };

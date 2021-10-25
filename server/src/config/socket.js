@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   joinChatroom,
   rejoinChatroom,
@@ -5,22 +6,41 @@ import {
   deleteChatroom,
   fetchMessages,
   newMessage,
-  createChatroom,
+  createPrivateConnection,
   fetchInitialData,
 } from "../controllers/index.js";
-import { log } from "../utils/logs.js";
 
 export const socketConfig = (io) => {
+  io.use((socket, next) => {
+    console.log("middleware hit");
+
+    socket.data =
+      Object.keys(socket.handshake.auth).length != 0
+        ? socket.handshake.auth
+        : _.omit(socket.handshake.query, ["EIO", "transport"]);
+
+    next();
+  });
   io.on("connection", async (socket) => {
-    log.socket(socket.id, "connected");
+    socket.onAny((event, ...args) => {
+      console.log("socketdata", socket.data);
+      //   // console.log(socket);
+      //   !socket.handshake.auth.userId
+      //     ? console.log("query: ", socket.handshake.query)
+      //     : console.log("auth: ", socket.handshake.auth);
+    });
     // Emit initialization info
-    socket.on("fetch-initial-data", (userId) =>
-      fetchInitialData(socket, userId)
-    );
+    socket.on("fetch-initial-data", (cb) => {
+      fetchInitialData(socket, cb);
+    });
     // Define create chatroom event
-    socket.on("create-chatroom", (chatroomName, userId, cb) =>
-      createChatroom(socket, chatroomName, userId, cb)
+    socket.on("create-public", (chatroomName, userId, cb) =>
+      createPrivateConnection(socket, chatroomName, userId, cb)
     );
+
+    socket.on("create-private", (username, cb) => {
+      createPrivateConnection(io, socket, username, cb);
+    });
     // Define join chatroom event
     socket.on(
       "join-chatroom",

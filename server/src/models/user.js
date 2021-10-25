@@ -95,7 +95,6 @@ userSchema.statics.findByCredentials = async (username, password) => {
     this.message = message;
     this.name = "Error";
   }
-
   const user = await User.findOne({ username });
   if (!user) {
     throw new LoginError("The username or password is incorrect");
