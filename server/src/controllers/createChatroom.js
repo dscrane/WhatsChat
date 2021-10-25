@@ -13,7 +13,6 @@ export const createChatroom = async (socket, chatroomName, userId, cb) => {
   try {
     await chat.save();
     socket.emit("chatroom-created", chat, user.name);
-    cb(`%ccreate-chatroom %c${chatroomName} %ccomplete`);
 
     await user.save();
   } catch (e) {

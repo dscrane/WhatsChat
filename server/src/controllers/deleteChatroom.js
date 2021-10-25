@@ -31,5 +31,4 @@ export const deleteChatroom = async (io, chatroomName, cb) => {
   await io.socketsLeave(chatroomName);
 
   await Chatroom.deleteOne({ name: chatroomName });
-  cb(`%cdelete-chatroom %c${chatroomName} %ccomplete`);
 };

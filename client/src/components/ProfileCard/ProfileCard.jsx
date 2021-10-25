@@ -14,7 +14,6 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
   const [editing, setEditing] = useState("");
 
   const handleForm = async (formValues) => {
-    console.log("form handled", formValues);
     await updateUser(formValues);
     setEditing("");
   };
