@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "nodemon --require dotenv/config ./src/index.js",
-    "deploy": "git add * && git commit -m updates && git push heroku main"
+    "deploy": "git add * && git commit -m updates && git push heroku master"
   },
   "keywords": [],
   "author": "",
