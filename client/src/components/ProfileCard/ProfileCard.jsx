@@ -4,6 +4,8 @@ import _ from "lodash";
 import moment from "moment";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import { Field } from "redux-form";
 import { RenderForm } from "../RenderForm";
 import { pencilIcon } from "../../icons/icons";
@@ -12,11 +14,18 @@ import "./profileCard.css";
 
 export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
   const [editing, setEditing] = useState("");
+  const canEdit = auth.data._id !== "5f637fdd0a41ae691c828e50";
 
   const handleForm = async (formValues) => {
     await updateUser(formValues);
     setEditing("");
   };
+
+  const renderSampleUserTooltip = (props) => (
+    <Tooltip id={"button-tooltip"} {...props}>
+      SampleUser unable to perform this action
+    </Tooltip>
+  )
 
   const renderSubmitButton =
     editing === "" ? null : (
@@ -26,6 +35,28 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
         </button>
       </ListGroup.Item>
     );
+
+  const makeEditableIcon = (label) => {
+    console.log('EDITABLE', canEdit)
+    if (canEdit) {
+      return (
+        <div
+          onClick={() => editing === label ? setEditing("") : setEditing(label)}
+          className="profile__cta-edit"
+        >
+          {editing === label ? "\u2715" : pencilIcon}
+        </div>
+      )
+    } else {
+      return (
+          <OverlayTrigger delay={{ show: 250, hide: 400 }} overlay={renderSampleUserTooltip} placement="right">
+            <div className="profile__cta-edit">
+              {pencilIcon}
+            </div>
+          </OverlayTrigger>
+      )
+    }
+  }
 
   const renderError = ({ error, touched }) => {
     if (touched && error) {
@@ -55,14 +86,7 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
           )}
         </div>
         <div className="content__col content__col-cta">
-          <div
-            onClick={() =>
-              editing === label ? setEditing("") : setEditing(label)
-            }
-            className="profile__cta-edit"
-          >
-            {editing === label ? "\u2715" : pencilIcon}
-          </div>
+          {makeEditableIcon(label)}
         </div>
         {renderError(meta)}
       </div>
@@ -130,13 +154,15 @@ export const ProfileCard = ({ auth, updateUser, logout, setModalDisplay }) => {
             </button>
           </ListGroup.Item>
           <ListGroup.Item className="profile__row">
+            <OverlayTrigger delay={{ show: 250, hide: 400 }} overlay={renderSampleUserTooltip} placement="right">
             <button
               onClick={() => setModalDisplay(true)}
               className="profile__cta profile__cta-delete button"
-              disabled={auth.data._id === "5f637fdd0a41ae691c828e50"}
+              disabled={!canEdit}
             >
               Delete Account
             </button>
+            </OverlayTrigger>
           </ListGroup.Item>
         </ListGroup>
       </Card.Footer>
