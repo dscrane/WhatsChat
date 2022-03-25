@@ -5,8 +5,7 @@
   --purple-900: hsl(204, 6%, 16%);
   --purple-700: hsl(204, 6%, 20%);
   --purple-500: hsl(204, 6%, 24%);
-  --purple-500-faded: /*hsla(204, 6%, 24%, 0.5)*/ #565a5b;
-  --purple-highlight: /*hsl(263, 46%, 84%)*/ red;
+  --purple-500-faded: #565a5b;
   --purple-highlight-faded: rgba(217, 184, 196, 0.5);
   --olive-900: hsl(225, 29%, 35%);
   --olive-700: hsl(225, 29%, 35%);
