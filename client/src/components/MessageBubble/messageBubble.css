@@ -21,7 +21,8 @@
   border-radius: 10px;
   max-width: 45%;
   min-width: 10%;
-  box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+;
 }
 
 .message__container-sent {

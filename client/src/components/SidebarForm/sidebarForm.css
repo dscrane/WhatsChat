@@ -24,23 +24,31 @@
 .sidebar__form_input {
   border: .15rem solid var(--purple-900) !important;
   color: var(--text-dark);
-  background-color: var(--purple-highlight) !important;
+  background-color: var(--text-light) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.sidebar__form_input:focus {
+  box-shadow: 0 0 0 .2rem var(--purple-500-faded) !important;
 }
 
 .sidebar__cta-new {
   display: flex;
   align-items: center;
   font-size: 35px;
-  color: var(--purple-500);
+  color: var(--purple-900);
   padding: 0 !important;
   outline: none;
-  background-color: transparent;
+  background-color: var(--accent);
+  border-radius: 6px;
   border: none !important;
   margin: 0 !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .sidebar__cta-new:hover {
-  color: var(--text-light);
-  background-color: var(--purple-500);
-  border-radius: .5rem;
+  color: var(--accent);
+  background-color: var(--purple-900);
+  border-radius: 6px;
 }

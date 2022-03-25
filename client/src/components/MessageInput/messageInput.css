@@ -27,10 +27,12 @@
 .message-form__input {
   width: 100%;
   color: var(--text-dark) !important;
-  background-color: var(--purple-highlight) !important;
+  background-color: var(--text-light) !important;
   border: .15rem solid var(--purple-900) !important;
   outline: none !important;
   font-min-size: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .message-form__input:focus {
@@ -39,15 +41,17 @@
 
 .message-form__cta {
   outline: 1px solid var(--purple-900);
-  background-color: transparent;
-  color: var(--text-light) !important;
+  background-color: var(--accent) !important;
+  color: var(--purple-900) !important;
   transition-property: background-color, color, border;
   transition-duration: 150ms;
   transition-delay: 50ms;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .message-form__cta:hover {
-  background-color: var(--purple-500-faded);
-  color: var(--purple-900) !important;
-  outline: 1px solid var(--purple-900) !important;
+  color: var(--accent) !important;
+  background-color: var(--purple-900) !important;
+  outline: 1px solid var(--accent) !important;
 }

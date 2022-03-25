@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -r ../server/src/public/* && react-scripts build && mv build/* ../server/src/public",
+    "build": "rm -r ../../prod/src/public/* && react-scripts build && mv build/* ../../prod/src/public",
     "startserver": "npm --prefix ../server run dev",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

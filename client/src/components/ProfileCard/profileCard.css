@@ -9,6 +9,8 @@
   height: 150px;
   width: 150px !important;
   margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 .profile__body {
   background-color: transparent !important;
@@ -51,10 +53,10 @@
   text-align: center !important;
 }
 .profile__cta-edit {
-  color: var(--text-light-50);
+  color: var(--accent);
 }
 .profile__cta-edit:hover {
-  color: var(--text-light);
+  color: var(--purple-900);
   cursor: pointer;
 }
 .profile__footer {
@@ -68,8 +70,16 @@
 }
 .profile__cta {
   font-size: 1rem;
-  color: var(--text-dark)
+  outline: 1px solid var(--purple-900);
+  background-color: var(--accent) !important;
+  color: var(--purple-900) !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+}
+.profile__cta:hover {
+  outline: 1px solid var(--accent) !important;
+  background-color: var(--purple-900) !important;
+  color: var(--accent) !important;
 }
 
 .profile__cta-logout {
